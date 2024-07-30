@@ -1,4 +1,4 @@
-import 'package:aboutme/ui/screens/home/HomeScreen.dart';
+import 'package:aboutme/ui/screens/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
