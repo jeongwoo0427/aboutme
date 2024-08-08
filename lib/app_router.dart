@@ -6,11 +6,11 @@ import 'package:go_router/go_router.dart';
 
 // The route configuration.
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/home',
+  initialLocation: '/',
   routes: <RouteBase>[
     GoRoute(
       name: HomeScreen.routeName,
-      path: '/home',
+      path: '/',
       pageBuilder: customPageBuilder(const HomeScreen()),
       // routes: <RouteBase>[
       //   // GoRoute(

@@ -23,13 +23,13 @@ void main() async {
   //runApp(const ErrorScreen());
 
   // Get the instance of shared preferences
-  //SharedPreferencesService.initialize(await SharedPreferences.getInstance()); //initial preferences singleton
+  SharedPreferencesService.initialize(await SharedPreferences.getInstance()); //initial preferences singleton
 
   return runApp(
     const ProviderScope(
       overrides: [
         // Override the unimplemented provider with the value gotten from the plugin
-        //sharedPreferencesScopeProvider.overrideWithValue(prefs),
+        // sharedPreferencesScopeProvider.overrideWithValue(prefs),
       ],
       child: MyApp(),
     ),
