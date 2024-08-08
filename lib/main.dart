@@ -23,7 +23,7 @@ void main() async {
   //runApp(const ErrorScreen());
 
   // Get the instance of shared preferences
-  SharedPreferencesService.initialize(await SharedPreferences.getInstance()); //initial preferences singleton
+  //SharedPreferencesService.initialize(await SharedPreferences.getInstance()); //initial preferences singleton
 
   return runApp(
     const ProviderScope(
@@ -43,8 +43,6 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       theme: AppThemes.lightTheme,
-      locale: const Locale('ko'),
-      //자동 언어 설정을 위해 제거
       onGenerateTitle: (BuildContext context) => 'About JeongWoo',
       routerConfig: appRouter,
       builder: (context, widget) => ResponsiveBreakpoints.builder(child: ClampingScrollWrapper.builder(context, widget!), breakpoints: [

@@ -3,30 +3,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'ui/screens/splash_screen.dart';
 
 // The route configuration.
 final GoRouter appRouter = GoRouter(
+  initialLocation: '/home',
   routes: <RouteBase>[
     GoRoute(
-      path: '/',
-      pageBuilder: customPageBuilder(const SplashScreen()),
-      routes: <RouteBase>[
-        GoRoute(
-          name: HomeScreen.routeName,
-          path: 'home',
-          pageBuilder: customPageBuilder(HomeScreen()),
-        ),
-        // GoRoute(
-        //   name: ManageQuizScreen.routeName,
-        //   path: 'create-quiz',
-        //   pageBuilder: customPageBuilder(
-        //     const ManageQuizScreen(
-        //       manageMode: ManageMode.create,
-        //     ),
-        //   ),
-        // ),
-      ],
+      name: HomeScreen.routeName,
+      path: '/home',
+      pageBuilder: customPageBuilder(const HomeScreen()),
+      // routes: <RouteBase>[
+      //   // GoRoute(
+      //   //   name: ManageQuizScreen.routeName,
+      //   //   path: 'create-quiz',
+      //   //   pageBuilder: customPageBuilder(
+      //   //     const ManageQuizScreen(
+      //   //       manageMode: ManageMode.create,
+      //   //     ),
+      //   //   ),
+      //   // ),
+      // ],
     ),
   ],
 );

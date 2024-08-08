@@ -19,13 +19,8 @@ class AppAssets{
   //
   // static final String splash_background = 'asset/image/background/night_forest.jpg';
 
-  static final String TEST_BADGE = 'assets/image/badge/tile041.png';
 
-  static const String SPLAT_BANNER_PATH = 'assets/image/banner/';
-  static const String SPLAT_BADGE_PATH = 'assets/image/badge/';
-
-  static const String PORTFOIO_BANNER = 'assets/image/portfolio/banner.jpg';
-
+  static const String BG_EARTH_ANIM = 'assets/images/backgrounds/cyber_earth_animation.gif';
 
 
 }
