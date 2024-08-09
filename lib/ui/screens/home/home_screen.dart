@@ -225,6 +225,7 @@ class _GlassySectorButtonState extends State<GlassySectorButton> {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
+          splashColor: Colors.white.withOpacity(0.3) ,
           onTap: (){},
           child: GlassyContainer(
             borderRadius: borderRadius,
