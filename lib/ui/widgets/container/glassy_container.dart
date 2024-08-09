@@ -27,7 +27,7 @@ class _GlassyContainerState extends State<GlassyContainer> {
     return ClipRRect(
       borderRadius: widget.borderRadius ?? BorderRadius.circular(20),
       child: TweenAnimationBuilder(
-        curve: Curves.decelerate,
+        //curve: Curves.decelerate,
         tween: Tween<double>(begin: widget.isAnimateBlur?0:widget.blur, end: widget.blur),
         duration: const Duration(milliseconds: 3500),
         builder: (_, value, child) {

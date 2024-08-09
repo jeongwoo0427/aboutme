@@ -231,16 +231,16 @@ class _GlassySectorButtonState extends State<GlassySectorButton> {
             borderRadius: borderRadius,
             blur: _loadComplete ? 30 : 0,
             isAnimateBlur: true,
-            width: 200 * (widget.isTablet ? 1 : 1.5),
-            height: 100 * (widget.isTablet ? 1 : 1.5),
+            width: 200 * (widget.isTablet ? 0.8 : 1.5),
+            height: 100 * (widget.isTablet ? 0.8 : 1.5),
             child: Center(
               child: DefaultTextStyle(
-                style: TextStyle(fontSize: widget.isTablet ? 20 : 30, fontWeight: FontWeight.w900, color: Colors.white.withOpacity(0.9)),
+                style: TextStyle(fontSize: widget.isTablet ? 15 : 30, fontWeight: FontWeight.w900, color: Colors.white.withOpacity(0.9)),
                 child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                   Text(widget.sectorName),
                   Icon(
                     widget.icon,
-                    size: widget.isTablet ? 40 : 60,
+                    size: widget.isTablet ? 30 : 60,
                     color: Colors.white.withOpacity(0.9),
                   )
                 ]),
