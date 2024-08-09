@@ -117,38 +117,44 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+                            SizedBox(),
                             Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 GlassySectorButton(
                                   sectorName: 'Who am i?',
                                   icon: Icons.person,
                                   isTablet: isTablet,
+                                  delayMs: 2000,
                                 ),
                                 GlassySectorButton(
                                   sectorName: 'Skills',
                                   icon: Icons.electric_bolt,
                                   isTablet: isTablet,
+                                  delayMs: 3000,
                                 ),
                               ],
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 GlassySectorButton(
                                   sectorName: 'Projects',
                                   icon: Icons.newspaper_outlined,
                                   isTablet: isTablet,
+                                  delayMs: 2500,
                                 ),
                                 GlassySectorButton(
                                   sectorName: 'Contact',
                                   icon: Icons.email,
                                   isTablet: isTablet,
+                                  delayMs: 3500,
                                 ),
                               ],
                             ),
+                            SizedBox(),
                           ],
                         ))),
 
@@ -166,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       ).animate(
                         controller: _aboutTextAnimationContrller,
                         autoPlay: true,
-                        delay: Duration(milliseconds: 1500),
+                        delay: Duration(milliseconds: 3800),
                         effects: [
                           BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
                         ],
@@ -181,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       ).animate(
                         controller: _kjwTextAnimationContrller,
                         autoPlay: true,
-                        delay: Duration(milliseconds: 2500),
+                        delay: Duration(milliseconds: 4400),
                         effects: [
                           BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
                         ],
@@ -197,11 +203,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 }
 
 class GlassySectorButton extends StatelessWidget {
-  const GlassySectorButton({Key? key, required this.sectorName, required this.icon, required bool this.isTablet}) : super(key: key);
+  const GlassySectorButton({Key? key, required this.sectorName, required this.icon, required bool this.isTablet, required this.delayMs}) : super(key: key);
 
   final String sectorName;
   final IconData icon;
   final bool isTablet;
+  final int delayMs;
 
 
   @override
@@ -218,6 +225,13 @@ class GlassySectorButton extends StatelessWidget {
               children: [Text(sectorName), Icon(icon,size: isTablet ? 40 : 60,color: Colors.white.withOpacity(0.9),)]),
         ),
       ),
+    ).animate(
+      autoPlay: true,
+      delay: Duration(milliseconds: delayMs),
+      effects: [
+        BlurEffect(begin: Offset(90,0), end: Offset(0,0), duration: Duration(milliseconds: 1000),curve: Curves.decelerate),
+        FadeEffect(begin: 0, end: 1, duration: Duration(milliseconds: 500))
+      ]
     );
   }
 }
