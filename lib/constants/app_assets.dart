@@ -21,6 +21,6 @@ class AppAssets{
 
 
   static const String BG_EARTH_ANIM = 'assets/images/backgrounds/cyber_earth_animation.gif';
-
+  static const String BG_WHITE_STARS = 'assets/images/backgrounds/white_stars.png';
 
 }
