@@ -17,7 +17,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final GifController _gifController;
+  late final AnimationController _aboutTextAnimationContrller;
+  late final AnimationController _kjwTextAnimationContrller;
   late final AnimationController _earthAnimationController;
+
 
   final double _earthMovementScale = 30;
   final double _starsMovementScale = -15;
@@ -27,12 +30,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     _gifController = GifController(vsync: this);
+    _aboutTextAnimationContrller = AnimationController(vsync: this);
+    _kjwTextAnimationContrller = AnimationController(vsync: this);
     _earthAnimationController = AnimationController(vsync: this);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: MouseRegion(
         onHover: (event) {
@@ -107,6 +113,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 ResponsiveValue<double>(context, defaultValue: 30, conditionalValues: [Condition.smallerThan(name: TABLET, value: 20)]).value,
                             fontWeight: FontWeight.w100),
                       ).animate(
+
+                        controller: _aboutTextAnimationContrller,
+                        autoPlay: true,
                         delay: Duration(milliseconds: 1500),
                         effects: [
                           BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
@@ -120,6 +129,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 ResponsiveValue<double>(context, defaultValue: 30, conditionalValues: [Condition.smallerThan(name: TABLET, value: 20)]).value,
                             fontWeight: FontWeight.w700),
                       ).animate(
+                        controller: _kjwTextAnimationContrller,
+                        autoPlay: true,
                         delay: Duration(milliseconds: 2500),
                         effects: [
                           BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
@@ -130,5 +141,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             )),
       ),
     );
+  }
+
+  void setTitleState({required bool show}){
   }
 }
