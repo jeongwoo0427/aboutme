@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       ).animate(
                         delay: Duration(milliseconds: 1500),
                         effects: [
-                          BlurEffect(begin: Offset(100, 100), end: Offset(0, 0), duration: Duration(milliseconds: 1300)),
+                          BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
                         ],
                       ),
                       Text(
@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       ).animate(
                         delay: Duration(milliseconds: 2500),
                         effects: [
-                          BlurEffect(begin: Offset(100, 100), end: Offset(0, 0), duration: Duration(milliseconds: 1300)),
+                          BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
                         ],
                       )
                     ]))
