@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class GlassyContainer extends StatelessWidget {
   const GlassyContainer(
-      {Key? key, required this.child, this.width, this.height, this.blur = 10, this.opacity = 0.1, this.color = Colors.white, this.borderRadius})
+      {Key? key, required this.child, this.width, this.height, this.blur = 30, this.opacity = 0.1, this.color = Colors.black, this.borderRadius})
       : super(key: key);
 
   final Widget child;
@@ -28,7 +28,7 @@ class GlassyContainer extends StatelessWidget {
           decoration: BoxDecoration(
             color: color.withOpacity(opacity),
             borderRadius: borderRadius ?? BorderRadius.circular(20),
-            border: Border.all(width: 1.4,color: Colors.white.withOpacity(0.2))
+            border: Border.all(width: 1.4,color: Colors.white.withOpacity(0.6))
           ),
           child: child,
         ),
