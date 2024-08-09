@@ -1,4 +1,5 @@
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final AnimationController _kjwTextAnimationContrller;
   late final AnimationController _earthAnimationController;
 
-
+  final double _cardsMovemnetScale = 50;
   final double _earthMovementScale = 30;
   final double _starsMovementScale = -15;
   double _mousePositionX = 0; //(-1 ~ 1)
@@ -38,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: MouseRegion(
         onHover: (event) {
@@ -81,8 +81,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 AnimatedPositioned(
                   curve: Curves.decelerate,
                   duration: const Duration(milliseconds: 400),
-                  top: 0 - (_earthMovementScale * _mousePositionY),
-                  bottom: 0 + (_earthMovementScale * _mousePositionY),
+                  top: 30 - (_earthMovementScale * _mousePositionY),
+                  bottom: -30 + (_earthMovementScale * _mousePositionY),
                   left: 0 - (_earthMovementScale * _mousePositionX),
                   right: 0 + (_earthMovementScale * _mousePositionX),
                   child: Gif(
@@ -101,6 +101,58 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ScaleEffect(begin: Offset(0, 0), end: Offset(1, 1), duration: Duration(milliseconds: 1500), curve: Curves.decelerate),
                   ]),
                 ),
+                AnimatedPositioned(
+                    curve: Curves.decelerate,
+                    duration: const Duration(milliseconds: 400),
+                    top: 0 - (_cardsMovemnetScale * _mousePositionY),
+                    bottom: 0 + (_cardsMovemnetScale * _mousePositionY),
+                    left: 0 - (_cardsMovemnetScale * _mousePositionX),
+                    right: 0 + (_cardsMovemnetScale * _mousePositionX),
+                  child: Container(
+                    width: double.infinity,
+                      height: double.infinity,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GlassyContainer(
+                            width: 200,
+                            height: 100,
+                            child: Text('hihi'),
+                          ),
+                          GlassyContainer(
+                            width: 200,
+                            height: 100,
+                            child: Text('hihi'),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GlassyContainer(
+                            width: 200,
+                            height: 100,
+                            child: Text('hihi'),
+                          ),
+                          GlassyContainer(
+                            width: 200,
+                            height: 100,
+                            child: Text('hihi'),
+                          ),
+                        ],
+                      ),
+                    ],)
+                  )
+                ),
+
+
+
                 Positioned(
                     left: 15,
                     top: 15,
@@ -113,7 +165,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 ResponsiveValue<double>(context, defaultValue: 30, conditionalValues: [Condition.smallerThan(name: TABLET, value: 20)]).value,
                             fontWeight: FontWeight.w200),
                       ).animate(
-
                         controller: _aboutTextAnimationContrller,
                         autoPlay: true,
                         delay: Duration(milliseconds: 1500),
@@ -143,6 +194,5 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-  void setTitleState({required bool show}){
-  }
+  void setTitleState({required bool show}) {}
 }
