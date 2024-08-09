@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             color: Colors.white.withOpacity(0.7),
                             fontSize:
                                 ResponsiveValue<double>(context, defaultValue: 30, conditionalValues: [Condition.smallerThan(name: TABLET, value: 20)]).value,
-                            fontWeight: FontWeight.w100),
+                            fontWeight: FontWeight.w200),
                       ).animate(
 
                         controller: _aboutTextAnimationContrller,
@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             color: Colors.white.withOpacity(0.7),
                             fontSize:
                                 ResponsiveValue<double>(context, defaultValue: 30, conditionalValues: [Condition.smallerThan(name: TABLET, value: 20)]).value,
-                            fontWeight: FontWeight.w700),
+                            fontWeight: FontWeight.w500),
                       ).animate(
                         controller: _kjwTextAnimationContrller,
                         autoPlay: true,

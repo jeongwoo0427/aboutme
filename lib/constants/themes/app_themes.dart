@@ -9,7 +9,7 @@ class AppThemes {
   static final ThemeData lightTheme = ThemeData(
     //useMaterial3: true,
     brightness: Brightness.light,
-    fontFamily: AppFontFamily.cookieRunKR,
+    fontFamily: AppFontFamily.notoSansKR,
     scaffoldBackgroundColor: AppColorSchemes.lightColorScheme.background,
     appBarTheme: const AppBarTheme().copyWith(
         surfaceTintColor: AppColorSchemes.lightColorScheme.background,
@@ -27,7 +27,7 @@ class AppThemes {
   static final ThemeData darkTheme = ThemeData(
       //useMaterial3: true,
       brightness: Brightness.dark,
-      fontFamily: AppFontFamily.cookieRunKR,
+      fontFamily: AppFontFamily.notoSansKR,
       scaffoldBackgroundColor: AppColorSchemes.darkColorScheme.background,
       appBarTheme: const AppBarTheme().copyWith(
           surfaceTintColor: AppColorSchemes.darkColorScheme.background,
