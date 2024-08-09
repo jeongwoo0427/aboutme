@@ -202,36 +202,52 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void setTitleState({required bool show}) {}
 }
 
-class GlassySectorButton extends StatelessWidget {
-  const GlassySectorButton({Key? key, required this.sectorName, required this.icon, required bool this.isTablet, required this.delayMs}) : super(key: key);
+class GlassySectorButton extends StatefulWidget {
+  GlassySectorButton({Key? key, required this.sectorName, required this.icon, required bool this.isTablet, required this.delayMs}) : super(key: key);
 
   final String sectorName;
   final IconData icon;
   final bool isTablet;
   final int delayMs;
 
+  @override
+  State<GlassySectorButton> createState() => _GlassySectorButtonState();
+}
+
+class _GlassySectorButtonState extends State<GlassySectorButton> {
+  bool _loadComplete = false;
 
   @override
   Widget build(BuildContext context) {
     return GlassyContainer(
-      width: 200 * (isTablet ? 1 : 1.5),
-      height: 100 * (isTablet ? 1 : 1.5),
+      blur: _loadComplete ? 30 : 0,
+      isAnimateBlur: true,
+      width: 200 * (widget.isTablet ? 1 : 1.5),
+      height: 100 * (widget.isTablet ? 1 : 1.5),
       child: Center(
         child: DefaultTextStyle(
-          style: TextStyle(fontSize: isTablet ? 20 : 30, fontWeight: FontWeight.w900, color: Colors.white.withOpacity(0.9)),
-          child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [Text(sectorName), Icon(icon,size: isTablet ? 40 : 60,color: Colors.white.withOpacity(0.9),)]),
+          style: TextStyle(fontSize: widget.isTablet ? 20 : 30, fontWeight: FontWeight.w900, color: Colors.white.withOpacity(0.9)),
+          child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Text(widget.sectorName),
+            Icon(
+              widget.icon,
+              size: widget.isTablet ? 40 : 60,
+              color: Colors.white.withOpacity(0.9),
+            )
+          ]),
         ),
       ),
     ).animate(
-      autoPlay: true,
-      delay: Duration(milliseconds: delayMs),
-      effects: [
-        BlurEffect(begin: Offset(90,0), end: Offset(0,0), duration: Duration(milliseconds: 1000),curve: Curves.decelerate),
-        FadeEffect(begin: 0, end: 1, duration: Duration(milliseconds: 500))
-      ]
-    );
+        autoPlay: true,
+        delay: Duration(milliseconds: widget.delayMs),
+        onComplete: (controller) {
+          setState(() {
+            _loadComplete = true;
+          });
+        },
+        effects: [
+          BlurEffect(begin: Offset(90, 0), end: Offset(0, 0), duration: Duration(milliseconds: 1000), curve: Curves.decelerate),
+          FadeEffect(begin: 0, end: 1, duration: Duration(milliseconds: 500))
+        ]);
   }
 }
