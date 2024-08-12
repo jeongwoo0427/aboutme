@@ -1,8 +1,8 @@
 import 'package:aboutme/ui/screens/home/home_screen.dart';
+import 'package:aboutme/ui/screens/whoami/whoami_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 
 // The route configuration.
 final GoRouter appRouter = GoRouter(
@@ -11,7 +11,9 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       name: HomeScreen.routeName,
       path: '/',
-      pageBuilder: customPageBuilder(const HomeScreen()),
+      pageBuilder: customPageBuilder(
+        const HomeScreen(),
+      ),
       // routes: <RouteBase>[
       //   // GoRoute(
       //   //   name: ManageQuizScreen.routeName,
@@ -24,27 +26,24 @@ final GoRouter appRouter = GoRouter(
       //   // ),
       // ],
     ),
+    GoRoute(
+      name: WhoAmIScreen.routeName,
+      path: '/who-am-i',
+      pageBuilder: customPageBuilder(const WhoAmIScreen()),
+    ),
   ],
 );
 
-Page<dynamic> Function(BuildContext, GoRouterState) customPageBuilder<T>(
-        Widget child,
-        {String? type}) =>
-    (BuildContext context, GoRouterState state) {
-      return buildPageWithDefaultTransition<T>(
-          context: context, state: state, child: child, type: type);
+Page<dynamic> Function(BuildContext, GoRouterState) customPageBuilder<T>(Widget child, {String? type}) => (BuildContext context, GoRouterState state) {
+      return buildPageWithDefaultTransition<T>(context: context, state: state, child: child, type: type);
     };
 
-CustomTransitionPage buildPageWithDefaultTransition<T>(
-    {required BuildContext context,
-    required GoRouterState state,
-    required Widget child,
-    String? type}) {
+CustomTransitionPage buildPageWithDefaultTransition<T>({required BuildContext context, required GoRouterState state, required Widget child, String? type}) {
   return CustomTransitionPage<T>(
       key: state.pageKey,
       child: child,
-      transitionDuration: const Duration(milliseconds: 300),
-      reverseTransitionDuration: const Duration(milliseconds: 300),
+      transitionDuration: const Duration(milliseconds: 1000),
+      reverseTransitionDuration: const Duration(milliseconds: 1000),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         switch (type) {
           case 'fade':
@@ -55,23 +54,49 @@ CustomTransitionPage buildPageWithDefaultTransition<T>(
             return SizeTransition(sizeFactor: animation, child: child);
           case 'scale':
             return ScaleTransition(scale: animation, child: child);
-          case 'slide':
-            return SlideTransition(
-              position: animation.drive(
-                Tween(begin: const Offset(0, 1), end: Offset.zero).chain(
-                  CurveTween(
-                    curve: Curves.ease,
-                  ),
-                ),
-              ),
-              child: child,
-            );
-          default:
+          case 'cupertino' :
             return CupertinoPageTransition(
-                primaryRouteAnimation: animation,
-                secondaryRouteAnimation: secondaryAnimation,
-                linearTransition: false,
-                child: child);
+                primaryRouteAnimation: animation, secondaryRouteAnimation: secondaryAnimation, linearTransition: false, child: child);
+          default:
+            return MovePageTransition(primaryRouteAnimation: animation, secondaryRouteAnimation: secondaryAnimation, child: child,);
         }
       });
+}
+
+/// CupertinoPageTransition을 참고하여 만든 커스텀 Transition
+class MovePageTransition extends StatelessWidget {
+  static final _rightMiddleTween = Tween<Offset>(
+    begin: const Offset(1.0, 0.0),
+    end: Offset.zero,
+  );
+
+  static final _middleLeftTween = Tween<Offset>(
+    begin: Offset.zero,
+    end: const Offset(-1.0, 0.0),
+  );
+
+  MovePageTransition({
+    super.key,
+    required Animation<double> primaryRouteAnimation,
+    required Animation<double> secondaryRouteAnimation,
+    required this.child,
+    Curve curve = Curves.ease,
+  })  : _primaryPositionAnimation = CurvedAnimation(parent: primaryRouteAnimation, curve: curve, reverseCurve: curve).drive(_rightMiddleTween),
+        _secondaryPositionAnimation = CurvedAnimation(parent: primaryRouteAnimation, curve: curve, reverseCurve: curve).drive(_middleLeftTween);
+
+  final Animation<Offset> _primaryPositionAnimation;
+  final Animation<Offset> _secondaryPositionAnimation;
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _secondaryPositionAnimation,
+      child: SlideTransition(
+        position: _primaryPositionAnimation,
+        child: child,
+      ),
+    );
+  }
 }

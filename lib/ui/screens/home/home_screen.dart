@@ -1,8 +1,10 @@
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/ui/screens/whoami/whoami_screen.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../constants/app_assets.dart';
@@ -42,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final bool isTablet =
         ResponsiveValue<bool>(context, defaultValue: false, conditionalValues: [const Condition.smallerThan(name: TABLET, value: true)]).value;
     return Scaffold(
+      backgroundColor: Colors.blue,
       body: MouseRegion(
         onHover: (event) {
           //중앙을 피벗으로 둠
@@ -50,35 +53,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             _mousePositionY = (event.position.dy / context.screenSize.height - 0.5) * 2;
           });
         },
-        child: Container(
+        child: SizedBox(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(color: Colors.black
-                // gradient: LinearGradient(
-                //   colors: [
-                //     Color(0xFF1A012D),
-                //     Color(0xFF000549),
-                //   ],
-                //   begin: Alignment.topCenter,
-                //   end: Alignment.bottomCenter,
-                //
-                // ),
-                ),
             child: Stack(
               children: [
-                // AnimatedPositioned(
-                //     curve: Curves.decelerate,
-                //     duration: const Duration(milliseconds: 400),
-                //     top: 0 - (_starsMovementScale * _mousePositionY),
-                //     bottom: 0 + (_starsMovementScale * _mousePositionY),
-                //     left: 0 - (_starsMovementScale * _mousePositionX),
-                //     right: 0 + (_starsMovementScale * _mousePositionX),
-                //     child: SizedBox(
-                //         width: 200,
-                //         child: Image.asset(
-                //           AppAssets.BG_WHITE_STARS,
-                //           fit: BoxFit.cover,
-                //         ))),
 
                 AnimatedPositioned(
                   curve: Curves.decelerate,
@@ -123,16 +102,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 GlassySectorButton(
-                                  sectorName: 'Who am i?',
+                                  sectorName: 'Who am I ?',
                                   icon: Icons.person,
                                   isTablet: isTablet,
                                   delayMs: 2000,
+                                  onTap: (){
+                                    context.goNamed(WhoAmIScreen.routeName);
+                                  },
                                 ),
                                 GlassySectorButton(
                                   sectorName: 'Skills',
                                   icon: Icons.electric_bolt,
                                   isTablet: isTablet,
                                   delayMs: 3000,
+                                  onTap: (){},
                                 ),
                               ],
                             ),
@@ -145,12 +128,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.newspaper_outlined,
                                   isTablet: isTablet,
                                   delayMs: 2500,
+                                  onTap: (){},
                                 ),
                                 GlassySectorButton(
                                   sectorName: 'Contact',
                                   icon: Icons.email,
                                   isTablet: isTablet,
                                   delayMs: 3500,
+                                  onTap: (){},
                                 ),
                               ],
                             ),
@@ -203,10 +188,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 }
 
 class GlassySectorButton extends StatefulWidget {
-  GlassySectorButton({Key? key, required this.sectorName, required this.icon, required bool this.isTablet, required this.delayMs}) : super(key: key);
+  GlassySectorButton({Key? key, required this.sectorName, required this.icon, required this.onTap, required bool this.isTablet, required this.delayMs}) : super(key: key);
 
   final String sectorName;
   final IconData icon;
+  final VoidCallback onTap;
   final bool isTablet;
   final int delayMs;
 
@@ -226,7 +212,7 @@ class _GlassySectorButtonState extends State<GlassySectorButton> {
         color: Colors.transparent,
         child: InkWell(
           splashColor: Colors.white.withOpacity(0.3) ,
-          onTap: (){},
+          onTap: widget.onTap,
           child: GlassyContainer(
             borderRadius: borderRadius,
             blur: _loadComplete ? 30 : 0,
