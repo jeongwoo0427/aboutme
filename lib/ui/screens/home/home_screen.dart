@@ -55,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _aboutTextAnimationContrller = AnimationController(vsync: this);
     _kjwTextAnimationContrller = AnimationController(vsync: this);
     _earthAnimationController = AnimationController(vsync: this);
+   Navigator.of()
     super.initState();
   }
 
@@ -125,9 +126,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.person,
                                   isTablet: isTablet,
                                   delayMs: 2000,
-                                  onTap: _isBusy?null:(){
-                                    context.pushNamed(WhoAmIScreen.routeName);
+                                  onTap: _isBusy?null:()async{
                                     HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
+                                    await context.pushNamed(WhoAmIScreen.routeName);
+                                    print('finished screen');
                                   },
                                 ),
                                 GlassySectorButton(
@@ -135,9 +137,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.electric_bolt,
                                   isTablet: isTablet,
                                   delayMs: 3000,
-                                  onTap: _isBusy?null:(){
-                                    context.pushNamed(SkillsScreen.routeName);
+                                  onTap: _isBusy?null:()async{
                                     HomeScreen.dynamicCurrentDirection = MovePageDirection.topRight;
+                                    await context.pushNamed(SkillsScreen.routeName);
                                   },
                                 ),
                               ],
@@ -152,8 +154,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   isTablet: isTablet,
                                   delayMs: 2500,
                                   onTap: _isBusy?null:() async {
-                                    await context.pushNamed(ProjectsScreen.routeName);
                                     HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomLeft;
+                                    await context.pushNamed(ProjectsScreen.routeName);
                                   },
                                 ),
                                 GlassySectorButton(
@@ -161,9 +163,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.email,
                                   isTablet: isTablet,
                                   delayMs: 3500,
-                                  onTap: _isBusy?null:(){
-                                    context.pushNamed(ContactScreen.routeName);
+                                  onTap: _isBusy?null:()async{
                                     HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomRight;
+                                    await context.pushNamed(ContactScreen.routeName);
                                   },
                                 ),
                               ],
@@ -206,9 +208,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
                         ],
                         onComplete: (_){
-                          setState(() {
-                            _isBusy=false;
-                          });
+                          _setBusyState(false);
                         }
                       )
                     ]))
@@ -218,7 +218,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-  void setTitleState({required bool show}) {}
+  void _setBusyState(bool isBusy){
+    setState(() {
+      _isBusy = isBusy;
+    });
+  }
+
+  void _setTitleState({required bool show}) {}
 }
 
 class GlassySectorButton extends StatefulWidget {

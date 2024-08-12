@@ -26,6 +26,28 @@ final GoRouter appRouter = GoRouter(
               return homeScreen.getHomeScreenTransition(animation: animation, secondaryAnimation: secondaryAnimation, state: state, child: child);
             });
       },
+      routes: <RouteBase>[
+        GoRoute(
+          name: WhoAmIScreen.routeName,
+          path: 'who-am-i',
+          pageBuilder: customPageBuilder(const WhoAmIScreen(), movePageDirection: MovePageDirection.topLeft),
+        ),
+        GoRoute(
+          name: SkillsScreen.routeName,
+          path: 'skills',
+          pageBuilder: customPageBuilder(const SkillsScreen(), movePageDirection: MovePageDirection.topRight),
+        ),
+        GoRoute(
+          name: ProjectsScreen.routeName,
+          path: 'projects',
+          pageBuilder: customPageBuilder(const ProjectsScreen(), movePageDirection: MovePageDirection.bottomLeft),
+        ),
+        GoRoute(
+          name: ContactScreen.routeName,
+          path: 'contact',
+          pageBuilder: customPageBuilder(const ContactScreen(), movePageDirection: MovePageDirection.bottomRight),
+        ),
+      ]
       // routes: <RouteBase>[
       //   // GoRoute(
       //   //   name: ManageQuizScreen.routeName,
@@ -38,26 +60,7 @@ final GoRouter appRouter = GoRouter(
       //   // ),
       // ],
     ),
-    GoRoute(
-      name: WhoAmIScreen.routeName,
-      path: '/who-am-i',
-      pageBuilder: customPageBuilder(const WhoAmIScreen(), movePageDirection: MovePageDirection.topLeft),
-    ),
-    GoRoute(
-      name: SkillsScreen.routeName,
-      path: '/skills',
-      pageBuilder: customPageBuilder(const SkillsScreen(), movePageDirection: MovePageDirection.topRight),
-    ),
-    GoRoute(
-      name: ProjectsScreen.routeName,
-      path: '/projects',
-      pageBuilder: customPageBuilder(const ProjectsScreen(), movePageDirection: MovePageDirection.bottomLeft),
-    ),
-    GoRoute(
-      name: ContactScreen.routeName,
-      path: '/contact',
-      pageBuilder: customPageBuilder(const ContactScreen(), movePageDirection: MovePageDirection.bottomRight),
-    ),
+
   ],
 );
 
