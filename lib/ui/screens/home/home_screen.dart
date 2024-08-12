@@ -1,4 +1,7 @@
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/ui/screens/contact/contact_screen.dart';
+import 'package:aboutme/ui/screens/projects/projects_screen.dart';
+import 'package:aboutme/ui/screens/skills/skills_screen.dart';
 import 'package:aboutme/ui/screens/whoami/whoami_screen.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final bool isTablet =
         ResponsiveValue<bool>(context, defaultValue: false, conditionalValues: [const Condition.smallerThan(name: TABLET, value: true)]).value;
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.black,
       body: MouseRegion(
         onHover: (event) {
           //중앙을 피벗으로 둠
@@ -107,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   isTablet: isTablet,
                                   delayMs: 2000,
                                   onTap: (){
-                                    context.goNamed(WhoAmIScreen.routeName);
+                                    context.pushNamed(WhoAmIScreen.routeName);
                                   },
                                 ),
                                 GlassySectorButton(
@@ -115,7 +118,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.electric_bolt,
                                   isTablet: isTablet,
                                   delayMs: 3000,
-                                  onTap: (){},
+                                  onTap: (){
+                                    context.pushNamed(SkillsScreen.routeName);
+                                  },
                                 ),
                               ],
                             ),
@@ -128,14 +133,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.newspaper_outlined,
                                   isTablet: isTablet,
                                   delayMs: 2500,
-                                  onTap: (){},
+                                  onTap: (){
+                                    context.pushNamed(ProjectsScreen.routeName);
+                                  },
                                 ),
                                 GlassySectorButton(
                                   sectorName: 'Contact',
                                   icon: Icons.email,
                                   isTablet: isTablet,
                                   delayMs: 3500,
-                                  onTap: (){},
+                                  onTap: (){
+                                    context.pushNamed(ContactScreen.routeName);
+                                  },
                                 ),
                               ],
                             ),

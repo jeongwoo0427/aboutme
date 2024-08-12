@@ -13,8 +13,8 @@ class _WhoAmIScreenState extends State<WhoAmIScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
-      body: Container(child: Text('dkdkdkdk'),),
+      backgroundColor: Colors.black,
+      body:  Center(child: Text('Who am I ?'),)
     );
   }
 }

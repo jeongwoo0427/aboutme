@@ -41,17 +41,20 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp.router(
-      theme: AppThemes.lightTheme,
-      onGenerateTitle: (BuildContext context) => 'About JeongWoo',
-      routerConfig: appRouter,
-      builder: (context, widget) => ResponsiveBreakpoints.builder(child: ClampingScrollWrapper.builder(context, widget!), breakpoints: [
-        const Breakpoint(start: 0, end: 480, name: MOBILE),
-        const Breakpoint(start: 481, end: 640, name: 'MOBILE_LARGE'),
-        const Breakpoint(start: 641, end: 1080, name: TABLET),
-        const Breakpoint(start: 1081, end: double.infinity, name: DESKTOP),
-      ]),
-      //home: const MainMenuScreen(),
+    return Container(
+      color: Colors.black, // Scaffold 영역 밖의 색 (페이지 전환간 색깔 적용)
+      child: MaterialApp.router(
+        theme: AppThemes.darkTheme,
+        onGenerateTitle: (BuildContext context) => 'About JeongWoo',
+        routerConfig: appRouter,
+        builder: (context, widget) => ResponsiveBreakpoints.builder(child: ClampingScrollWrapper.builder(context, widget!), breakpoints: [
+          const Breakpoint(start: 0, end: 480, name: MOBILE),
+          const Breakpoint(start: 481, end: 640, name: 'MOBILE_LARGE'),
+          const Breakpoint(start: 641, end: 1080, name: TABLET),
+          const Breakpoint(start: 1081, end: double.infinity, name: DESKTOP),
+        ]),
+        //home: const MainMenuScreen(),
+      ),
     );
   }
 }
