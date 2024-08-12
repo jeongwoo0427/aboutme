@@ -55,7 +55,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _aboutTextAnimationContrller = AnimationController(vsync: this);
     _kjwTextAnimationContrller = AnimationController(vsync: this);
     _earthAnimationController = AnimationController(vsync: this);
-   Navigator.of()
     super.initState();
   }
 
