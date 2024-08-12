@@ -15,7 +15,17 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       name: HomeScreen.routeName,
       path: '/',
-      pageBuilder: customPageBuilder(const HomeScreen()),
+      pageBuilder: (context, state) {
+        const HomeScreen homeScreen = HomeScreen();
+        return CustomTransitionPage(
+            key: state.pageKey,
+            child: homeScreen,
+            transitionDuration: const Duration(milliseconds: 1000),
+            reverseTransitionDuration: const Duration(milliseconds: 1000),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return homeScreen.getHomeScreenTransition(animation: animation, secondaryAnimation: secondaryAnimation, state: state, child: child);
+            });
+      },
       // routes: <RouteBase>[
       //   // GoRoute(
       //   //   name: ManageQuizScreen.routeName,

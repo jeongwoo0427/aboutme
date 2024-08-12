@@ -10,12 +10,26 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import '../../../app_router.dart';
 import '../../../constants/app_assets.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   static const String routeName = 'HomeScreen';
+
+  ///페이지 전환 애니메이션의 방향이 전환됨에 따라 홈화면의 복귀 애니메이션의 방향도 변경하기 위해 추가한 정적 변수
+  static MovePageDirection dynamicCurrentDirection = MovePageDirection.topLeft;
+
+  MovePageTransition getHomeScreenTransition({animation, secondaryAnimation ,state, child}){
+    return MovePageTransition(
+      primaryRouteAnimation: animation,
+      secondaryRouteAnimation: secondaryAnimation,
+      direction: dynamicCurrentDirection,
+      child: child,
+    );
+  }
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -29,9 +43,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   final double _cardsMovemnetScale = 50;
   final double _earthMovementScale = 30;
-  final double _starsMovementScale = -15;
   double _mousePositionX = 0; //(-1 ~ 1)
   double _mousePositionY = 0;
+
+  bool _isBusy = true;
+
 
   @override
   void initState() {
@@ -109,8 +125,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.person,
                                   isTablet: isTablet,
                                   delayMs: 2000,
-                                  onTap: (){
+                                  onTap: _isBusy?null:(){
                                     context.pushNamed(WhoAmIScreen.routeName);
+                                    HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
                                   },
                                 ),
                                 GlassySectorButton(
@@ -118,8 +135,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.electric_bolt,
                                   isTablet: isTablet,
                                   delayMs: 3000,
-                                  onTap: (){
+                                  onTap: _isBusy?null:(){
                                     context.pushNamed(SkillsScreen.routeName);
+                                    HomeScreen.dynamicCurrentDirection = MovePageDirection.topRight;
                                   },
                                 ),
                               ],
@@ -133,8 +151,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.newspaper_outlined,
                                   isTablet: isTablet,
                                   delayMs: 2500,
-                                  onTap: (){
-                                    context.pushNamed(ProjectsScreen.routeName);
+                                  onTap: _isBusy?null:() async {
+                                    await context.pushNamed(ProjectsScreen.routeName);
+                                    HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomLeft;
                                   },
                                 ),
                                 GlassySectorButton(
@@ -142,8 +161,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   icon: Icons.email,
                                   isTablet: isTablet,
                                   delayMs: 3500,
-                                  onTap: (){
+                                  onTap: _isBusy?null:(){
                                     context.pushNamed(ContactScreen.routeName);
+                                    HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomRight;
                                   },
                                 ),
                               ],
@@ -185,6 +205,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         effects: [
                           BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
                         ],
+                        onComplete: (_){
+                          setState(() {
+                            _isBusy=false;
+                          });
+                        }
                       )
                     ]))
               ],
@@ -201,7 +226,7 @@ class GlassySectorButton extends StatefulWidget {
 
   final String sectorName;
   final IconData icon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final bool isTablet;
   final int delayMs;
 
