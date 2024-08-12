@@ -7,6 +7,8 @@ class ProjectsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Projects')));
+    return Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(child: Text('Projects')));
   }
 }
