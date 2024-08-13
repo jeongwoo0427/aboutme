@@ -82,21 +82,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   bottom: -30 + (_earthMovementScale * _mousePositionY),
                   left: 0 - (_earthMovementScale * _mousePositionX),
                   right: 0 + (_earthMovementScale * _mousePositionX),
-                  child: Gif(
-                    image: const AssetImage(AppAssets.BG_EARTH_ANIM),
-                    fit: BoxFit.contain,
-                    controller: _gifController,
-                    autostart: Autostart.loop,
-                    fps: 30,
-                    placeholder: (context) => const Center(child: Text('Loading ...')),
-                    onFetchCompleted: () {
-                      _gifController.reset();
-                      _gifController.forward();
-                      _earthAnimationController.forward();
-                    },
-                  ).animate(autoPlay: false, controller: _earthAnimationController, effects: [
-                    ScaleEffect(begin: Offset(0, 0), end: Offset(1, 1), duration: Duration(milliseconds: 1500), curve: Curves.decelerate),
-                  ]),
+                  child: Padding(
+                    padding: EdgeInsets.all(context.getResponsiveValue(100, 10)),
+                    child: Gif(
+                      image: const AssetImage(AppAssets.BG_EARTH_ANIM),
+                      fit: BoxFit.contain,
+                      controller: _gifController,
+                      autostart: Autostart.loop,
+                      
+                      fps: 30,
+                      placeholder: (context) => const Center(child: Text('Loading ...')),
+                      onFetchCompleted: () {
+                        _gifController.reset();
+                        _gifController.forward();
+                        _earthAnimationController.forward();
+                      },
+                    ).animate(autoPlay: false, controller: _earthAnimationController, effects: [
+                      ScaleEffect(begin: Offset(0, 0), end: Offset(1, 1), duration: Duration(milliseconds: 1500), curve: Curves.decelerate),
+                    ]),
+                  ),
                 ),
                 AnimatedPositioned(
                     curve: Curves.decelerate,
