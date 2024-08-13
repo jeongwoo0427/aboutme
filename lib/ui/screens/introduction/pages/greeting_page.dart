@@ -13,7 +13,7 @@ class _GreetingPageState extends State<GreetingPage> with SingleTickerProviderSt
   final List<String> _greetingTexts = [
     'Hello',
     'Bonjour',
-    'salve',
+    'Salve',
     '안녕하세요',
     '你好',
     'Hola',
@@ -32,6 +32,8 @@ class _GreetingPageState extends State<GreetingPage> with SingleTickerProviderSt
         width: context.screenSize.width,
         padding: const EdgeInsets.only(top: 80, bottom: 14),
         child: Column(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+
+          
           GreetingTextArea(
             currentPosition: 1,
             totalCount: _greetingTexts.length,
@@ -79,7 +81,7 @@ class _GreetingPageState extends State<GreetingPage> with SingleTickerProviderSt
               '아래로 스크롤해주세요.',
               style: TextStyle(fontWeight: FontWeight.w100, fontSize: context.getResponsiveValue(20, 15), color: context.colorScheme.onSurface),
             ),
-          ]).animate(delay: 3000.ms, onPlay: (controller) => controller.repeat(reverse: true)).fadeIn(duration: 1000.ms)
+          ]).animate(delay: 4000.ms, onPlay: (controller) => controller.repeat(reverse: true)).fadeIn(duration: 1000.ms)
         ]));
   }
 }
@@ -102,7 +104,7 @@ class GreetingTextArea extends StatelessWidget {
       Text(
         text,
         style: TextStyle(fontWeight: FontWeight.values[fontWeightValue], fontSize: context.getResponsiveValue(45, 35), color: context.colorScheme.onSurface),
-      ).animate().fadeIn(delay: (currentPosition*300).ms,duration: 300.ms),
+      ).animate(delay: 1000.ms).fadeIn(delay: (currentPosition*200).ms,duration: 200.ms),
       Spacer(
         flex: totalCount - currentPosition + 1,
       )

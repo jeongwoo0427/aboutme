@@ -39,8 +39,6 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
         child: Column(
           children: [
             GreetingPage(),
-            GreetingPage(),
-            GreetingPage()
           ],
         ),
       ),
