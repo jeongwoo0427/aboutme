@@ -4,17 +4,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GlassyContainer extends StatefulWidget {
-  GlassyContainer(
-      {Key? key, required this.child, this.width, this.height, this.isAnimateBlur=false, this.blur = 30, this.opacity = 0.1, this.color = Colors.black, this.borderRadius, this.padding})
-      : super(key: key);
+  GlassyContainer({
+    Key? key,
+    required this.child,
+    this.width,
+    this.height,
+    this.isAnimateBlur = false,
+    this.blur = 30,
+    this.backgroundOpacity = 0.1,
+    this.color = Colors.black,
+    this.borderOpacity=0.6,
+    this.borderRadius,
+    this.padding,
+  }) : super(key: key);
 
   final Widget child;
   final double? width;
   final double? height;
   final bool isAnimateBlur;
   final double blur;
-  final double opacity;
+  final double backgroundOpacity;
   final Color color;
+  final double borderOpacity;
   final BorderRadius? borderRadius;
   final EdgeInsets? padding;
 
@@ -29,7 +40,7 @@ class _GlassyContainerState extends State<GlassyContainer> {
       borderRadius: widget.borderRadius ?? BorderRadius.circular(20),
       child: TweenAnimationBuilder(
         //curve: Curves.decelerate,
-        tween: Tween<double>(begin: widget.isAnimateBlur?0:widget.blur, end: widget.blur),
+        tween: Tween<double>(begin: widget.isAnimateBlur ? 0 : widget.blur, end: widget.blur),
         duration: const Duration(milliseconds: 3500),
         builder: (_, value, child) {
           return BackdropFilter(
@@ -37,14 +48,16 @@ class _GlassyContainerState extends State<GlassyContainer> {
             child: child,
           );
         },
-        child: Container(
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 500),
+          curve: Curves.decelerate,
           width: widget.width,
           height: widget.height,
           padding: widget.padding,
           decoration: BoxDecoration(
-              color: widget.color.withOpacity(widget.opacity),
+              color: widget.color.withOpacity(widget.backgroundOpacity),
               borderRadius: widget.borderRadius ?? BorderRadius.circular(20),
-              border: Border.all(width: 1.4, color: Colors.white.withOpacity(0.6))),
+              border: Border.all(width: 1.4, color: Colors.white.withOpacity(widget.borderOpacity))),
           child: widget.child,
         ),
       ),

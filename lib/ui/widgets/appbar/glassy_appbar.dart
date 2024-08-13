@@ -6,8 +6,9 @@ import 'package:responsive_framework/responsive_framework.dart';
 class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   final Widget? title;
+  final bool isTransparentBackground;
 
-  const GlassyAppbar({Key? key, this.title}) : super(key: key);
+  const GlassyAppbar({Key? key, this.title, this.isTransparentBackground=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,8 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: GlassyContainer(
         isAnimateBlur: false,
+        blur: isTransparentBackground?0:30,
+        borderOpacity: isTransparentBackground?0:0.6,
         height: 60,
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Stack(
