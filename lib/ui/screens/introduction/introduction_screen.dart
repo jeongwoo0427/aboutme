@@ -15,7 +15,8 @@ class IntroductionScreen extends StatefulWidget {
 }
 
 class _IntroductionScreenState extends State<IntroductionScreen> {
-  final ScrollController _scrollController = ScrollController();
+
+  bool _isTop = true;
 
   @override
   void initState() {
@@ -24,7 +25,6 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
 
   @override
   void dispose() {
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -33,12 +33,14 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
     return ResponsiveGlassyScaffold(
       appbarTitle: Text('Who am I ?'),
       onChangedPageState: (isTop){
-
+        setState(() {
+          _isTop = isTop;
+        });
       },
       body: SingleChildScrollView(
         child: Column(
           children: [
-            GreetingPage(),
+            GreetingPage(isShowScrollMessage: _isTop,),
             CoverLetterPage()
           ],
         ),

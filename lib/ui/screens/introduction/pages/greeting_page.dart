@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class GreetingPage extends StatefulWidget {
-  GreetingPage({Key? key}) : super(key: key);
+
+  final bool isShowScrollMessage;
+
+  GreetingPage({Key? key, required this.isShowScrollMessage}) : super(key: key);
 
   @override
   State<GreetingPage> createState() => _GreetingPageState();
@@ -73,11 +76,15 @@ class _GreetingPageState extends State<GreetingPage> with SingleTickerProviderSt
             fontWeightValue: 0,
           ),
           Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(
-              '아래로 스크롤해주세요.',
-              style: TextStyle(fontWeight: FontWeight.w100, fontSize: context.getResponsiveValue(20, 15), color: context.colorScheme.onSurface),
+            AnimatedOpacity(
+              opacity: widget.isShowScrollMessage?1:0,
+              duration: Duration(milliseconds: 1000),
+              child: Text(
+                '아래로 스크롤해주세요.',
+                style: TextStyle(fontWeight: FontWeight.w100, fontSize: context.getResponsiveValue(20, 15), color: context.colorScheme.onSurface),
+              ),
             ),
-          ]).animate(delay: 4000.ms, onPlay: (controller) => controller.repeat(reverse: true)).fadeIn(duration: 1000.ms)
+          ],).animate(delay: 4000.ms, onPlay: (controller) => controller.repeat(reverse: true)).fadeIn(duration: 1000.ms)
         ]));
   }
 }
