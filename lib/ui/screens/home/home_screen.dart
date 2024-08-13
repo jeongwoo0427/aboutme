@@ -3,6 +3,7 @@ import 'package:aboutme/ui/screens/contact/contact_screen.dart';
 import 'package:aboutme/ui/screens/projects/projects_screen.dart';
 import 'package:aboutme/ui/screens/skills/skills_screen.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
+import 'package:aboutme/ui/widgets/watch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -181,6 +182,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             SizedBox(),
                           ],
                         ))),
+
+                Positioned(
+                  bottom: 20,
+                    left: 0,
+                  right: 0,
+                  child: WatchWidget().animate().fadeIn(curve: Curves.decelerate,duration: 500.ms,delay: 4000.ms
+                  ),
+                ),
+
                 Positioned(
                     left: 15,
                     top: 15,
@@ -195,9 +205,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       ).animate(
                         controller: _aboutTextAnimationContrller,
                         autoPlay: true,
-                        delay: Duration(milliseconds: 3800),
+                        delay: Duration(milliseconds: 4500),
                         effects: [
-                          BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
+                          BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
                         ],
                       ),
                       Text(
@@ -210,9 +220,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       ).animate(
                           controller: _kjwTextAnimationContrller,
                           autoPlay: true,
-                          delay: Duration(milliseconds: 4400),
+                          delay: Duration(milliseconds: 5000),
                           effects: [
-                            BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
+                            BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
                           ],
                           onComplete: (_) {
                             _setBusyState(false);
