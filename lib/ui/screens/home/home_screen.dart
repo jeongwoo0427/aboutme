@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       : () async {
                                           HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
                                           await context.pushNamed(IntroductionScreen.routeName);
-                                          print('finished screen');
+
                                         },
                                 ),
                                 GlassySectorButton(

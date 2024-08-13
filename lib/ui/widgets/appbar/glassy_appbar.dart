@@ -16,9 +16,10 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: GlassyContainer(
         isAnimateBlur: false,
-        blur: isTransparentBackground?0:30,
+        blurAnimateMs: 700,
+        blur: isTransparentBackground?0:5,
         borderOpacity: isTransparentBackground?0:0.6,
-        height: 60,
+        height: 60, //기본높이 60
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Stack(
           children: [
@@ -46,5 +47,5 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 20);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 20);//총합 높이 80
 }

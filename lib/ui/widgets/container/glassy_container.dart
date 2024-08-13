@@ -12,6 +12,7 @@ class GlassyContainer extends StatefulWidget {
     this.isAnimateBlur = false,
     this.blur = 30,
     this.backgroundOpacity = 0.1,
+    this.blurAnimateMs = 3500,
     this.color = Colors.black,
     this.borderOpacity=0.6,
     this.borderRadius,
@@ -23,6 +24,7 @@ class GlassyContainer extends StatefulWidget {
   final double? height;
   final bool isAnimateBlur;
   final double blur;
+  final int blurAnimateMs;
   final double backgroundOpacity;
   final Color color;
   final double borderOpacity;
@@ -41,7 +43,7 @@ class _GlassyContainerState extends State<GlassyContainer> {
       child: TweenAnimationBuilder(
         //curve: Curves.decelerate,
         tween: Tween<double>(begin: widget.isAnimateBlur ? 0 : widget.blur, end: widget.blur),
-        duration: const Duration(milliseconds: 3500),
+        duration: Duration(milliseconds: widget.blurAnimateMs),
         builder: (_, value, child) {
           return BackdropFilter(
             filter: ImageFilter.blur(sigmaX: value, sigmaY: value),
