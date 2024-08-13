@@ -1,4 +1,5 @@
 import 'package:aboutme/ui/widgets/appbar/glassy_appbar.dart';
+import 'package:aboutme/ui/widgets/constrained/max_width_box.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,21 +27,29 @@ class _WhoAmIScreenState extends State<WhoAmIScreen> {
         backgroundColor: Colors.black,
         body: Stack(
           children: [
+
+            Positioned.fill(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+
+                  ],
+                ),
+              ),
+            ),
+            
             Positioned(
               top: 0,
               left: 0,
               right: 0,
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: 1000,
-                  ),
-                  child: GlassyAppbar(
-                    title: Text('Who am I ?'),
-                  ),
+              child: MaxWidthBox(
+                child: GlassyAppbar(
+                  title: Text('Who am I ?'),
                 ),
               ),
-            )
+            ),
+
+
           ],
         ));
   }

@@ -14,6 +14,7 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: GlassyContainer(
+        isAnimateBlur: false,
         height: 60,
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Stack(
