@@ -2,7 +2,6 @@ import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/ui/screens/contact/contact_screen.dart';
 import 'package:aboutme/ui/screens/projects/projects_screen.dart';
 import 'package:aboutme/ui/screens/skills/skills_screen.dart';
-import 'package:aboutme/ui/screens/whoami/whoami_screen.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
@@ -12,6 +11,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../app_router.dart';
 import '../../../constants/app_assets.dart';
+import '../introduction/introduction_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       ? null
                                       : () async {
                                           HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
-                                          await context.pushNamed(WhoAmIScreen.routeName);
+                                          await context.pushNamed(IntroductionScreen.routeName);
                                           print('finished screen');
                                         },
                                 ),

@@ -2,11 +2,12 @@ import 'package:aboutme/ui/screens/contact/contact_screen.dart';
 import 'package:aboutme/ui/screens/home/home_screen.dart';
 import 'package:aboutme/ui/screens/projects/projects_screen.dart';
 import 'package:aboutme/ui/screens/skills/skills_screen.dart';
-import 'package:aboutme/ui/screens/whoami/whoami_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+
+import 'ui/screens/introduction/introduction_screen.dart';
 
 // The route configuration.
 final GoRouter appRouter = GoRouter(
@@ -28,9 +29,9 @@ final GoRouter appRouter = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
-          name: WhoAmIScreen.routeName,
-          path: 'who-am-i',
-          pageBuilder: customPageBuilder(const WhoAmIScreen(), movePageDirection: MovePageDirection.topLeft),
+          name: IntroductionScreen.routeName,
+          path: 'introduction',
+          pageBuilder: customPageBuilder(const IntroductionScreen(), movePageDirection: MovePageDirection.topLeft),
         ),
         GoRoute(
           name: SkillsScreen.routeName,
