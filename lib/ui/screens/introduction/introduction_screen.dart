@@ -1,3 +1,4 @@
+import 'package:aboutme/ui/screens/introduction/pages/greeting_page.dart';
 import 'package:aboutme/ui/widgets/appbar/glassy_appbar.dart';
 import 'package:aboutme/ui/widgets/constrained/max_width_box.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,15 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
   Widget build(BuildContext context) {
     return ResponsiveGlassyScaffold(
       appbarTitle: Text('Who am I ?'),
-      body: Text('Preparing..'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            GreetingPage(),
+            GreetingPage(),
+            GreetingPage()
+          ],
+        ),
+      ),
     );
   }
 }
