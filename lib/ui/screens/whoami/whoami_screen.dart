@@ -27,6 +27,7 @@ class _WhoAmIScreenState extends State<WhoAmIScreen> {
 
   @override
   void dispose() {
+    _scrollController.dispose();
     super.dispose();
   }
 
