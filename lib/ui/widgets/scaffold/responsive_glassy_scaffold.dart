@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../appbar/glassy_appbar.dart';
-import '../constrained/max_width_box.dart';
+import '../boxes/max_width_box.dart';
+
 
 class ResponsiveGlassyScaffold extends StatefulWidget {
 
   final Widget? appbarTitle;
   final Widget body;
+  final Function(bool)? onChangedPageState;
 
-  const ResponsiveGlassyScaffold({super.key, required this.body, this.appbarTitle});
+  const ResponsiveGlassyScaffold({super.key, required this.body, this.appbarTitle, this.onChangedPageState});
 
   @override
   State<ResponsiveGlassyScaffold> createState() => _ResponsiveGlassyScaffoldState();
@@ -28,9 +30,17 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
 
   @override
   void dispose() {
-
-
     super.dispose();
+  }
+
+  void _onChangedPageState(bool isTop){
+    //상태 변경당 1회 실행되도록
+    setState(() {
+      _isTop = isTop;
+    });
+    if(widget.onChangedPageState != null) {
+      widget.onChangedPageState!(isTop);
+    }
   }
 
   @override
@@ -54,10 +64,7 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
                       isTop = false;
                     }
                     if (_isTop != isTop) {
-                      //상태 변경당 1회 실행되도록
-                      setState(() {
-                        _isTop = isTop;
-                      });
+                      _onChangedPageState(isTop);
                     }
 
                     return true;

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../widgets/appbar/glassy_appbar.dart';
-import '../../widgets/constrained/max_width_box.dart';
 import '../../widgets/scaffold/responsive_glassy_scaffold.dart';
 
 class SkillsScreen extends StatefulWidget {

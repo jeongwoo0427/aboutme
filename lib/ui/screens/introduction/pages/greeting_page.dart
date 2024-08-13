@@ -1,4 +1,5 @@
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/ui/widgets/scaffold/fitted_screen_size_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -27,13 +28,8 @@ class _GreetingPageState extends State<GreetingPage> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: context.screenSize.height,
-        width: context.screenSize.width,
-        padding: const EdgeInsets.only(top: 80, bottom: 14),
-        child: Column(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-
-          
+    return FittedScreenSizeBody(
+        body: Column(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           GreetingTextArea(
             currentPosition: 1,
             totalCount: _greetingTexts.length,
