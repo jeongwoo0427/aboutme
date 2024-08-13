@@ -13,7 +13,6 @@ import 'package:responsive_framework/responsive_framework.dart';
 import '../../../app_router.dart';
 import '../../../constants/app_assets.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -22,7 +21,7 @@ class HomeScreen extends StatefulWidget {
   ///페이지 전환 애니메이션의 방향이 전환됨에 따라 홈화면의 복귀 애니메이션의 방향도 변경하기 위해 추가한 정적 변수
   static MovePageDirection dynamicCurrentDirection = MovePageDirection.topLeft;
 
-  MovePageTransition getHomeScreenTransition({animation, secondaryAnimation ,state, child}){
+  MovePageTransition getHomeScreenTransition({animation, secondaryAnimation, state, child}) {
     return MovePageTransition(
       primaryRouteAnimation: animation,
       secondaryRouteAnimation: secondaryAnimation,
@@ -46,8 +45,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   double _mousePositionX = 0; //(-1 ~ 1)
   double _mousePositionY = 0;
 
-  bool _isBusy = true;
-
+  bool _isBusy = false;
 
   @override
   void initState() {
@@ -77,7 +75,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             width: double.infinity,
             child: Stack(
               children: [
-
                 AnimatedPositioned(
                   curve: Curves.decelerate,
                   duration: const Duration(milliseconds: 400),
@@ -121,25 +118,29 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 GlassySectorButton(
-                                  sectorName: 'Who am I ?',
+                                  sectorTitle: Text('Who am I ?'),
                                   icon: Icons.person,
                                   isTablet: isTablet,
                                   delayMs: 2000,
-                                  onTap: _isBusy?null:()async{
-                                    HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
-                                    await context.pushNamed(WhoAmIScreen.routeName);
-                                    print('finished screen');
-                                  },
+                                  onTap: _isBusy
+                                      ? null
+                                      : () async {
+                                          HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
+                                          await context.pushNamed(WhoAmIScreen.routeName);
+                                          print('finished screen');
+                                        },
                                 ),
                                 GlassySectorButton(
-                                  sectorName: 'Skills',
+                                  sectorTitle: Text('Skills'),
                                   icon: Icons.electric_bolt,
                                   isTablet: isTablet,
                                   delayMs: 3000,
-                                  onTap: _isBusy?null:()async{
-                                    HomeScreen.dynamicCurrentDirection = MovePageDirection.topRight;
-                                    await context.pushNamed(SkillsScreen.routeName);
-                                  },
+                                  onTap: _isBusy
+                                      ? null
+                                      : () async {
+                                          HomeScreen.dynamicCurrentDirection = MovePageDirection.topRight;
+                                          await context.pushNamed(SkillsScreen.routeName);
+                                        },
                                 ),
                               ],
                             ),
@@ -148,31 +149,34 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 GlassySectorButton(
-                                  sectorName: 'Projects',
+                                  sectorTitle: Text('Projects'),
                                   icon: Icons.newspaper_outlined,
                                   isTablet: isTablet,
                                   delayMs: 2500,
-                                  onTap: _isBusy?null:() async {
-                                    HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomLeft;
-                                    await context.pushNamed(ProjectsScreen.routeName);
-                                  },
+                                  onTap: _isBusy
+                                      ? null
+                                      : () async {
+                                          HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomLeft;
+                                          await context.pushNamed(ProjectsScreen.routeName);
+                                        },
                                 ),
                                 GlassySectorButton(
-                                  sectorName: 'Contact',
+                                  sectorTitle: Text('Contact'),
                                   icon: Icons.email,
                                   isTablet: isTablet,
                                   delayMs: 3500,
-                                  onTap: _isBusy?null:()async{
-                                    HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomRight;
-                                    await context.pushNamed(ContactScreen.routeName);
-                                  },
+                                  onTap: _isBusy
+                                      ? null
+                                      : () async {
+                                          HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomRight;
+                                          await context.pushNamed(ContactScreen.routeName);
+                                        },
                                 ),
                               ],
                             ),
                             SizedBox(),
                           ],
                         ))),
-
                 Positioned(
                     left: 15,
                     top: 15,
@@ -180,9 +184,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       Text(
                         'About',
                         style: TextStyle(
-                            color: Colors.white.withOpacity(0.7),
+                            color: context.colorScheme.onSurface.withOpacity(0.8),
                             fontSize:
-                                ResponsiveValue<double>(context, defaultValue: 30, conditionalValues: [Condition.smallerThan(name: TABLET, value: 20)]).value,
+                                context.getResponsiveValue<double>(30,20),
                             fontWeight: FontWeight.w200),
                       ).animate(
                         controller: _aboutTextAnimationContrller,
@@ -195,21 +199,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       Text(
                         ' KJW',
                         style: TextStyle(
-                            color: Colors.white.withOpacity(0.7),
+                            color: context.colorScheme.onSurface.withOpacity(0.8),
                             fontSize:
-                                ResponsiveValue<double>(context, defaultValue: 30, conditionalValues: [Condition.smallerThan(name: TABLET, value: 20)]).value,
+                                context.getResponsiveValue<double>(30,20),
                             fontWeight: FontWeight.w500),
                       ).animate(
-                        controller: _kjwTextAnimationContrller,
-                        autoPlay: true,
-                        delay: Duration(milliseconds: 4400),
-                        effects: [
-                          BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
-                        ],
-                        onComplete: (_){
-                          _setBusyState(false);
-                        }
-                      )
+                          controller: _kjwTextAnimationContrller,
+                          autoPlay: true,
+                          delay: Duration(milliseconds: 4400),
+                          effects: [
+                            BlurEffect(begin: Offset(50, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1000)),
+                          ],
+                          onComplete: (_) {
+                            _setBusyState(false);
+                          })
                     ]))
               ],
             )),
@@ -217,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-  void _setBusyState(bool isBusy){
+  void _setBusyState(bool isBusy) {
     setState(() {
       _isBusy = isBusy;
     });
@@ -227,9 +230,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 }
 
 class GlassySectorButton extends StatefulWidget {
-  GlassySectorButton({Key? key, required this.sectorName, required this.icon, required this.onTap, required bool this.isTablet, required this.delayMs}) : super(key: key);
+  GlassySectorButton({Key? key, required this.sectorTitle, required this.icon, required this.onTap, required bool this.isTablet, required this.delayMs})
+      : super(key: key);
 
-  final String sectorName;
+  final Widget? sectorTitle;
   final IconData icon;
   final VoidCallback? onTap;
   final bool isTablet;
@@ -250,7 +254,7 @@ class _GlassySectorButtonState extends State<GlassySectorButton> {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          splashColor: Colors.white.withOpacity(0.3) ,
+          splashColor: context.colorScheme.onSurface.withOpacity(0.3),
           onTap: widget.onTap,
           child: GlassyContainer(
             borderRadius: borderRadius,
@@ -260,14 +264,14 @@ class _GlassySectorButtonState extends State<GlassySectorButton> {
             height: 100 * (widget.isTablet ? 0.8 : 1.5),
             child: Center(
               child: DefaultTextStyle(
-                style: TextStyle(fontSize: widget.isTablet ? 15 : 30, fontWeight: FontWeight.w900, color: Colors.white.withOpacity(0.9)),
+                style: TextStyle(fontSize: widget.isTablet ? 15 : 30, fontWeight: FontWeight.w900, color: context.colorScheme.onSurface),
                 child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                  Text(widget.sectorName),
+                  widget.sectorTitle??SizedBox(),
                   Icon(
                     widget.icon,
                     size: widget.isTablet ? 30 : 60,
-                    color: Colors.white.withOpacity(0.9),
-                  )
+                    color: context.colorScheme.onSurface),
+
                 ]),
               ),
             ),

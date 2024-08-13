@@ -55,7 +55,7 @@ class AppColorSchemes{
     background: Color(0xFF2F2E33),
     onBackground: Color(0xFFE6E1E5),
     surface: Color(0xFF444349),
-    onSurface: Color(0xFFE6E1E5),
+    onSurface: Color(0xFFD5D5D5),
     surfaceVariant: Color(0xFF49454F),
     onSurfaceVariant: Color(0xFFCAC4D0),
     inverseSurface: Color(0xFFE6E1E5),
