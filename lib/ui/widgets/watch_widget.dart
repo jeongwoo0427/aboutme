@@ -35,7 +35,6 @@ class _WatchWidgetState extends State<WatchWidget> {
     return Center(
       child: Text(
         _currentTime.toString().substring(11,22),
-        //'${_currentTime.hour.toString()}:${_currentTime.minute.toString()}:${_currentTime.second.toString()}.${_currentTime.millisecond.toString()}',
         style: TextStyle(
             fontWeight: FontWeight.w100,
             color: context.colorScheme.onSurface,
