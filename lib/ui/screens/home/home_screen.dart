@@ -5,7 +5,6 @@ import 'package:aboutme/ui/screens/skills/skills_screen.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:aboutme/ui/widgets/watch_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:gif/gif.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -36,16 +35,12 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  late final GifController _gifController;
-  late final AnimationController _earthAnimationController;
+class _HomeScreenState extends State<HomeScreen> {
 
   bool _isBusy = false;
 
   @override
   void initState() {
-    _earthAnimationController = AnimationController(vsync: this);
-    _gifController = GifController(vsync: this);
     super.initState();
   }
 
@@ -73,7 +68,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   child: Center(child: Image.asset(AppAssets.BG_EARTH_ANIM,fit: BoxFit.cover,))
                       .animate(
                       autoPlay: true,
-                      controller: _earthAnimationController,
                       delay: 1500.ms,
                       effects: [
                         ScaleEffect(

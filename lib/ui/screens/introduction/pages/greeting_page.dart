@@ -88,16 +88,12 @@ class _GreetingPageState extends State<GreetingPage>
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AnimatedOpacity(
-            opacity: widget.isShowScrollMessage ? 1 : 0,
-            duration: Duration(milliseconds: 1000),
-            child: Text(
-              '아래로 스크롤해주세요.',
-              style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontSize: context.getResponsiveValue(20, 15),
-                  color: context.colorScheme.onSurface),
-            ),
+          Text(
+            '아래로 스크롤해주세요.',
+            style: TextStyle(
+                fontWeight: FontWeight.w300,
+                fontSize: context.getResponsiveValue(20, 15),
+                color: context.colorScheme.onSurface),
           ),
         ],
       )
