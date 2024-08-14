@@ -22,7 +22,8 @@ class HomeScreen extends StatefulWidget {
   ///페이지 전환 애니메이션의 방향이 전환됨에 따라 홈화면의 복귀 애니메이션의 방향도 변경하기 위해 추가한 정적 변수
   static MovePageDirection dynamicCurrentDirection = MovePageDirection.topLeft;
 
-  MovePageTransition getHomeScreenTransition({animation, secondaryAnimation, state, child}) {
+  MovePageTransition getHomeScreenTransition(
+      {animation, secondaryAnimation, state, child}) {
     return MovePageTransition(
       primaryRouteAnimation: animation,
       secondaryRouteAnimation: secondaryAnimation,
@@ -39,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final GifController _gifController;
   late final AnimationController _earthAnimationController;
 
-
   bool _isBusy = false;
 
   @override
@@ -51,8 +51,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final bool isTablet =
-        ResponsiveValue<bool>(context, defaultValue: false, conditionalValues: [const Condition.smallerThan(name: TABLET, value: true)]).value;
+    final bool isTablet = ResponsiveValue<bool>(context,
+        defaultValue: false,
+        conditionalValues: [
+          const Condition.smallerThan(name: TABLET, value: true)
+        ]).value;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SizedBox(
@@ -72,17 +75,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     fit: BoxFit.contain,
                     controller: _gifController,
                     autostart: Autostart.loop,
-
                     fps: 30,
-                    placeholder: (context) => const Center(child: Text('Loading ...')),
+                    placeholder: (context) =>
+                        const Center(child: Text('Loading ...')),
                     onFetchCompleted: () {
                       _gifController.reset();
                       _gifController.forward();
                       _earthAnimationController.forward();
                     },
-                  ).animate(autoPlay: false, controller: _earthAnimationController, effects: [
-                    ScaleEffect(begin: Offset(0, 0), end: Offset(1, 1), duration: Duration(milliseconds: 1500), curve: Curves.decelerate),
-                  ]),
+                  ).animate(
+                      autoPlay: false,
+                      controller: _earthAnimationController,
+                      effects: [
+                        ScaleEffect(
+                            begin: Offset(0, 0),
+                            end: Offset(1, 1),
+                            duration: Duration(milliseconds: 1500),
+                            curve: Curves.decelerate),
+                      ]),
                 ),
               ),
               Positioned(
@@ -110,9 +120,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 onTap: _isBusy
                                     ? null
                                     : () async {
-                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
-                                        await context.pushNamed(IntroductionScreen.routeName);
-
+                                        HomeScreen.dynamicCurrentDirection =
+                                            MovePageDirection.topLeft;
+                                        await context.pushNamed(
+                                            IntroductionScreen.routeName);
                                       },
                               ),
                               GlassySectorButton(
@@ -123,8 +134,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 onTap: _isBusy
                                     ? null
                                     : () async {
-                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.topRight;
-                                        await context.pushNamed(SkillsScreen.routeName);
+                                        HomeScreen.dynamicCurrentDirection =
+                                            MovePageDirection.topRight;
+                                        await context
+                                            .pushNamed(SkillsScreen.routeName);
                                       },
                               ),
                             ],
@@ -141,8 +154,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 onTap: _isBusy
                                     ? null
                                     : () async {
-                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomLeft;
-                                        await context.pushNamed(ProjectsScreen.routeName);
+                                        HomeScreen.dynamicCurrentDirection =
+                                            MovePageDirection.bottomLeft;
+                                        await context.pushNamed(
+                                            ProjectsScreen.routeName);
                                       },
                               ),
                               GlassySectorButton(
@@ -153,8 +168,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 onTap: _isBusy
                                     ? null
                                     : () async {
-                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomRight;
-                                        await context.pushNamed(ContactScreen.routeName);
+                                        HomeScreen.dynamicCurrentDirection =
+                                            MovePageDirection.bottomRight;
+                                        await context
+                                            .pushNamed(ContactScreen.routeName);
                                       },
                               ),
                             ],
@@ -162,15 +179,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           SizedBox(),
                         ],
                       ))),
-
               Positioned(
                 bottom: 20,
-                  left: 0,
+                left: 0,
                 right: 0,
-                child: WatchWidget().animate().fadeIn(curve: Curves.decelerate,duration: 500.ms,delay: 4000.ms
-                ),
+                child: WatchWidget().animate().fadeIn(
+                    curve: Curves.decelerate, duration: 500.ms, delay: 4000.ms),
               ),
-
               Positioned(
                   left: 15,
                   top: 15,
@@ -179,28 +194,32 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       'About',
                       style: TextStyle(
                           color: context.colorScheme.onSurface.withOpacity(0.8),
-                          fontSize:
-                              context.getResponsiveValue<double>(30,20),
+                          fontSize: context.getResponsiveValue<double>(30, 20),
                           fontWeight: FontWeight.w200),
                     ).animate(
                       autoPlay: true,
                       delay: Duration(milliseconds: 4500),
                       effects: [
-                        BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
+                        BlurEffect(
+                            begin: Offset(100, 30),
+                            end: Offset(0, 0),
+                            duration: Duration(milliseconds: 1500)),
                       ],
                     ),
                     Text(
-                      ' KJW',
+                      ' ME',
                       style: TextStyle(
                           color: context.colorScheme.onSurface.withOpacity(0.8),
-                          fontSize:
-                              context.getResponsiveValue<double>(30,20),
+                          fontSize: context.getResponsiveValue<double>(30, 20),
                           fontWeight: FontWeight.w500),
                     ).animate(
                         autoPlay: true,
                         delay: Duration(milliseconds: 5000),
                         effects: [
-                          BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
+                          BlurEffect(
+                              begin: Offset(100, 30),
+                              end: Offset(0, 0),
+                              duration: Duration(milliseconds: 1500)),
                         ],
                         onComplete: (_) {
                           _setBusyState(false);
@@ -221,7 +240,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 }
 
 class GlassySectorButton extends StatefulWidget {
-  GlassySectorButton({Key? key, required this.sectorTitle, required this.icon, required this.onTap, required bool this.isTablet, required this.delayMs})
+  GlassySectorButton(
+      {Key? key,
+      required this.sectorTitle,
+      required this.icon,
+      required this.onTap,
+      required bool this.isTablet,
+      required this.delayMs})
       : super(key: key);
 
   final Widget? sectorTitle;
@@ -255,15 +280,19 @@ class _GlassySectorButtonState extends State<GlassySectorButton> {
             height: 100 * (widget.isTablet ? 0.8 : 1.5),
             child: Center(
               child: DefaultTextStyle(
-                style: TextStyle(fontSize: widget.isTablet ? 15 : 30, fontWeight: FontWeight.w900, color: context.colorScheme.onSurface),
-                child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                  widget.sectorTitle??SizedBox(),
-                  Icon(
-                    widget.icon,
-                    size: widget.isTablet ? 30 : 60,
+                style: TextStyle(
+                    fontSize: widget.isTablet ? 15 : 30,
+                    fontWeight: FontWeight.w900,
                     color: context.colorScheme.onSurface),
-
-                ]),
+                child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      widget.sectorTitle ?? SizedBox(),
+                      Icon(widget.icon,
+                          size: widget.isTablet ? 30 : 60,
+                          color: context.colorScheme.onSurface),
+                    ]),
               ),
             ),
           ).animate(
@@ -275,8 +304,13 @@ class _GlassySectorButtonState extends State<GlassySectorButton> {
                 });
               },
               effects: [
-                BlurEffect(begin: Offset(90, 0), end: Offset(0, 0), duration: Duration(milliseconds: 1000), curve: Curves.decelerate),
-                FadeEffect(begin: 0, end: 1, duration: Duration(milliseconds: 500))
+                BlurEffect(
+                    begin: Offset(90, 0),
+                    end: Offset(0, 0),
+                    duration: Duration(milliseconds: 1000),
+                    curve: Curves.decelerate),
+                FadeEffect(
+                    begin: 0, end: 1, duration: Duration(milliseconds: 500))
               ]),
         ),
       ),
