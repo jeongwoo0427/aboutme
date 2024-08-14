@@ -26,7 +26,7 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
             Positioned(
               left: 0, top: 0, bottom: 0,
               child: Center(
-                child: IconButton(icon: Icon(Icons.arrow_left), iconSize: context.getResponsiveValue<double>(35,30), onPressed: () {
+                child: IconButton(icon: Icon(Icons.arrow_left,color: context.colorScheme.onSurface,), iconSize: context.getResponsiveValue<double>(35,30), onPressed: () {
                   Navigator.of(context).pop();
                 },),
               ),),
