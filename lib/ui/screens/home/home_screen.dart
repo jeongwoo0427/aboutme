@@ -21,8 +21,7 @@ class HomeScreen extends StatefulWidget {
   ///페이지 전환 애니메이션의 방향이 전환됨에 따라 홈화면의 복귀 애니메이션의 방향도 변경하기 위해 추가한 정적 변수
   static MovePageDirection dynamicCurrentDirection = MovePageDirection.topLeft;
 
-  MovePageTransition getHomeScreenTransition(
-      {animation, secondaryAnimation, state, child}) {
+  MovePageTransition getHomeScreenTransition({animation, secondaryAnimation, state, child}) {
     return MovePageTransition(
       primaryRouteAnimation: animation,
       secondaryRouteAnimation: secondaryAnimation,
@@ -36,7 +35,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
+  bool isLoadingEarthImage = true;
   bool _isBusy = false;
 
   @override
@@ -46,11 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isTablet = ResponsiveValue<bool>(context,
-        defaultValue: false,
-        conditionalValues: [
-          const Condition.smallerThan(name: TABLET, value: true)
-        ]).value;
+    final bool isTablet =
+        ResponsiveValue<bool>(context, defaultValue: false, conditionalValues: [const Condition.smallerThan(name: TABLET, value: true)]).value;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SizedBox(
@@ -65,17 +61,42 @@ class _HomeScreenState extends State<HomeScreen> {
                 right: 0,
                 child: Padding(
                   padding: EdgeInsets.all(context.getResponsiveValue(100, 10)),
-                  child: Center(child: Image.asset(AppAssets.BG_EARTH_ANIM,fit: BoxFit.cover,))
-                      .animate(
-                      autoPlay: true,
-                      delay: 1500.ms,
-                      effects: [
-                        ScaleEffect(
-                            begin: Offset(0, 0),
-                            end: Offset(1, 1),
-                            duration: Duration(milliseconds: 1500),
-                            curve: Curves.decelerate),
-                      ]),
+                  child: Center(
+                      child: Image.network(
+                    'https://static.wixstatic.com/media/214ac5_06ec3f6a31da4945a90ff8638dbec6fd~mv2.gif',
+                    fit: BoxFit.cover,
+                    frameBuilder: (context, child, frame, wasSyncLoaded) {
+                      if (wasSyncLoaded) {
+                        return child;
+                      }
+                      return AnimatedScale(
+                        child: child,
+                        scale: isLoadingEarthImage ? 0 : 1,
+                        duration: const Duration(seconds: 2),
+                        curve: Curves.easeOut,
+                      );
+
+                    },
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) {
+                        // The child (AnimatedOpacity) is build with loading == true, and then the setState will change loading to false, which trigger the animation
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          setState(() => isLoadingEarthImage = false);
+                        });
+
+                        return child;
+                      }
+                      isLoadingEarthImage = true;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
+                  )),
                 ),
               ),
               Positioned(
@@ -103,10 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: _isBusy
                                     ? null
                                     : () async {
-                                        HomeScreen.dynamicCurrentDirection =
-                                            MovePageDirection.topLeft;
-                                        await context.pushNamed(
-                                            IntroductionScreen.routeName);
+                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
+                                        await context.pushNamed(IntroductionScreen.routeName);
                                       },
                               ),
                               GlassySectorButton(
@@ -117,10 +136,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: _isBusy
                                     ? null
                                     : () async {
-                                        HomeScreen.dynamicCurrentDirection =
-                                            MovePageDirection.topRight;
-                                        await context
-                                            .pushNamed(SkillsScreen.routeName);
+                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.topRight;
+                                        await context.pushNamed(SkillsScreen.routeName);
                                       },
                               ),
                             ],
@@ -137,10 +154,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: _isBusy
                                     ? null
                                     : () async {
-                                        HomeScreen.dynamicCurrentDirection =
-                                            MovePageDirection.bottomLeft;
-                                        await context.pushNamed(
-                                            ProjectsScreen.routeName);
+                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomLeft;
+                                        await context.pushNamed(ProjectsScreen.routeName);
                                       },
                               ),
                               GlassySectorButton(
@@ -151,24 +166,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: _isBusy
                                     ? null
                                     : () async {
-                                        HomeScreen.dynamicCurrentDirection =
-                                            MovePageDirection.bottomRight;
-                                        await context
-                                            .pushNamed(ContactScreen.routeName);
+                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomRight;
+                                        await context.pushNamed(ContactScreen.routeName);
                                       },
                               ),
                             ],
                           ),
                           SizedBox(),
                         ],
-                      )).animate().fadeIn(duration: 1000.ms)
-              ),
+                      )).animate().fadeIn(duration: 1000.ms)),
               Positioned(
                 bottom: 20,
                 left: 0,
                 right: 0,
-                child: WatchWidget().animate().fadeIn(
-                    curve: Curves.decelerate, duration: 500.ms, delay: 2000.ms),
+                child: WatchWidget().animate().fadeIn(curve: Curves.decelerate, duration: 500.ms, delay: 2000.ms),
               ),
               Positioned(
                   left: 15,
@@ -184,10 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       autoPlay: true,
                       delay: Duration(milliseconds: 3000),
                       effects: [
-                        BlurEffect(
-                            begin: Offset(100, 30),
-                            end: Offset(0, 0),
-                            duration: Duration(milliseconds: 1500)),
+                        BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
                       ],
                     ),
                     Text(
@@ -200,10 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         autoPlay: true,
                         delay: Duration(milliseconds: 4000),
                         effects: [
-                          BlurEffect(
-                              begin: Offset(100, 30),
-                              end: Offset(0, 0),
-                              duration: Duration(milliseconds: 1500)),
+                          BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
                         ],
                         onComplete: (_) {
                           _setBusyState(false);
@@ -224,13 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class GlassySectorButton extends StatelessWidget {
-  GlassySectorButton(
-      {Key? key,
-      required this.sectorTitle,
-      required this.icon,
-      required this.onTap,
-      required bool this.isTablet,
-      required this.delayMs})
+  GlassySectorButton({Key? key, required this.sectorTitle, required this.icon, required this.onTap, required bool this.isTablet, required this.delayMs})
       : super(key: key);
 
   final Widget? sectorTitle;
@@ -247,48 +246,40 @@ class GlassySectorButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          splashColor: context.colorScheme.onSurface.withOpacity(0.3),
-          onTap: onTap,
-          child: GlassyContainer(
-            borderRadius: borderRadius,
-            width: 200 * (isTablet ? 0.8 : 1.5),
-            height: 100 * (isTablet ? 0.8 : 1.5),
-            child: Center(
-              child: DefaultTextStyle(
-                style: TextStyle(
-                    fontSize: isTablet ? 15 : 30,
-                    fontWeight: FontWeight.w900,
-                    color: context.colorScheme.onSurface),
-                child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      sectorTitle ?? SizedBox(),
-                      Icon(icon,
-                          size: isTablet ? 30 : 60,
-                          color: context.colorScheme.onSurface),
-                    ]),
+            splashColor: context.colorScheme.onSurface.withOpacity(0.3),
+            onTap: onTap,
+            child: GlassyContainer(
+              borderRadius: borderRadius,
+              width: 200 * (isTablet ? 0.8 : 1.5),
+              height: 100 * (isTablet ? 0.8 : 1.5),
+              child: Center(
+                child: DefaultTextStyle(
+                  style: TextStyle(fontSize: isTablet ? 15 : 30, fontWeight: FontWeight.w900, color: context.colorScheme.onSurface),
+                  child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                    sectorTitle ?? SizedBox(),
+                    Icon(icon, size: isTablet ? 30 : 60, color: context.colorScheme.onSurface),
+                  ]),
+                ),
               ),
+            )
+            // .animate(
+            // autoPlay: true,
+            // delay: Duration(milliseconds: widget.delayMs),
+            // onComplete: (controller) {
+            //   setState(() {
+            //     _loadComplete = true;
+            //   });
+            // },
+            // effects: [
+            //   BlurEffect(
+            //       begin: Offset(90, 0),
+            //       end: Offset(0, 0),
+            //       duration: Duration(milliseconds: 1000),
+            //       curve: Curves.decelerate),
+            //   FadeEffect(
+            //       begin: 0, end: 1, duration: Duration(milliseconds: 500))
+            // ]),
             ),
-          )
-              // .animate(
-              // autoPlay: true,
-              // delay: Duration(milliseconds: widget.delayMs),
-              // onComplete: (controller) {
-              //   setState(() {
-              //     _loadComplete = true;
-              //   });
-              // },
-              // effects: [
-              //   BlurEffect(
-              //       begin: Offset(90, 0),
-              //       end: Offset(0, 0),
-              //       duration: Duration(milliseconds: 1000),
-              //       curve: Curves.decelerate),
-              //   FadeEffect(
-              //       begin: 0, end: 1, duration: Duration(milliseconds: 500))
-              // ]),
-        ),
       ),
     );
   }
