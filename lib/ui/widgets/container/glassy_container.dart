@@ -11,7 +11,6 @@ class GlassyContainer extends StatelessWidget {
     this.height,
     this.blur = 30,
     this.backgroundColorOpacity = 0.1,
-    this.blurAnimateMs = 3500,
     this.color = Colors.black,
     this.borderOpacity=0.6,
     this.borderRadius,
@@ -22,7 +21,6 @@ class GlassyContainer extends StatelessWidget {
   final double? width;
   final double? height;
   final double blur;
-  final int blurAnimateMs;
   final double backgroundColorOpacity;
   final Color color;
   final double borderOpacity;

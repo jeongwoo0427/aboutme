@@ -75,7 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         duration: const Duration(seconds: 2),
                         curve: Curves.easeOut,
                       );
-
                     },
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress == null) {
@@ -89,10 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       isLoadingEarthImage = true;
                       return Center(
                         child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                              : null,
+                          value:
+                              loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
                         ),
                       );
                     },
@@ -249,6 +246,8 @@ class GlassySectorButton extends StatelessWidget {
             splashColor: context.colorScheme.onSurface.withOpacity(0.3),
             onTap: onTap,
             child: GlassyContainer(
+              blur: 0,
+              backgroundColorOpacity: 0.9,
               borderRadius: borderRadius,
               width: 200 * (isTablet ? 0.8 : 1.5),
               height: 100 * (isTablet ? 0.8 : 1.5),
