@@ -70,22 +70,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 right: 0,
                 child: Padding(
                   padding: EdgeInsets.all(context.getResponsiveValue(100, 10)),
-                  child: Gif(
-                    image: const AssetImage(AppAssets.BG_EARTH_ANIM),
-                    fit: BoxFit.contain,
-                    controller: _gifController,
-                    autostart: Autostart.loop,
-                    fps: 30,
-                    placeholder: (context) =>
-                        const Center(child: Text('Loading ...')),
-                    onFetchCompleted: () {
-                      _gifController.reset();
-                      _gifController.forward();
-                      _earthAnimationController.forward();
-                    },
-                  ).animate(
-                      autoPlay: false,
+                  child: Center(child: Image.asset(AppAssets.BG_EARTH_ANIM,fit: BoxFit.cover,))
+                      .animate(
+                      autoPlay: true,
                       controller: _earthAnimationController,
+                      delay: 1500.ms,
                       effects: [
                         ScaleEffect(
                             begin: Offset(0, 0),
@@ -178,13 +167,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           ),
                           SizedBox(),
                         ],
-                      ))),
+                      )).animate().fadeIn(duration: 1000.ms)
+              ),
               Positioned(
                 bottom: 20,
                 left: 0,
                 right: 0,
                 child: WatchWidget().animate().fadeIn(
-                    curve: Curves.decelerate, duration: 500.ms, delay: 4000.ms),
+                    curve: Curves.decelerate, duration: 500.ms, delay: 2000.ms),
               ),
               Positioned(
                   left: 15,
@@ -198,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           fontWeight: FontWeight.w200),
                     ).animate(
                       autoPlay: true,
-                      delay: Duration(milliseconds: 4500),
+                      delay: Duration(milliseconds: 3000),
                       effects: [
                         BlurEffect(
                             begin: Offset(100, 30),
@@ -214,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           fontWeight: FontWeight.w500),
                     ).animate(
                         autoPlay: true,
-                        delay: Duration(milliseconds: 5000),
+                        delay: Duration(milliseconds: 4000),
                         effects: [
                           BlurEffect(
                               begin: Offset(100, 30),
@@ -239,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void _setTitleState({required bool show}) {}
 }
 
-class GlassySectorButton extends StatefulWidget {
+class GlassySectorButton extends StatelessWidget {
   GlassySectorButton(
       {Key? key,
       required this.sectorTitle,
@@ -256,13 +246,6 @@ class GlassySectorButton extends StatefulWidget {
   final int delayMs;
 
   @override
-  State<GlassySectorButton> createState() => _GlassySectorButtonState();
-}
-
-class _GlassySectorButtonState extends State<GlassySectorButton> {
-  bool _loadComplete = false;
-
-  @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(30);
     return ClipRRect(
@@ -271,47 +254,46 @@ class _GlassySectorButtonState extends State<GlassySectorButton> {
         color: Colors.transparent,
         child: InkWell(
           splashColor: context.colorScheme.onSurface.withOpacity(0.3),
-          onTap: widget.onTap,
+          onTap: onTap,
           child: GlassyContainer(
             borderRadius: borderRadius,
-            blur: _loadComplete ? 30 : 0,
-            isAnimateBlur: true,
-            width: 200 * (widget.isTablet ? 0.8 : 1.5),
-            height: 100 * (widget.isTablet ? 0.8 : 1.5),
+            width: 200 * (isTablet ? 0.8 : 1.5),
+            height: 100 * (isTablet ? 0.8 : 1.5),
             child: Center(
               child: DefaultTextStyle(
                 style: TextStyle(
-                    fontSize: widget.isTablet ? 15 : 30,
+                    fontSize: isTablet ? 15 : 30,
                     fontWeight: FontWeight.w900,
                     color: context.colorScheme.onSurface),
                 child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      widget.sectorTitle ?? SizedBox(),
-                      Icon(widget.icon,
-                          size: widget.isTablet ? 30 : 60,
+                      sectorTitle ?? SizedBox(),
+                      Icon(icon,
+                          size: isTablet ? 30 : 60,
                           color: context.colorScheme.onSurface),
                     ]),
               ),
             ),
-          ).animate(
-              autoPlay: true,
-              delay: Duration(milliseconds: widget.delayMs),
-              onComplete: (controller) {
-                setState(() {
-                  _loadComplete = true;
-                });
-              },
-              effects: [
-                BlurEffect(
-                    begin: Offset(90, 0),
-                    end: Offset(0, 0),
-                    duration: Duration(milliseconds: 1000),
-                    curve: Curves.decelerate),
-                FadeEffect(
-                    begin: 0, end: 1, duration: Duration(milliseconds: 500))
-              ]),
+          )
+              // .animate(
+              // autoPlay: true,
+              // delay: Duration(milliseconds: widget.delayMs),
+              // onComplete: (controller) {
+              //   setState(() {
+              //     _loadComplete = true;
+              //   });
+              // },
+              // effects: [
+              //   BlurEffect(
+              //       begin: Offset(90, 0),
+              //       end: Offset(0, 0),
+              //       duration: Duration(milliseconds: 1000),
+              //       curve: Curves.decelerate),
+              //   FadeEffect(
+              //       begin: 0, end: 1, duration: Duration(milliseconds: 500))
+              // ]),
         ),
       ),
     );

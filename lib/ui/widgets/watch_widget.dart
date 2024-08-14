@@ -22,7 +22,7 @@ class _WatchWidgetState extends State<WatchWidget> {
 
   @override
   void initState() {
-    _timer = Timer.periodic(Duration(milliseconds: 10), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _currentTime = DateTime.now();
       });
@@ -34,7 +34,7 @@ class _WatchWidgetState extends State<WatchWidget> {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        _currentTime.toString().substring(11,22),
+        _currentTime.toString().substring(11,19),
         style: TextStyle(
             fontWeight: FontWeight.w100,
             color: context.colorScheme.onSurface,

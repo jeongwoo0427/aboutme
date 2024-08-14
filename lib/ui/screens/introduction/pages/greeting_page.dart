@@ -60,7 +60,7 @@ class _GreetingPageState extends State<GreetingPage>
             currentPosition: 4,
             totalCount: _greetingTexts.length,
             text: _greetingTexts[3],
-            fontWeightValue: 8,
+            fontWeightValue: 7,
           ),
           GreetingTextArea(
             currentPosition: 5,
@@ -94,7 +94,7 @@ class _GreetingPageState extends State<GreetingPage>
             child: Text(
               '아래로 스크롤해주세요.',
               style: TextStyle(
-                  fontWeight: FontWeight.w100,
+                  fontWeight: FontWeight.w300,
                   fontSize: context.getResponsiveValue(20, 15),
                   color: context.colorScheme.onSurface),
             ),
