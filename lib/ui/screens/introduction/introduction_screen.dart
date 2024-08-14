@@ -15,7 +15,6 @@ class IntroductionScreen extends StatefulWidget {
 }
 
 class _IntroductionScreenState extends State<IntroductionScreen> {
-
   bool _isTop = true;
 
   @override
@@ -32,7 +31,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
   Widget build(BuildContext context) {
     return ResponsiveGlassyScaffold(
       appbarTitle: Text('Who am I ?'),
-      onChangedPageState: (isTop){
+      onChangedPageState: (isTop) {
         setState(() {
           _isTop = isTop;
         });
@@ -40,7 +39,9 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            GreetingPage(isShowScrollMessage: _isTop,),
+            GreetingPage(
+              showContinueText: _isTop,
+            ),
             CoverLetterPage()
           ],
         ),

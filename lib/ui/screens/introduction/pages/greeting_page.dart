@@ -1,12 +1,13 @@
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/ui/widgets/scaffold/fitted_screen_size_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class GreetingPage extends StatefulWidget {
-  final bool isShowScrollMessage;
+  GreetingPage({Key? key, required this.showContinueText}) : super(key: key);
 
-  GreetingPage({Key? key, required this.isShowScrollMessage}) : super(key: key);
+  final bool showContinueText;
 
   @override
   State<GreetingPage> createState() => _GreetingPageState();
@@ -88,19 +89,23 @@ class _GreetingPageState extends State<GreetingPage>
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '아래로 스크롤해주세요.',
-            style: TextStyle(
-                fontWeight: FontWeight.w300,
-                fontSize: context.getResponsiveValue(20, 15),
-                color: context.colorScheme.onSurface),
+          AnimatedOpacity(
+            opacity: widget.showContinueText ? 1 : 0,
+            duration: Duration(milliseconds: 1000),
+            child: Text(
+              '아래로 스크롤해주세요.',
+              style: TextStyle(
+                  fontWeight: FontWeight.w300,
+                  fontSize: context.getResponsiveValue(20, 15),
+                  color: context.colorScheme.onSurface),
+            )
+                .animate(
+                    delay: 4000.ms,
+                    onPlay: (controller) => controller.repeat(reverse: true))
+                .fadeIn(duration: 1000.ms),
           ),
         ],
       )
-          .animate(
-              delay: 4000.ms,
-              onPlay: (controller) => controller.repeat(reverse: true))
-          .fadeIn(duration: 1000.ms)
     ]));
   }
 }
