@@ -113,6 +113,10 @@ class _GlassyDropdownButtonState extends State<GlassyDropdownButton> {
   }
 
   void _onTapItem(GlassyDropdownButtonItem selectedItem) {
+    if(selectedItem.value == _currentValue){
+      return;
+    }
+
     setState(() {
       _currentValue = selectedItem.value;
     });

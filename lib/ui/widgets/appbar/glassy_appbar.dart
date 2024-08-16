@@ -62,6 +62,10 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
               bottom: 0,
               child: Center(
                 child: GlassyDropdownButton(
+                  onChanged: (item){
+                    print(item.value);
+                    print(item.text);
+                  },
                   items: [
                     GlassyDropdownButtonItem(value: 1, text: 'hi'),
                     GlassyDropdownButtonItem(value: 2, text: 'hello')
