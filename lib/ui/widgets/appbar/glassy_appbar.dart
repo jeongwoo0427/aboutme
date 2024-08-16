@@ -1,4 +1,5 @@
 import 'package:aboutme/constants/app_constants.dart';
+import 'package:aboutme/constants/app_localizations.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/cores/states/providers/current_language_provider.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
@@ -19,6 +20,7 @@ class GlassyAppbar extends ConsumerWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLanguageNotifier = ref.read(currentLanguageProvider.notifier);
+
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),

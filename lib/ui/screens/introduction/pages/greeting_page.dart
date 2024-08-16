@@ -1,19 +1,23 @@
+import 'package:aboutme/constants/app_localizations.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
+import 'package:aboutme/cores/states/providers/current_language_provider.dart';
 import 'package:aboutme/ui/widgets/scaffold/fitted_screen_size_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GreetingPage extends StatefulWidget {
+class GreetingPage extends ConsumerStatefulWidget {
   GreetingPage({Key? key, required this.showContinueText}) : super(key: key);
 
   final bool showContinueText;
 
   @override
-  State<GreetingPage> createState() => _GreetingPageState();
+  ConsumerState<GreetingPage> createState() => _GreetingPageState();
 }
 
-class _GreetingPageState extends State<GreetingPage>
+class _GreetingPageState extends ConsumerState<GreetingPage>
     with SingleTickerProviderStateMixin {
   final List<String> _greetingTexts = [
     'Hello',
@@ -32,6 +36,7 @@ class _GreetingPageState extends State<GreetingPage>
 
   @override
   Widget build(BuildContext context) {
+
     return FittedScreenSizeBody(
         body: Column(mainAxisSize: MainAxisSize.max, children: [
       Expanded(
@@ -85,6 +90,7 @@ class _GreetingPageState extends State<GreetingPage>
       )
           //.animate(delay: 2500.ms,onPlay: (con)=>con.repeat(reverse: true)).shimmer(color: Colors.white,duration: 1500.ms)
           ),
+
       Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +99,7 @@ class _GreetingPageState extends State<GreetingPage>
             opacity: widget.showContinueText ? 1 : 0,
             duration: Duration(milliseconds: 1000),
             child: Text(
-              '아래로 스크롤해주세요.',
+              ref.localizations.introduction_screen_greeting_page_scroll_text,
               style: TextStyle(
                   fontWeight: FontWeight.w300,
                   fontSize: context.getResponsiveValue(20, 15),
