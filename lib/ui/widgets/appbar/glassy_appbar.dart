@@ -9,7 +9,9 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final bool isTransparentBackground;
 
-  const GlassyAppbar({Key? key, this.title, this.isTransparentBackground = false}) : super(key: key);
+  const GlassyAppbar(
+      {Key? key, this.title, this.isTransparentBackground = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,10 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
               bottom: 0,
               child: Center(
                 child: DefaultTextStyle(
-                    style: TextStyle(fontSize: context.getResponsiveValue<double>(20, 16), fontWeight: FontWeight.w700, color: context.colorScheme.onSurface),
+                    style: TextStyle(
+                        fontSize: context.getResponsiveValue<double>(20, 16),
+                        fontWeight: FontWeight.w700,
+                        color: context.colorScheme.onSurface),
                     child: title ?? Text('')),
               ),
             ),
@@ -56,7 +61,12 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
               top: 0,
               bottom: 0,
               child: Center(
-                child: GlassyDropDown(),
+                child: GlassyDropdownButton(
+                  items: [
+                    GlassyDropdownButtonItem(value: 1, text: 'hi'),
+                    GlassyDropdownButtonItem(value: 2, text: 'hello')
+                  ],
+                ),
               ),
             )
           ],
@@ -67,5 +77,6 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 20); //총합 높이 80
+  Size get preferredSize =>
+      const Size.fromHeight(kToolbarHeight + 20); //총합 높이 80
 }
