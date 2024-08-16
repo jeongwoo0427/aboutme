@@ -8,8 +8,9 @@ class GlassyDropDown extends StatefulWidget {
   final double width;
   final double height;
   final double fontSize;
+  final TextStyle? textStyle;
 
-  const GlassyDropDown({super.key, this.width = 100, this.height = 45, this.fontSize = 14});
+  const GlassyDropDown({super.key, this.width = 100, this.height = 45, this.fontSize = 14, this.textStyle});
 
   @override
   State<GlassyDropDown> createState() => _GlassyDropDownState();
@@ -32,8 +33,8 @@ class _GlassyDropDownState extends State<GlassyDropDown> {
 
   @override
   Widget build(BuildContext context) {
-
     final BorderRadius defaultBorderRadius = BorderRadius.circular(10);
+    final TextStyle defaultTextStyle = TextStyle(fontSize: 14,fontWeight: FontWeight.w500);
 
     return CompositedTransformTarget(
       link: _link,
@@ -51,6 +52,7 @@ class _GlassyDropDownState extends State<GlassyDropDown> {
                   width: widget.width,
                   height: widget.height,
                   borderRadius: defaultBorderRadius,
+                  textStyle: widget.textStyle?? defaultTextStyle,
                 ),
               ),
             ),
@@ -61,6 +63,7 @@ class _GlassyDropDownState extends State<GlassyDropDown> {
           width: widget.width,
           height: widget.height,
           borderRadius: defaultBorderRadius,
+          textStyle: widget.textStyle?? defaultTextStyle,
         ),
       ),
     );
@@ -86,8 +89,9 @@ class _DropDownButton extends StatefulWidget {
   final double height;
   final VoidCallback onTap;
   final BorderRadius borderRadius;
+  final TextStyle textStyle;
 
-  _DropDownButton({super.key, required this.width, required this.height, required this.onTap,required this.borderRadius});
+  _DropDownButton({super.key, required this.width, required this.height, required this.onTap, required this.borderRadius, required this.textStyle});
 
   @override
   State<_DropDownButton> createState() => _DropDownButtonState();
@@ -96,7 +100,6 @@ class _DropDownButton extends StatefulWidget {
 class _DropDownButtonState extends State<_DropDownButton> {
   @override
   Widget build(BuildContext context) {
-
     return GlassyContainer(
         borderRadius: widget.borderRadius,
         blur: 0,
@@ -111,10 +114,7 @@ class _DropDownButtonState extends State<_DropDownButton> {
             child: Center(
               child: Text(
                 'Korean',
-                style: TextStyle(
-                  fontSize: context.getResponsiveValue(14, 12),
-                  fontWeight: FontWeight.w500,
-                ),
+                style: widget.textStyle,
               ),
             ),
           ),
@@ -126,31 +126,60 @@ class _DropDownMenu extends StatelessWidget {
   final double width;
   final double height;
   final BorderRadius borderRadius;
+  final TextStyle textStyle;
 
-  _DropDownMenu({
-    Key? key,
-    required this.width,
-    required this.height,
-    required this.borderRadius
-  }) : super(key: key);
+  _DropDownMenu({Key? key, required this.width, required this.height, required this.borderRadius, required this.textStyle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 500),
       curve: Curves.decelerate,
-      tween: Tween<double>(begin: height, end: 300),
+      tween: Tween<double>(begin: height, end: height * 3+4),
       builder: (context, value, child) {
         return GlassyContainer(
+          padding: EdgeInsets.zero,
           borderRadius: borderRadius,
           duration: Duration.zero,
           width: width,
           height: value,
           blur: 30,
-          child: Text('hi'),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _DropDownMenuItem(height: height,textStyle: textStyle,),
+                _DropDownMenuItem(height: height,textStyle: textStyle),
+                _DropDownMenuItem(height: height,textStyle: textStyle),
+              ],
+            ),
+          ),
         );
       },
     );
+  }
+}
+
+class _DropDownMenuItem extends StatelessWidget {
+  final double height;
+  final TextStyle textStyle;
+
+  const _DropDownMenuItem({Key? key, required this.height, required this.textStyle}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    return Material(
+      color: Colors.transparent,
+        child: InkWell(
+          onTap: (){},
+          onHover: (_){},
+          hoverColor: colorScheme.onSurface.withOpacity(0.3),
+          child: Container(
+                height: height,
+                child: Center(child: Text('Korean',style: textStyle,)),
+              ),
+        ));
   }
 }
