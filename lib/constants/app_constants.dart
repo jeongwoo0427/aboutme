@@ -23,4 +23,10 @@ enum ManageMode{
   edit
 }
 
+enum LanguageCode{
+  ko,
+  en,
+  jp,
+}
+
 

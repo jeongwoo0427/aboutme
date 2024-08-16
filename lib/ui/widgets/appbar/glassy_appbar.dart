@@ -1,11 +1,14 @@
+import 'package:aboutme/constants/app_constants.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/cores/states/providers/current_language_provider.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 
 import 'package:aboutme/ui/widgets/glassy_dropdown_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
+class GlassyAppbar extends ConsumerWidget implements PreferredSizeWidget {
   final Widget? title;
   final bool isTransparentBackground;
 
@@ -14,7 +17,9 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentLanguageNotifier = ref.read(currentLanguageProvider.notifier);
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: GlassyContainer(
@@ -67,10 +72,16 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
                       fontWeight: FontWeight.w500),
                   width: context.getResponsiveValue(100, 80),
                   height: context.getResponsiveValue(45, 40),
-                  onChanged: (item) {},
+                  onChanged: (item) =>
+                      currentLanguageNotifier.changeLanguage(item.value),
+                  initValue: currentLanguageNotifier.currentLanguage,
                   items: [
-                    GlassyDropdownButtonItem(value: 1, text: 'hi'),
-                    GlassyDropdownButtonItem(value: 2, text: 'hello')
+                    GlassyDropdownButtonItem(
+                        value: LanguageCode.ko, text: 'Korean'),
+                    GlassyDropdownButtonItem(
+                        value: LanguageCode.en, text: 'English'),
+                    GlassyDropdownButtonItem(
+                        value: LanguageCode.jp, text: 'Japan'),
                   ],
                 ),
               ),
