@@ -15,6 +15,7 @@ class GlassyContainer extends StatelessWidget {
     this.borderOpacity=0.6,
     this.borderRadius,
     this.padding,
+    this.duration,
   }) : super(key: key);
 
   final Widget child;
@@ -26,6 +27,7 @@ class GlassyContainer extends StatelessWidget {
   final double borderOpacity;
   final BorderRadius? borderRadius;
   final EdgeInsets? padding;
+  final Duration? duration;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class GlassyContainer extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 500),
+          duration: duration??const Duration(milliseconds: 500),
           curve: Curves.decelerate,
           width: width,
           height: height,

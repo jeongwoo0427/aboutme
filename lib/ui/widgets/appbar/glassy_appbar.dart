@@ -1,6 +1,7 @@
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
-import 'package:aboutme/ui/widgets/glassy_selector.dart';
+
+import 'package:aboutme/ui/widgets/glassy_dropdown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -51,14 +52,11 @@ class GlassyAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
             Positioned(
-              right: 0,
+              right: 5,
               top: 0,
               bottom: 0,
               child: Center(
-                child: GlassySelector(
-                  selectedIndex: 0,
-                  items: [],
-                ),
+                child: GlassyDropDown(),
               ),
             )
           ],

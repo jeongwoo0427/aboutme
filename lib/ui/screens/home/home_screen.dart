@@ -190,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.w200),
                     ).animate(
                       autoPlay: true,
-                      delay: Duration(milliseconds: 3000),
+                      delay: Duration(milliseconds: 2000),
                       effects: [
                         BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
                       ],
@@ -203,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.w500),
                     ).animate(
                         autoPlay: true,
-                        delay: Duration(milliseconds: 4000),
+                        delay: Duration(milliseconds: 3000),
                         effects: [
                           BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
                         ],
