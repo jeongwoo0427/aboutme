@@ -12,7 +12,6 @@ class GlassyDropdownButtonItem {
 class GlassyDropdownButton extends StatefulWidget {
   final double width;
   final double height;
-  final double fontSize;
   final TextStyle? textStyle;
   final dynamic initValue;
   final Function(GlassyDropdownButtonItem)? onChanged;
@@ -22,7 +21,6 @@ class GlassyDropdownButton extends StatefulWidget {
       {super.key,
       this.width = 100,
       this.height = 45,
-      this.fontSize = 14,
       this.textStyle,
       this.initValue,
       this.onChanged,
@@ -58,41 +56,43 @@ class _GlassyDropdownButtonState extends State<GlassyDropdownButton> {
   @override
   Widget build(BuildContext context) {
     final BorderRadius defaultBorderRadius = BorderRadius.circular(10);
-    final TextStyle defaultTextStyle =
-        TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
 
-    return CompositedTransformTarget(
-      link: _link,
-      child: OverlayPortal(
-        controller: _tooltipController,
-        overlayChildBuilder: (BuildContext context) {
-          return CompositedTransformFollower(
-            link: _link,
-            targetAnchor: Alignment.topLeft,
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: TapRegion(
-                onTapOutside: _onTapOutSide,
-                child: _DropdownMenu(
-                  width: widget.width,
-                  height: widget.height,
-                  borderRadius: defaultBorderRadius,
-                  textStyle: widget.textStyle ?? defaultTextStyle,
-                  currentValue: _currentValue,
-                  items: widget.items,
-                  onTap: _onTapItem,
+
+    return DefaultTextStyle(
+      style:  TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+      child: CompositedTransformTarget(
+        link: _link,
+        child: OverlayPortal(
+          controller: _tooltipController,
+          overlayChildBuilder: (BuildContext context) {
+            return CompositedTransformFollower(
+              link: _link,
+              targetAnchor: Alignment.topLeft,
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: TapRegion(
+                  onTapOutside: _onTapOutSide,
+                  child: _DropdownMenu(
+                    width: widget.width,
+                    height: widget.height,
+                    borderRadius: defaultBorderRadius,
+                    textStyle: widget.textStyle,
+                    currentValue: _currentValue,
+                    items: widget.items,
+                    onTap: _onTapItem,
+                  ),
                 ),
               ),
-            ),
-          );
-        },
-        child: _DropdownButton(
-          onTap: _onTap,
-          width: widget.width,
-          height: widget.height,
-          borderRadius: defaultBorderRadius,
-          textStyle: widget.textStyle ?? defaultTextStyle,
-          text: widget.items.firstWhere((e)=>e.value==_currentValue).text,
+            );
+          },
+          child: _DropdownButton(
+            onTap: _onTap,
+            width: widget.width,
+            height: widget.height,
+            borderRadius: defaultBorderRadius,
+            textStyle: widget.textStyle,
+            text: widget.items.firstWhere((e)=>e.value==_currentValue).text,
+          ),
         ),
       ),
     );
@@ -132,7 +132,7 @@ class _DropdownButton extends StatelessWidget {
   final double height;
   final VoidCallback onTap;
   final BorderRadius borderRadius;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final String text;
 
   _DropdownButton(
@@ -172,7 +172,7 @@ class _DropdownMenu extends StatelessWidget {
   final double width;
   final double height;
   final BorderRadius borderRadius;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final dynamic currentValue;
   final List<GlassyDropdownButtonItem> items;
   final Function(GlassyDropdownButtonItem) onTap;
@@ -229,7 +229,7 @@ class _DropdownMenu extends StatelessWidget {
 
 class _DropdownMenuItem extends StatelessWidget {
   final double height;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final GlassyDropdownButtonItem item;
   final Function(GlassyDropdownButtonItem) onTap;
 
