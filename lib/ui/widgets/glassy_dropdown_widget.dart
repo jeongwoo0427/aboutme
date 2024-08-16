@@ -1,4 +1,3 @@
-import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
 
@@ -146,6 +145,7 @@ class _DropdownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return GlassyContainer(
         borderRadius: borderRadius,
         blur: 0,
@@ -154,7 +154,7 @@ class _DropdownButton extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            hoverColor: context.colorScheme.onSurface.withOpacity(0.3),
+            hoverColor: colorScheme.onSurface.withOpacity(0.3),
             onHover: (_) {},
             onTap: onTap,
             child: Center(
