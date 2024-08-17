@@ -58,7 +58,7 @@ class _GlassyDropdownButtonState extends State<GlassyDropdownButton> {
 
 
     return DefaultTextStyle(
-      style:  TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
       child: CompositedTransformTarget(
         link: _link,
         child: OverlayPortal(
