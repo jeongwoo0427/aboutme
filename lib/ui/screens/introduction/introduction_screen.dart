@@ -46,7 +46,12 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
         child: Column(
           children: [
             _greetingPage,
-            _coverLetterPage
+            _coverLetterPage,
+            _greetingPage,
+            _greetingPage,
+            _greetingPage,
+            _coverLetterPage,
+            _coverLetterPage,
           ],
         ),
       ),
