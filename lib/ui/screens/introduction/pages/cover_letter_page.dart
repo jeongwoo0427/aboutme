@@ -12,7 +12,7 @@ class CoverLetterPage extends StatefulWidget {
   State<CoverLetterPage> createState() => _CoverLetterPageState();
 }
 
-class _CoverLetterPageState extends State<CoverLetterPage> with SingleTickerProviderStateMixin {
+class _CoverLetterPageState extends State<CoverLetterPage> {
 
 
   @override
