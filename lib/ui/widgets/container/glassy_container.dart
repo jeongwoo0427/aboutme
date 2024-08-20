@@ -31,7 +31,9 @@ class GlassyContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: borderRadius ?? BorderRadius.circular(20),
-      child: Container(
+      child: AnimatedContainer(
+        duration: duration??const Duration(milliseconds: 500),
+        curve: Curves.decelerate,
         width: width,
         height: height,
         padding: padding,

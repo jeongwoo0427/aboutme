@@ -8,17 +8,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GreetingPage extends ConsumerStatefulWidget {
+class GreetingPage extends ConsumerWidget {
   GreetingPage({Key? key, required this.showContinueText}) : super(key: key);
 
   final bool showContinueText;
 
-  @override
-  ConsumerState<GreetingPage> createState() => _GreetingPageState();
-}
-
-class _GreetingPageState extends ConsumerState<GreetingPage>
-    with SingleTickerProviderStateMixin {
   final List<String> _greetingTexts = [
     'Hello',
     'Bonjour',
@@ -30,12 +24,7 @@ class _GreetingPageState extends ConsumerState<GreetingPage>
   ];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
 
     return FittedScreenSizeBody(
         body: Column(mainAxisSize: MainAxisSize.max, children: [
@@ -96,7 +85,7 @@ class _GreetingPageState extends ConsumerState<GreetingPage>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AnimatedOpacity(
-            opacity: widget.showContinueText ? 1 : 0,
+            opacity: showContinueText ? 1 : 0,
             duration: Duration(milliseconds: 1000),
             child: Text(
               ref.localizations.introduction_screen_greeting_page_scroll_text,
