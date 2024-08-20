@@ -10,9 +10,8 @@ class ResponsiveGlassyScaffold extends StatefulWidget {
   final Widget? appbarTitle;
   final Widget body;
   final Function(bool)? onChangedPageState;
-  final Function(double)? onChangedPagePosition;
 
-  const ResponsiveGlassyScaffold({super.key, required this.body, this.appbarTitle, this.onChangedPageState, this.onChangedPagePosition});
+  const ResponsiveGlassyScaffold({super.key, required this.body, this.appbarTitle, this.onChangedPageState});
 
   @override
   State<ResponsiveGlassyScaffold> createState() => _ResponsiveGlassyScaffoldState();
@@ -47,12 +46,6 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
     }
   }
 
-  void _onChangedPagePosition(double pageRatio){
-    if(widget.onChangedPagePosition != null){
-      widget.onChangedPagePosition!(pageRatio);
-    }
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +70,6 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
                     if (_isTop != isTop) {
                       _onChangedPageState(isTop);
                     }
-
-                    _onChangedPagePosition(notification.metrics.pixels/notification.metrics.maxScrollExtent);
 
                     //print(notification.metrics.pixels/notification.metrics.maxScrollExtent);
 
