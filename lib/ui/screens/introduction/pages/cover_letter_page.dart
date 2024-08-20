@@ -3,7 +3,6 @@ import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:aboutme/ui/widgets/scaffold/fitted_screen_size_body.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 class CoverLetterPage extends StatefulWidget {
   CoverLetterPage({super.key});
@@ -14,15 +13,10 @@ class CoverLetterPage extends StatefulWidget {
 }
 
 class _CoverLetterPageState extends State<CoverLetterPage> with SingleTickerProviderStateMixin {
-  late final AnimationController _animationController;
 
-  void startAnimations(){
-    _animationController.forward();
-  }
 
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this);
     super.initState();
   }
 
@@ -64,7 +58,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SingleTickerProv
                   )
                 ],
               ),
-            ).animate(controller: _animationController, autoPlay: false ).shimmer(delay: 1000.ms,color: Colors.white70),
+            ),
           ),
         ),
       ),
