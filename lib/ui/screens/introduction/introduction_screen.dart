@@ -55,7 +55,6 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
         }
 
         if(_currentPage != page){
-          _coverLetterPage.
           _currentPage = page;
         }
 

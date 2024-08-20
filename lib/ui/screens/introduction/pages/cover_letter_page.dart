@@ -8,7 +8,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 class CoverLetterPage extends StatefulWidget {
   CoverLetterPage({super.key});
 
-  void startAnimatoins() =>
 
   @override
   State<CoverLetterPage> createState() => _CoverLetterPageState();
