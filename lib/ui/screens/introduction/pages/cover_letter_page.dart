@@ -8,12 +8,18 @@ import 'package:flutter_animate/flutter_animate.dart';
 class CoverLetterPage extends StatefulWidget {
   CoverLetterPage({super.key});
 
+  void startAnimatoins() =>
+
   @override
   State<CoverLetterPage> createState() => _CoverLetterPageState();
 }
 
 class _CoverLetterPageState extends State<CoverLetterPage> with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
+
+  void startAnimations(){
+    _animationController.forward();
+  }
 
   @override
   void initState() {
@@ -37,8 +43,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SingleTickerProv
                 children: [
                   MaxWidthBox(
                     maxWidth: 700,
-                    child: VisibilityD(
-                      child: Row(
+                    child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -57,7 +62,6 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SingleTickerProv
                           ],)
                         ],
                       ),
-                    ),
                   )
                 ],
               ),

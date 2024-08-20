@@ -16,6 +16,15 @@ class IntroductionScreen extends StatefulWidget {
 }
 
 class _IntroductionScreenState extends State<IntroductionScreen> {
+
+
+  late final GreetingPage _greetingPage = GreetingPage(showContinueText: _isTop,);
+  late final CoverLetterPage _coverLetterPage = CoverLetterPage();
+
+  final _pageCount = 2;
+
+
+  int _currentPage = 0;
   bool _isTop = true;
 
   @override
@@ -37,13 +46,25 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           _isTop = isTop;
         });
       },
+      onChangedPagePosition: (ratio){
+        int page = 0;
+        for(int i = 0 ; i < _pageCount; i++){
+          if(ratio >= i/_pageCount){
+            page = i;
+          }
+        }
+
+        if(_currentPage != page){
+          _coverLetterPage.
+          _currentPage = page;
+        }
+
+      },
       body: SingleChildScrollView(
         child: Column(
           children: [
-            GreetingPage(
-              showContinueText: _isTop,
-            ),
-            CoverLetterPage()
+            _greetingPage,
+            _coverLetterPage
           ],
         ),
       ),
