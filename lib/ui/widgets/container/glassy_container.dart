@@ -9,8 +9,7 @@ class GlassyContainer extends StatelessWidget {
     required this.child,
     this.width,
     this.height,
-    this.blur = 30,
-    this.backgroundColorOpacity = 0.1,
+    this.backgroundColorOpacity = 0.9,
     this.color = Colors.black,
     this.borderOpacity=0.6,
     this.borderRadius,
@@ -21,7 +20,6 @@ class GlassyContainer extends StatelessWidget {
   final Widget child;
   final double? width;
   final double? height;
-  final double blur;
   final double backgroundColorOpacity;
   final Color color;
   final double borderOpacity;
@@ -33,20 +31,15 @@ class GlassyContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: borderRadius ?? BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
-        child: AnimatedContainer(
-          duration: duration??const Duration(milliseconds: 500),
-          curve: Curves.decelerate,
-          width: width,
-          height: height,
-          padding: padding,
-          decoration: BoxDecoration(
-              color: color.withOpacity(backgroundColorOpacity),
-              borderRadius: borderRadius ?? BorderRadius.circular(20),
-              border: Border.all(width: 1.4, color: Colors.white.withOpacity(borderOpacity))),
-          child: child,
-        ),
+      child: Container(
+        width: width,
+        height: height,
+        padding: padding,
+        decoration: BoxDecoration(
+            color: color.withOpacity(backgroundColorOpacity),
+            borderRadius: borderRadius ?? BorderRadius.circular(20),
+            border: Border.all(width: 1.4, color: Colors.white.withOpacity(borderOpacity))),
+        child: child,
       ),
     );
   }

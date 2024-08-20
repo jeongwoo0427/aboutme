@@ -246,7 +246,6 @@ class GlassySectorButton extends StatelessWidget {
             splashColor: context.colorScheme.onSurface.withOpacity(0.3),
             onTap: onTap,
             child: GlassyContainer(
-              blur: 0,
               backgroundColorOpacity: 0.9,
               borderRadius: borderRadius,
               width: 200 * (isTablet ? 0.8 : 1.5),

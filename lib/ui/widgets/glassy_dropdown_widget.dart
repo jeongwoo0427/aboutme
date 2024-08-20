@@ -148,7 +148,6 @@ class _DropdownButton extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return GlassyContainer(
         borderRadius: borderRadius,
-        blur: 0,
         width: width,
         height: height,
         child: Material(
@@ -207,7 +206,6 @@ class _DropdownMenu extends StatelessWidget {
           duration: Duration.zero,
           width: width,
           height: value,
-          blur: 30,
           child: SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
             child: Column(

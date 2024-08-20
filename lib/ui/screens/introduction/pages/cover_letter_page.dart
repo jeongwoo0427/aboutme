@@ -30,34 +30,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
             child: GlassyContainer(
               height: double.infinity,
               width: double.infinity,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  MaxWidthBox(
-                    maxWidth: 700,
-                    child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          CircleAvatar(
-                            minRadius: context.getResponsiveValue(60, 45),
-                            backgroundColor: Colors.white24,
-                          ),
-                      
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                      
-                            children: [
-                            Text('Name : Kim Jeong Woo'),
-                            Text('Age : 26'),
-                            Text('Job : Flutter software developer'),
-                          ],)
-                        ],
-                      ),
-                  )
-                ],
-              ),
+              child: Text('hi')
             ),
           ),
         ),
