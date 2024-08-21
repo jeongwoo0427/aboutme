@@ -18,9 +18,6 @@ class IntroductionScreen extends StatefulWidget {
 class _IntroductionScreenState extends State<IntroductionScreen> {
 
 
-  late final GreetingPage _greetingPage = GreetingPage(showContinueText: _isTop,);
-  late final CoverLetterPage _coverLetterPage = CoverLetterPage();
-
   bool _isTop = true;
 
   @override
@@ -45,13 +42,8 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _greetingPage,
-            _coverLetterPage,
-            _greetingPage,
-            _greetingPage,
-            _greetingPage,
-            _coverLetterPage,
-            _coverLetterPage,
+            GreetingPage(showContinueText: _isTop,),
+            CoverLetterPage()
           ],
         ),
       ),
