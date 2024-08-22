@@ -18,10 +18,9 @@ class IntroductionScreen extends StatefulWidget {
 class _IntroductionScreenState extends State<IntroductionScreen> {
 
 
-  late final GreetingPage _greetingPage = GreetingPage(showContinueText: _isTop,);
-  late final CoverLetterPage _coverLetterPage = CoverLetterPage();
-
   bool _isTop = true;
+  int _currentPage = 0;
+
 
   @override
   void initState() {
@@ -42,16 +41,35 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           _isTop = isTop;
         });
       },
+      onNotificationScroll: (notification){
+        final double pageRatio = notification.metrics.pixels/notification.metrics.maxScrollExtent;
+        int page = 0;
+        if(pageRatio <= 1/4){
+          page = 0;
+        }else if(pageRatio > 1/4 && pageRatio <= 2/4 ){
+          page = 1;
+        }else if(pageRatio > 2/4 && pageRatio <= 3/4 ) {
+          page = 2;
+        }else if(pageRatio > 3/4 && pageRatio <= 4/4 ){
+          page = 3;
+        }
+
+        if(_currentPage != page){
+          setState(() {
+            _currentPage = page;
+            //print(page);
+          });
+        }
+
+
+      },
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _greetingPage,
-            _coverLetterPage,
-            _greetingPage,
-            _greetingPage,
-            _greetingPage,
-            _coverLetterPage,
-            _coverLetterPage,
+            GreetingPage(showContinueText: _isTop,),
+            CoverLetterPage(),
+            CoverLetterPage(),
+            CoverLetterPage(),
           ],
         ),
       ),
