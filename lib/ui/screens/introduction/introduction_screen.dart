@@ -1,5 +1,6 @@
 import 'package:aboutme/ui/screens/introduction/pages/cover_letter_page.dart';
 import 'package:aboutme/ui/screens/introduction/pages/greeting_page.dart';
+import 'package:aboutme/ui/screens/introduction/pages/history_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -68,6 +69,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           children: [
             GreetingPage(showContinueText: _isTop,),
             CoverLetterPage(),
+            HistoryPage()
           ],
         ),
       ),

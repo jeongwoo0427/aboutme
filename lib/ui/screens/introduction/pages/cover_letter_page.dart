@@ -21,10 +21,7 @@ class _CoverLetterPageState extends ConsumerState<CoverLetterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle profileStateTextStyle = TextStyle(
-        fontSize: context.getResponsiveValue(18, 14),
-        fontWeight: FontWeight.w300,
-        color: context.colorScheme.onSurface);
+
 
     final TextStyle doubleQuotationTextStyle = TextStyle(
         fontWeight: FontWeight.w800,
@@ -32,8 +29,8 @@ class _CoverLetterPageState extends ConsumerState<CoverLetterPage> {
         color: context.colorScheme.onSurface.withOpacity(0.5));
 
     final TextStyle letterTextStyle = TextStyle(
-        fontWeight: FontWeight.w700,
-        fontSize: context.getResponsiveValue(16, 12),
+        fontWeight: FontWeight.w300,
+        fontSize: context.getResponsiveValue(18, 14),
         color: context.colorScheme.onSurface.withOpacity(0.8));
 
     return FittedScreenSizeBody(
@@ -43,12 +40,12 @@ class _CoverLetterPageState extends ConsumerState<CoverLetterPage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(
-              '“',
-              style: doubleQuotationTextStyle,
-            ),
+            // Text(
+            //   '“',
+            //   style: doubleQuotationTextStyle,
+            // ),
             MaxWidthBox(
-              maxWidth: 700,
+              maxWidth: 800,
               child: Text.rich(
                 TextSpan(children: [
                   TextSpan(
@@ -60,47 +57,10 @@ class _CoverLetterPageState extends ConsumerState<CoverLetterPage> {
               ),
             ),
 
-            Text(
-              '”',
-              style: doubleQuotationTextStyle,
-            ),
-            GlassyContainer(
-              height: context.getResponsiveValue(200, 150),
-              width: context.getResponsiveValue(500, 400),
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-              child: MaxWidthBox(
-                maxWidth: 700,
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CircleAvatar(
-                      minRadius: context.getResponsiveValue(60, 45),
-                      backgroundColor: Colors.white24,
-                    ),
-                    DefaultTextStyle(
-                      style: profileStateTextStyle,
-                      child: const Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Name : Kim Jeong Woo'),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Text('Age : 26'),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Text('Job : Flutter software developer'),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )
+            // Text(
+            //   '”',
+            //   style: doubleQuotationTextStyle,
+            // ),
           ],
         ),
       ),
