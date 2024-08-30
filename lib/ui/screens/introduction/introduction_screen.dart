@@ -68,8 +68,6 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           children: [
             GreetingPage(showContinueText: _isTop,),
             CoverLetterPage(),
-            CoverLetterPage(),
-            CoverLetterPage(),
           ],
         ),
       ),
