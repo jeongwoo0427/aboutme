@@ -19,6 +19,8 @@ class _HistoryPageState extends State<HistoryPage> {
 
     return FittedScreenSizeBody(
         body: Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GlassyContainer(
           height: context.getResponsiveValue(200, 150),
