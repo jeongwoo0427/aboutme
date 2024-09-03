@@ -13,7 +13,7 @@ class ResponsiveGlassyScaffold extends StatefulWidget {
   final Function(bool)? onChangedPageState;
   final Function(ScrollNotification)? onNotificationScroll;
 
-  const ResponsiveGlassyScaffold({super.key, required this.body, this.topPosition = 100, this.appbarTitle, this.onChangedPageState, this.onNotificationScroll});
+  const ResponsiveGlassyScaffold({super.key, required this.body, this.topPosition = 0, this.appbarTitle, this.onChangedPageState, this.onNotificationScroll});
 
   @override
   State<ResponsiveGlassyScaffold> createState() => _ResponsiveGlassyScaffoldState();

@@ -14,13 +14,11 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
+    final TextStyle profileStateTextStyle =
+        TextStyle(fontSize: context.getResponsiveValue(18, 14), fontWeight: FontWeight.w300, color: context.colorScheme.onSurface);
 
-    final TextStyle profileStateTextStyle = TextStyle(
-        fontSize: context.getResponsiveValue(18, 14),
-        fontWeight: FontWeight.w300,
-        color: context.colorScheme.onSurface);
-
-    return FittedScreenSizeBody(body: Column(
+    return FittedScreenSizeBody(
+        body: Column(
       children: [
         GlassyContainer(
           height: context.getResponsiveValue(200, 150),
@@ -35,6 +33,11 @@ class _HistoryPageState extends State<HistoryPage> {
                 CircleAvatar(
                   minRadius: context.getResponsiveValue(60, 45),
                   backgroundColor: Colors.white24,
+                  child: Icon(
+                    Icons.person,
+                    color: context.colorScheme.onSurface.withOpacity(0.7),
+                    size: context.getResponsiveValue(80, 50),
+                  ),
                 ),
                 DefaultTextStyle(
                   style: profileStateTextStyle,
@@ -43,15 +46,20 @@ class _HistoryPageState extends State<HistoryPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Name : Kim Jeong Woo'),
+                      Text.rich(TextSpan(children: [TextSpan(text: 'Name: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: 'Kim Jeong Woo')])),
                       SizedBox(
                         height: 12,
                       ),
-                      Text('Age : 26'),
+                      Text.rich(TextSpan(children: [TextSpan(text: 'Age: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: '1998. 04')])),
                       SizedBox(
                         height: 12,
                       ),
-                      Text('Job : Flutter software developer'),
+                      Text.rich(
+                          TextSpan(children: [TextSpan(text: 'Job: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: 'Flutter Engineer')])),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Text.rich(TextSpan(children: [TextSpan(text: 'Area: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: 'Seoul')])),
                     ],
                   ),
                 )
@@ -59,7 +67,6 @@ class _HistoryPageState extends State<HistoryPage> {
             ),
           ),
         )
-
       ],
     ));
   }
