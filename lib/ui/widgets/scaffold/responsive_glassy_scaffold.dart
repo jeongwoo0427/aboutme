@@ -97,7 +97,7 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
                 top: 0,
                 left: 0,
                 right: 0,
-                child: MaxWidthBox(
+                child: MaxSizedBox(
                   child: GlassyAppbar(
                     isTransparentBackground: _isTop,
                     title: widget.appbarTitle??const SizedBox(),

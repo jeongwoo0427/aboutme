@@ -44,7 +44,7 @@ class _CoverLetterPageState extends ConsumerState<CoverLetterPage> {
             //   '“',
             //   style: doubleQuotationTextStyle,
             // ),
-            MaxWidthBox(
+            MaxSizedBox(
               maxWidth: 800,
               child: Text.rich(
                 TextSpan(children: [

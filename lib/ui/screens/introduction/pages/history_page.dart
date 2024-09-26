@@ -26,7 +26,7 @@ class _HistoryPageState extends State<HistoryPage> {
           height: context.getResponsiveValue(200, 150),
           width: context.getResponsiveValue(500, 400),
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-          child: MaxWidthBox(
+          child: MaxSizedBox(
             maxWidth: 700,
             child: Row(
               mainAxisSize: MainAxisSize.max,
