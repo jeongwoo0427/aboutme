@@ -23,6 +23,8 @@ abstract class Localizations{
   String get introduction_screen_greeting_page_scroll_text;
   String get introduction_screen_letter_page_hi;
   String get introduction_screen_letter_page_letter;
+  String get contact_message_input_label;
+  String get contact_mycontact_input_label;
 }
 
 class KoreanLocalizations implements Localizations{
@@ -38,6 +40,14 @@ class KoreanLocalizations implements Localizations{
       '코드 한 줄에 감성을 담아 iOS와 Android라는 두 개의 무대 위에 하나의 아름다운 공연을 펼칩니다.\n\n'
       '새로운 기술과 도전을 사랑하며, 매일 더 나은 소프트웨어라는 꿈을 꿉니다.';
 
+  @override
+  // TODO: implement contact_message_input_label
+  String get contact_message_input_label => '남기실 메시지';
+
+  @override
+  // TODO: implement contact_mycontact_input_label
+  String get contact_mycontact_input_label => '이메일 또는 연락처';
+
 }
 
 class EnglishLocalizations implements Localizations{
@@ -52,6 +62,14 @@ class EnglishLocalizations implements Localizations{
   String get introduction_screen_letter_page_letter => 'I am a developer painting the world with Flutter.\n\n'
       'Each line of code carries a touch of emotion, crafting a single beautiful performance on the dual stages of iOS and Android. \n\n'
       'I embrace new technologies and challenges, dreaming each day of creating better software.';
+
+  @override
+  // TODO: implement contact_message_input_label
+  String get contact_message_input_label => 'Message';
+
+  @override
+  // TODO: implement contact_mycontact_input_label
+  String get contact_mycontact_input_label => 'Your Contact information';
 
 
 }

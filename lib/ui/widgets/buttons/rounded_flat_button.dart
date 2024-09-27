@@ -8,7 +8,7 @@ class RoundedFlatButton extends StatelessWidget {
   final EdgeInsets padding;
 
   final Color? foregroundColor;
-  final Color? backgroundColor;
+  final Color backgroundColor;
 
   RoundedFlatButton(
       {super.key,
@@ -17,7 +17,7 @@ class RoundedFlatButton extends StatelessWidget {
       this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       required this.child,
       this.foregroundColor,
-      this.backgroundColor})
+      this.backgroundColor = Colors.transparent})
       : this.borderRadius = borderRadius ?? BorderRadius.circular(10);
 
   @override
@@ -37,7 +37,7 @@ class RoundedFlatButton extends StatelessWidget {
       //     backgroundColor: backgroundColor ?? colorScheme.primaryContainer),
       elevation: 0,
       highlightElevation: 3,
-      color: colorScheme.outline,
+      color: backgroundColor,
       shape: RoundedRectangleBorder(borderRadius: borderRadius),
       //color: colorScheme.brightness == Brightness.light?const Color(0xFFEAEAEA):const Color(0xFF6A6A6A),
       padding: padding,
