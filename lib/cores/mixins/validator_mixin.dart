@@ -7,9 +7,9 @@ import 'package:validators/validators.dart';
 
 import '../utils/shared_utility.dart';
 class ValidatorConstants{
-  static const int emailMaxLength = 50;
-  static const int emailMinLength = 5;
 
+  static int contactMessageMaxLength = 1000;
+  static int contactMyContactMaxLength = 200;
 
 
 
@@ -32,7 +32,7 @@ mixin ValidatorMixin{
 
   String? contactMyContactValidation(final WidgetRef ref,final value){
     if(value==null || value.toString().trim()== '')return ref.localizations.validation_error_contact_mycontact_is_empty;
-    if(value.toString().length > 200) return ref.localizations.validation_error_contact_mycontact_is_too_long;
+    if(value.toString().length > ValidatorConstants.contactMyContactMaxLength) return ref.localizations.validation_error_contact_mycontact_is_too_long;
 
     return null;
   }

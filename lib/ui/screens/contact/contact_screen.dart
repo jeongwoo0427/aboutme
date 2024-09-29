@@ -133,7 +133,7 @@ class _ContactForm extends ConsumerWidget with ValidatorMixin {
             Expanded(
               child: RoundedTextFieldWidget(
                 controller: _messageControler,
-                maxLength: 1000,
+                maxLength: ValidatorConstants.contactMessageMaxLength,
                 funValidator: (message)=>contactMessageValidation(ref,message),
                 label: ref.localizations.contact_message_input_label,
                 expands: true,

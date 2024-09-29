@@ -1,4 +1,5 @@
 import 'package:aboutme/constants/app_constants.dart';
+import 'package:aboutme/cores/mixins/validator_mixin.dart';
 
 
 class AppLocalizations{
@@ -61,7 +62,7 @@ class KoreanLocalizations implements Localizations{
 
   @override
   // TODO: implement validation_error_contact_mycontact_is_too_long
-  String get validation_error_contact_mycontact_is_too_long => '연락처는 최대 200글자 이하입니다.';
+  String get validation_error_contact_mycontact_is_too_long => '연락처는 최대 ${ValidatorConstants.contactMyContactMaxLength}글자 이하입니다.';
 
 }
 
@@ -96,7 +97,7 @@ class EnglishLocalizations implements Localizations{
 
   @override
   // TODO: implement validation_error_contact_mycontact_is_too_long
-  String get validation_error_contact_mycontact_is_too_long => 'Contact information max length is 200';
+  String get validation_error_contact_mycontact_is_too_long => 'Contact information max length is ${ValidatorConstants.contactMyContactMaxLength}';
 
 
 }
