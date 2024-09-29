@@ -10,37 +10,7 @@ class ValidatorConstants{
   static const int emailMaxLength = 50;
   static const int emailMinLength = 5;
 
-  static const int passwordMaxLength = 20;
-  static const int passwordMinLength = 8;
 
-  static const int nicknameMaxLength = 30;
-  static const int nicknameMinLength = 2;
-
-
-  static const int nameMaxLength = 12;
-  static const int nameMinLength = 1;
-
-  static const int phoneNumMaxLength = 11;
-  static const int phoneNumMinLength = 11;
-
-
-
-  static const int descMaxLength = 100;
-
-
-  static const int trainingTitleMaxLength = 30;
-  static const int trainingTitleMinLength = 1;
-
-
-
-  static const int boardcastTitleMaxLength = 50;
-  static const int boardcastTitleMinLength = 1;
-
-  static const int boardcastContentMaxLength = 300;
-  static const int boardcastContentMinLength = 1;
-
-  static const int boardcastGroupTitleMaxLength = 200;
-  static const int boardcastGroupTitleMinLength = 1;
 
 
 }
@@ -62,6 +32,8 @@ mixin ValidatorMixin{
 
   String? contactMyContactValidation(final WidgetRef ref,final value){
     if(value==null || value.toString().trim()== '')return ref.localizations.validation_error_contact_mycontact_is_empty;
+    if(value.toString().length > 200) return ref.localizations.validation_error_contact_mycontact_is_too_long;
+
     return null;
   }
 

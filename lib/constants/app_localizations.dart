@@ -27,6 +27,7 @@ abstract class Localizations{
   String get contact_mycontact_input_label;
   String get validation_error_contact_message_is_empty;
   String get validation_error_contact_mycontact_is_empty;
+  String get validation_error_contact_mycontact_is_too_long;
 }
 
 class KoreanLocalizations implements Localizations{
@@ -58,6 +59,10 @@ class KoreanLocalizations implements Localizations{
   // TODO: implement validation_error_contact_mycontact_is_empty
   String get validation_error_contact_mycontact_is_empty => '연락처를 입력해주세요.';
 
+  @override
+  // TODO: implement validation_error_contact_mycontact_is_too_long
+  String get validation_error_contact_mycontact_is_too_long => '연락처는 최대 200글자 이하입니다.';
+
 }
 
 class EnglishLocalizations implements Localizations{
@@ -88,6 +93,10 @@ class EnglishLocalizations implements Localizations{
   @override
   // TODO: implement validation_error_contact_mycontact_is_empty
   String get validation_error_contact_mycontact_is_empty => 'Please enter here';
+
+  @override
+  // TODO: implement validation_error_contact_mycontact_is_too_long
+  String get validation_error_contact_mycontact_is_too_long => 'Contact information max length is 200';
 
 
 }

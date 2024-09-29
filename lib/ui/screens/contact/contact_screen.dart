@@ -146,6 +146,7 @@ class _ContactForm extends ConsumerWidget with ValidatorMixin {
               children: [
                 Expanded(
                     child: RoundedTextFieldWidget(
+                      maxLines: 1,
                       controller: _myContactController,
                       funValidator: (contact)=> contactMyContactValidation(ref, contact),
                   label: ref.localizations.contact_mycontact_input_label,
