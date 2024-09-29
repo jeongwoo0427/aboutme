@@ -137,7 +137,7 @@ class _LoadAndResultWidgetState extends State<LoadAndResultWidget>
                           );
                         },
                         child: LoadingAnimationWidget.fourRotatingDots(
-                            color: Colors.white, size: 70),
+                            color: Colors.white, size: 50),
                       ))
                     ],
                   );

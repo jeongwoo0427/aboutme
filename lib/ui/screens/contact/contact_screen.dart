@@ -25,6 +25,8 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
   late final AnimationController _fadeInController;
   late final AnimationController _fadeOutController;
 
+  bool _isBusy = false;
+
   @override
   void initState() {
     _loadAndResultWidgetController = LoadAndResultWidgetController();
@@ -41,38 +43,27 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
       body: MaxSizedBox(
         maxWidth: 600,
         maxHeight: 400,
-        child: Padding(
+        child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 30),
+          width: double.infinity,
+            height: double.infinity,
           child: Stack(
             children: [
 
-              LoadAndResultWidget(controller: _loadAndResultWidgetController),
+              Positioned.fill(child: Center(child: LoadAndResultWidget(controller: _loadAndResultWidgetController))),
 
-              Positioned(
-                  top: 200,
-                  child: RoundedFlatButton(child: Text('hi'),onPressed: (){
-                _loadAndResultWidgetController.show();
-              },)),
-
-              Positioned(
-                  top: 100,
-                  child: RoundedFlatButton(child: Text('close'),onPressed: (){
-                _loadAndResultWidgetController.reset();
-              },)),
-              Positioned(
-                  top: 250,
-                  child: RoundedFlatButton(child: Text('success'),onPressed: (){
-                    _loadAndResultWidgetController.success();
-                  },))
-              // Positioned.fill(child: _Form(
-              //   onPressedSend: _onPressedSend,
-              // ).animate(controller: _fadeInController, autoPlay: false, effects: [
-              //   const FadeEffect(curve: Curves.decelerate, begin: 0, end: 1, duration: Duration(milliseconds: 1000)),
-              //   const MoveEffect(duration: Duration(milliseconds: 1000), curve: Curves.decelerate, begin: Offset(-200, 0), end: Offset(0, 0))
-              // ]).animate(controller: _fadeOutController, autoPlay: false, effects: [
-              //   const FadeEffect(curve: Curves.ease, begin: 1, end: 0, duration: Duration(milliseconds: 1000)),
-              //   const MoveEffect(duration: Duration(milliseconds: 1000), curve: Curves.decelerate, begin: Offset(0, 0), end: Offset(300, 0))
-              // ]))
+              Positioned.fill(child: IgnorePointer(
+                ignoring: _isBusy,
+                child: _Form(
+                  onPressedSend: _onPressedSend,
+                ).animate(controller: _fadeInController, autoPlay: false, effects: [
+                  const FadeEffect(curve: Curves.decelerate, begin: 0, end: 1, duration: Duration(milliseconds: 1000)),
+                  const MoveEffect(duration: Duration(milliseconds: 1000), curve: Curves.decelerate, begin: Offset(-200, 0), end: Offset(0, 0))
+                ]).animate(controller: _fadeOutController, autoPlay: false, effects: [
+                  const FadeEffect(curve: Curves.ease, begin: 1, end: 0, duration: Duration(milliseconds: 1000)),
+                  const MoveEffect(duration: Duration(milliseconds: 1000), curve: Curves.decelerate, begin: Offset(0, 0), end: Offset(300, 0))
+                ]),
+              ))
             ],
           ),
         ),
@@ -91,11 +82,27 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
     _fadeOutController.forward();
   }
 
-  void _onPressedSend(String message, String myContact) {
+  Future<void> _onPressedSend(String message, String myContact) async{
     // print(message);
     // print(myContact);
+    setState(() {
+      _isBusy = true;
+    });
     _playFadeOut();
-    Future.delayed(const Duration(milliseconds: 2000),()=>_playFadeIn());
+    await Future.delayed(const Duration(milliseconds: 1000));
+    _loadAndResultWidgetController.reset();
+    _loadAndResultWidgetController.show();
+    await Future.delayed(const Duration(milliseconds: 3000));
+
+    _loadAndResultWidgetController.success();
+    await Future.delayed(const Duration(milliseconds: 4000));
+    _loadAndResultWidgetController.reset();
+    await Future.delayed(const Duration(milliseconds: 1000));
+    _playFadeIn();
+
+    setState(() {
+      _isBusy = false;
+    });
   }
 }
 
