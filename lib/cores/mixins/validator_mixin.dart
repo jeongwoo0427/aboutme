@@ -1,5 +1,7 @@
+import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:validators/validators.dart';
 
@@ -52,6 +54,17 @@ mixin ValidatorMixin{
   bool checkValidate(){
     return validationKey.currentState!.validate();
   }
+
+  String? contactMessageValidation(final WidgetRef ref,final value){
+    if(value==null || value.toString().trim()== '')return ref.localizations.validation_error_contact_message_is_empty;
+    return null;
+  }
+
+  String? contactMyContactValidation(final WidgetRef ref,final value){
+    if(value==null || value.toString().trim()== '')return ref.localizations.validation_error_contact_mycontact_is_empty;
+    return null;
+  }
+
   //
   // String? emailValidation(final BuildContext context,final value){
   //   if(value.toString().trim() =='') return context.localizations.validation_message_email_required;

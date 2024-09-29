@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-enum _ProgressState { show, success, reset }
+enum _ProgressState { show, finish, reset }
 
 class LoadAndResultWidgetController with ChangeNotifier {
   final _controller = StreamController<_ProgressState>();
@@ -11,6 +11,14 @@ class LoadAndResultWidgetController with ChangeNotifier {
       _controller.stream.asBroadcastStream();
 
   Stream<_ProgressState> get progressStateStream => _progressStateStream;
+
+  IconData _resultIcon = Icons.check;
+  IconData get resultIcon => _resultIcon;
+
+  String _resultText = 'Success!';
+  String get resultText => _resultText;
+
+
 
   void show() {
     _controller.sink.add(_ProgressState.show);
@@ -21,7 +29,17 @@ class LoadAndResultWidgetController with ChangeNotifier {
   }
 
   void success() {
-    _controller.sink.add(_ProgressState.success);
+    _resultIcon = Icons.check;
+    _resultText = 'Success!';
+    notifyListeners();
+    _controller.sink.add(_ProgressState.finish);
+  }
+
+  void failed() {
+    _resultIcon = Icons.error_outline;
+    _resultText = 'Failed';
+    notifyListeners();
+    _controller.sink.add(_ProgressState.finish);
   }
 }
 
@@ -50,6 +68,15 @@ class _LoadAndResultWidgetState extends State<LoadAndResultWidget>
   late final Animation<double> _showMessageAnimation;
 
   @override
+  void dispose() {
+    _stackAnimationController.dispose();
+    _hideIndicatorAnimationController.dispose();
+    _showCheckIconAnimationController.dispose();
+    _showMessageAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     _fetchAnimations();
     widget.controller.progressStateStream.listen((state) async {
@@ -64,7 +91,7 @@ class _LoadAndResultWidgetState extends State<LoadAndResultWidget>
         _showMessageAnimationController.reset();
       }
 
-      if (state == _ProgressState.success) {
+      if (state == _ProgressState.finish) {
         await _hideIndicatorAnimationController.forward();
         await _showCheckIconAnimationController.forward();
         await _showMessageAnimationController.forward();
@@ -107,7 +134,7 @@ class _LoadAndResultWidgetState extends State<LoadAndResultWidget>
                                   child: child);
                             },
                             child: Icon(
-                              Icons.check,
+                              widget.controller.resultIcon,
                               size: 50,
                             )),
                       ),
@@ -120,7 +147,7 @@ class _LoadAndResultWidgetState extends State<LoadAndResultWidget>
                         child: Center(
                           child: Opacity(
                             opacity: _showMessageAnimation.value,
-                            child: Text('Success!',style: TextStyle(
+                            child: Text(widget.controller.resultText,style: TextStyle(
                               fontSize: 20,
 
                             ),),

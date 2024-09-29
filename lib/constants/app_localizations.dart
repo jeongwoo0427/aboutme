@@ -25,6 +25,8 @@ abstract class Localizations{
   String get introduction_screen_letter_page_letter;
   String get contact_message_input_label;
   String get contact_mycontact_input_label;
+  String get validation_error_contact_message_is_empty;
+  String get validation_error_contact_mycontact_is_empty;
 }
 
 class KoreanLocalizations implements Localizations{
@@ -48,6 +50,14 @@ class KoreanLocalizations implements Localizations{
   // TODO: implement contact_mycontact_input_label
   String get contact_mycontact_input_label => '이메일 또는 연락처';
 
+  @override
+  // TODO: implement validation_error_contact_message_is_empty
+  String get validation_error_contact_message_is_empty => '메시지를 입력해주세요.';
+
+  @override
+  // TODO: implement validation_error_contact_mycontact_is_empty
+  String get validation_error_contact_mycontact_is_empty => '연락처를 입력해주세요.';
+
 }
 
 class EnglishLocalizations implements Localizations{
@@ -70,6 +80,14 @@ class EnglishLocalizations implements Localizations{
   @override
   // TODO: implement contact_mycontact_input_label
   String get contact_mycontact_input_label => 'Your Contact information';
+
+  @override
+  // TODO: implement validation_error_contact_message_is_empty
+  String get validation_error_contact_message_is_empty => 'Please enter the Message';
+
+  @override
+  // TODO: implement validation_error_contact_mycontact_is_empty
+  String get validation_error_contact_mycontact_is_empty => 'Please enter here';
 
 
 }

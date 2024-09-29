@@ -1,5 +1,6 @@
 import 'package:aboutme/app_router.dart';
 import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
+import 'package:aboutme/cores/mixins/validator_mixin.dart';
 import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
 import 'package:aboutme/ui/widgets/buttons/rounded_flat_button.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
@@ -21,17 +22,16 @@ class ContactScreen extends ConsumerStatefulWidget {
 
 class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProviderStateMixin {
 
-  late final LoadAndResultWidgetController _loadAndResultWidgetController;
-  late final AnimationController _fadeInController;
-  late final AnimationController _fadeOutController;
+  late final _ContactForm _contactForm = _ContactForm(onPressedSend: _onPressedSend);
+
+  late final LoadAndResultWidgetController _loadAndResultWidgetController = LoadAndResultWidgetController();
+  late final AnimationController _fadeInController = AnimationController(vsync: this);
+  late final AnimationController _fadeOutController = AnimationController(vsync: this);
 
   bool _isBusy = false;
 
   @override
   void initState() {
-    _loadAndResultWidgetController = LoadAndResultWidgetController();
-    _fadeInController = AnimationController(vsync: this);
-    _fadeOutController = AnimationController(vsync: this);
     Future.delayed(const Duration(milliseconds: 1000),()=>_playFadeIn());
     super.initState();
   }
@@ -54,14 +54,12 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
 
               Positioned.fill(child: IgnorePointer(
                 ignoring: _isBusy,
-                child: _Form(
-                  onPressedSend: _onPressedSend,
-                ).animate(controller: _fadeInController, autoPlay: false, effects: [
-                  const FadeEffect(curve: Curves.decelerate, begin: 0, end: 1, duration: Duration(milliseconds: 1000)),
-                  const MoveEffect(duration: Duration(milliseconds: 1000), curve: Curves.decelerate, begin: Offset(-200, 0), end: Offset(0, 0))
+                child: _contactForm.animate(controller: _fadeInController, autoPlay: false, effects: [
+                  const FadeEffect(curve: Curves.ease, begin: 0, end: 1, duration: Duration(milliseconds: 500)),
+                  const MoveEffect(duration: Duration(milliseconds: 700), curve: Curves.decelerate, begin: Offset(-100, 100), end: Offset(0, 0))
                 ]).animate(controller: _fadeOutController, autoPlay: false, effects: [
-                  const FadeEffect(curve: Curves.ease, begin: 1, end: 0, duration: Duration(milliseconds: 1000)),
-                  const MoveEffect(duration: Duration(milliseconds: 1000), curve: Curves.decelerate, begin: Offset(0, 0), end: Offset(300, 0))
+                  const FadeEffect(curve: Curves.ease, begin: 1, end: 0, duration: Duration(milliseconds: 500)),
+                  const MoveEffect(duration: Duration(milliseconds: 700), curve: Curves.ease, begin: Offset(0, 0), end: Offset(100, -100))
                 ]),
               ))
             ],
@@ -83,8 +81,8 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
   }
 
   Future<void> _onPressedSend(String message, String myContact) async{
-    // print(message);
-    // print(myContact);
+    print(message);
+    print(myContact);
     setState(() {
       _isBusy = true;
     });
@@ -94,22 +92,32 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
     _loadAndResultWidgetController.show();
     await Future.delayed(const Duration(milliseconds: 3000));
 
-    _loadAndResultWidgetController.success();
-    await Future.delayed(const Duration(milliseconds: 4000));
+    try{
+      //throw '';
+
+      _loadAndResultWidgetController.success();
+      _contactForm.clearForm();
+    }catch(ex){
+      _loadAndResultWidgetController.failed();
+    }
+
+    await Future.delayed(const Duration(milliseconds: 3000));
     _loadAndResultWidgetController.reset();
     await Future.delayed(const Duration(milliseconds: 1000));
     _playFadeIn();
-
     setState(() {
       _isBusy = false;
     });
   }
 }
 
-class _Form extends ConsumerWidget {
+class _ContactForm extends ConsumerWidget with ValidatorMixin {
   final Function(String message, String myContact) onPressedSend;
 
-  const _Form({super.key, required this.onPressedSend});
+  _ContactForm({super.key, required this.onPressedSend});
+
+  final TextEditingController _messageControler = TextEditingController();
+  final TextEditingController _myContactController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -117,35 +125,49 @@ class _Form extends ConsumerWidget {
       width: double.infinity,
       height: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            child: RoundedTextFieldWidget(
-              label: ref.localizations.contact_message_input_label,
-              expands: true,
+      child: Form(
+        key: validationKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: RoundedTextFieldWidget(
+                controller: _messageControler,
+                maxLength: 1000,
+                funValidator: (message)=>contactMessageValidation(ref,message),
+                label: ref.localizations.contact_message_input_label,
+                expands: true,
+              ),
             ),
-          ),
-          SizedBox(height: 10),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Expanded(
-                  child: RoundedTextFieldWidget(
-                label: ref.localizations.contact_mycontact_input_label,
-              )),
-              const SizedBox(width: 10),
-              RoundedFlatButton(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                  onPressed: () {
-                    onPressedSend('a', 'b');
-                  },
-                  child: Text('Send')),
-            ],
-          )
-        ],
+            SizedBox(height: 10),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Expanded(
+                    child: RoundedTextFieldWidget(
+                      controller: _myContactController,
+                      funValidator: (contact)=> contactMyContactValidation(ref, contact),
+                  label: ref.localizations.contact_mycontact_input_label,
+                )),
+                const SizedBox(width: 10),
+                RoundedFlatButton(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                    onPressed: () {
+                      if(!checkValidate()) return;
+                      onPressedSend(_messageControler.text, _myContactController.text);
+                    },
+                    child: Text('Send')),
+              ],
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  void clearForm(){
+    _messageControler.clear();
+    _myContactController.clear();
   }
 }
