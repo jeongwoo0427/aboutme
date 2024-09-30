@@ -31,6 +31,13 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
   bool _isBusy = false;
 
   @override
+  void dispose() {
+    _fadeInController.dispose();
+    _fadeOutController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     Future.delayed(const Duration(milliseconds: 1000),()=>_playFadeIn());
     super.initState();
@@ -93,7 +100,6 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
     await Future.delayed(const Duration(milliseconds: 3000));
 
     try{
-      //throw '';
 
       _loadAndResultWidgetController.success();
       _contactForm.clearForm();
