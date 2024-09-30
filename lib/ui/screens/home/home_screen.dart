@@ -5,7 +5,6 @@ import 'package:aboutme/ui/screens/skills/skills_screen.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:aboutme/ui/widgets/watch_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -36,7 +35,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool isLoadingEarthImage = true;
-  bool _isBusy = false;
 
   @override
   void initState() {
@@ -118,9 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: Icons.person,
                                 isTablet: isTablet,
                                 delayMs: 2000,
-                                onTap: _isBusy
-                                    ? null
-                                    : () async {
+                                onTap: () async {
                                         HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
                                         await context.pushNamed(IntroductionScreen.routeName);
                                       },
@@ -130,9 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: Icons.electric_bolt,
                                 isTablet: isTablet,
                                 delayMs: 3000,
-                                onTap: _isBusy
-                                    ? null
-                                    : () async {
+                                onTap: () async {
                                         HomeScreen.dynamicCurrentDirection = MovePageDirection.topRight;
                                         await context.pushNamed(SkillsScreen.routeName);
                                       },
@@ -148,9 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: Icons.newspaper_outlined,
                                 isTablet: isTablet,
                                 delayMs: 2500,
-                                onTap: _isBusy
-                                    ? null
-                                    : () async {
+                                onTap: () async {
                                         HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomLeft;
                                         await context.pushNamed(ProjectsScreen.routeName);
                                       },
@@ -160,9 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: Icons.email,
                                 isTablet: isTablet,
                                 delayMs: 3500,
-                                onTap: _isBusy
-                                    ? null
-                                    : () async {
+                                onTap: () async {
                                         HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomRight;
                                         await context.pushNamed(ContactScreen.routeName);
                                       },
@@ -171,12 +161,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           SizedBox(),
                         ],
-                      )).animate().fadeIn(duration: 1000.ms)),
+                      ))),
               Positioned(
                 bottom: 20,
                 left: 0,
                 right: 0,
-                child: WatchWidget().animate().fadeIn(curve: Curves.decelerate, duration: 500.ms, delay: 2000.ms),
+                child: WatchWidget(),
               ),
               Positioned(
                   left: 15,
@@ -188,12 +178,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: context.colorScheme.onSurface.withOpacity(0.8),
                           fontSize: context.getResponsiveValue<double>(30, 20),
                           fontWeight: FontWeight.w200),
-                    ).animate(
-                      autoPlay: true,
-                      delay: Duration(milliseconds: 2000),
-                      effects: [
-                        BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
-                      ],
                     ),
                     Text(
                       ' ME',
@@ -201,28 +185,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: context.colorScheme.onSurface.withOpacity(0.8),
                           fontSize: context.getResponsiveValue<double>(30, 20),
                           fontWeight: FontWeight.w500),
-                    ).animate(
-                        autoPlay: true,
-                        delay: Duration(milliseconds: 3000),
-                        effects: [
-                          BlurEffect(begin: Offset(100, 30), end: Offset(0, 0), duration: Duration(milliseconds: 1500)),
-                        ],
-                        onComplete: (_) {
-                          _setBusyState(false);
-                        })
+                    )
                   ]))
             ],
           )),
     );
   }
 
-  void _setBusyState(bool isBusy) {
-    setState(() {
-      _isBusy = isBusy;
-    });
-  }
-
-  void _setTitleState({required bool show}) {}
 }
 
 class GlassySectorButton extends StatelessWidget {
