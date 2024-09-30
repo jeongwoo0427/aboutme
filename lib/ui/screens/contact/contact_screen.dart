@@ -94,10 +94,10 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
       _isBusy = true;
     });
     _playFadeOut();
-    await Future.delayed(const Duration(milliseconds: 1000));
+    await Future.delayed(const Duration(milliseconds: 200));
     _loadAndResultWidgetController.reset();
     _loadAndResultWidgetController.show();
-    await Future.delayed(const Duration(milliseconds: 3000));
+    await Future.delayed(const Duration(milliseconds: 3300));
 
     try{
 
