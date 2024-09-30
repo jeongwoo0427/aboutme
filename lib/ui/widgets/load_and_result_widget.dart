@@ -28,16 +28,16 @@ class LoadAndResultWidgetController with ChangeNotifier {
     _controller.sink.add(_ProgressState.reset);
   }
 
-  void success() {
+  void success({String message = 'Success!'}) {
     _resultIcon = Icons.check;
-    _resultText = 'Success!';
+    _resultText = message;
     notifyListeners();
     _controller.sink.add(_ProgressState.finish);
   }
 
-  void failed() {
+  void failed({String message = 'Failed'}) {
     _resultIcon = Icons.error_outline;
-    _resultText = 'Failed';
+    _resultText = message;
     notifyListeners();
     _controller.sink.add(_ProgressState.finish);
   }
