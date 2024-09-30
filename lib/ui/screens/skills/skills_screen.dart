@@ -52,8 +52,8 @@ class _SkillsScreenState extends State<SkillsScreen>
         appbarTitle: Text('Skills'),
         body: Center(
           child: Container(
-            width: minScreenLength / 1.3,
-            height: minScreenLength / 1.3,
+            width: minScreenLength / 1.15,
+            height: minScreenLength / 1.15,
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
             child: Stack(
               children: [
