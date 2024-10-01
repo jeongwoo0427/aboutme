@@ -1,8 +1,10 @@
 import 'package:aboutme/constants/app_assets.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/ui/screens/skills/skill_model.dart';
 import 'package:aboutme/ui/screens/skills/widgets/circle_border_conatainer_widget.dart';
 import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../../widgets/scaffold/responsive_glassy_scaffold.dart';
@@ -20,6 +22,7 @@ class _SkillsScreenState extends State<SkillsScreen>
     with TickerProviderStateMixin {
   late final AnimationController _circleAnimationController;
   late final Animation<double> _circleAnimation;
+  final int _skillAnimationDelay = 2600;
 
   @override
   void initState() {
@@ -47,13 +50,16 @@ class _SkillsScreenState extends State<SkillsScreen>
         ? screenSize.width
         : screenSize.height;
     //print(minScreenLength);
+    final circleSize = minScreenLength / 1.15;
+    final iconSize = minScreenLength / 15;
+
 
     return ResponsiveGlassyScaffold(
         appbarTitle: Text('Skills'),
         body: Center(
           child: Container(
-            width: minScreenLength / 1.15,
-            height: minScreenLength / 1.15,
+            width: circleSize,
+            height: circleSize,
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
             child: Stack(
               children: [
@@ -69,13 +75,102 @@ class _SkillsScreenState extends State<SkillsScreen>
                   ),
                 ),
                 Positioned.fill(
-                  child: Stack(
-                    children: [
-                      Positioned.fill(child: _SkillIconButton()),
-                      //Positioned(top: 120, left: 160, child: _SkillIconButton()),
-                    ],
+                  child: _SkillIconButton(
+                    animateMs: _skillAnimationDelay+3000,
+                    skill: Skill.flutter,
+                    size: iconSize + 20,
                   ),
-                )
+                ),
+                Positioned.fill(
+                    child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 10, childAspectRatio: 1),
+                  children: [
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay,
+                      skill: Skill.nodejs,
+                      size: iconSize,
+                    ),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay+300,
+                      skill: Skill.mariadb,
+                      size: iconSize,
+                    ),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay+600,
+                      skill: Skill.nestjs,
+                      size: iconSize,
+                    ),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay+900,
+                      skill: Skill.nestjs,
+                      size: iconSize,
+                    ),
+                    SizedBox(),
+                    SizedBox(),
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay+1200,
+                      skill: Skill.nestjs,
+                      size: iconSize,
+                    ),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay+1500,
+                      skill: Skill.nestjs,
+                      size: iconSize,
+                    ),
+                  ],
+                ))
               ],
             ),
           ),
@@ -84,21 +179,27 @@ class _SkillsScreenState extends State<SkillsScreen>
 }
 
 class _SkillIconButton extends StatelessWidget {
-  const _SkillIconButton({super.key});
+  final int animateMs;
+  final Skill skill;
+  final double size;
+
+  const _SkillIconButton({super.key, required this.animateMs, required this.skill, this.size = 70});
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-
+    final SkillModel skillModel = mySkills[skill]!;
     return Center(
       child: SizedBox(
-        height: 70,
-        width: 70,
+        height: size,
+        width: size,
         child: SvgPicture.asset(
-          AppAssets.SVG_FLUTTER,
+          skillModel.iconAsset,
           colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
         ),
       ),
-    );
+    ).animate(delay: Duration(milliseconds: animateMs),autoPlay: true, effects: [
+      ScaleEffect(duration: Duration(milliseconds: 700),curve: Curves.elasticOut)
+    ]);
   }
 }
