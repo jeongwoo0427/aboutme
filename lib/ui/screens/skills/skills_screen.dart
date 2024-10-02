@@ -22,7 +22,7 @@ class _SkillsScreenState extends State<SkillsScreen>
     with TickerProviderStateMixin {
   late final AnimationController _circleAnimationController;
   late final Animation<double> _circleAnimation;
-  final int _skillAnimationDelay = 2600;
+  final int _skillAnimationDelay = 3500;
 
   @override
   void initState() {
@@ -76,9 +76,10 @@ class _SkillsScreenState extends State<SkillsScreen>
                 ),
                 Positioned.fill(
                   child: _SkillIconButton(
-                    animateMs: _skillAnimationDelay+3000,
+                    animateDurMs: 1500,
+                    animateMs: _skillAnimationDelay+3500,
                     skill: Skill.flutter,
-                    size: iconSize + 20,
+                    size: iconSize + 40,
                   ),
                 ),
                 Positioned.fill(
@@ -117,7 +118,7 @@ class _SkillsScreenState extends State<SkillsScreen>
                     SizedBox(),
                     SizedBox(),
                     _SkillIconButton(
-                      animateMs: _skillAnimationDelay+300,
+                      animateMs: _skillAnimationDelay+1000,
                       skill: Skill.mariadb,
                       size: iconSize,
                     ),
@@ -127,7 +128,7 @@ class _SkillsScreenState extends State<SkillsScreen>
                     SizedBox(),
                     SizedBox(),
                     _SkillIconButton(
-                      animateMs: _skillAnimationDelay+600,
+                      animateMs: _skillAnimationDelay+1500,
                       skill: Skill.nestjs,
                       size: iconSize,
                     ),
@@ -138,15 +139,15 @@ class _SkillsScreenState extends State<SkillsScreen>
                     SizedBox(),
 
                     _SkillIconButton(
-                      animateMs: _skillAnimationDelay+900,
-                      skill: Skill.nestjs,
+                      animateMs: _skillAnimationDelay+2000,
+                      skill: Skill.linux,
                       size: iconSize,
                     ),
                     SizedBox(),
                     SizedBox(),
                     _SkillIconButton(
-                      animateMs: _skillAnimationDelay+1200,
-                      skill: Skill.nestjs,
+                      animateMs: _skillAnimationDelay+2200,
+                      skill: Skill.nginx,
                       size: iconSize,
                     ),
                     SizedBox(),
@@ -165,8 +166,52 @@ class _SkillsScreenState extends State<SkillsScreen>
                     SizedBox(),
                     SizedBox(),
                     _SkillIconButton(
-                      animateMs: _skillAnimationDelay+1500,
-                      skill: Skill.nestjs,
+                      animateMs: _skillAnimationDelay+2400,
+                      skill: Skill.dotnet,
+                      size: iconSize,
+                    ),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay+2500,
+                      skill: Skill.androidstudio,
+                      size: iconSize,
+                    ),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay+2600,
+                      skill: Skill.vscode,
+                      size: iconSize,
+                    ),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay+2700,
+                      skill: Skill.github,
+                      size: iconSize,
+                    ),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    SizedBox(),
+                    _SkillIconButton(
+                      animateMs: _skillAnimationDelay+2800,
+                      skill: Skill.socketio,
                       size: iconSize,
                     ),
                   ],
@@ -179,11 +224,12 @@ class _SkillsScreenState extends State<SkillsScreen>
 }
 
 class _SkillIconButton extends StatelessWidget {
+  final int animateDurMs;
   final int animateMs;
   final Skill skill;
   final double size;
 
-  const _SkillIconButton({super.key, required this.animateMs, required this.skill, this.size = 70});
+  const _SkillIconButton({super.key, this.animateDurMs = 700, required this.animateMs, required this.skill, this.size = 70});
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +245,7 @@ class _SkillIconButton extends StatelessWidget {
         ),
       ),
     ).animate(delay: Duration(milliseconds: animateMs),autoPlay: true, effects: [
-      ScaleEffect(duration: Duration(milliseconds: 700),curve: Curves.elasticOut)
+      ScaleEffect(duration: Duration(milliseconds: animateDurMs),curve: Curves.elasticOut)
     ]);
   }
 }
