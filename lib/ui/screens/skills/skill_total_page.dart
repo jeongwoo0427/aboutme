@@ -11,8 +11,8 @@ class SkillTotalPage extends StatefulWidget {
   State<SkillTotalPage> createState() => _SkillTotalPageState();
 }
 
-class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProviderStateMixin {
-
+class _SkillTotalPageState extends State<SkillTotalPage>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _circleAnimationController;
   late final Animation<double> _circleAnimation;
   final int _skillAnimationDelay = 3500;
@@ -67,145 +67,20 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
             Positioned.fill(
               child: _SkillIconButton(
                 animateDurMs: 1500,
-                animateMs: _skillAnimationDelay+3500,
+                animateMs: _skillAnimationDelay + 3500,
                 skill: Skill.flutter,
-                size: iconSize *1.7,
+                size: iconSize * 1.7,
               ),
             ),
-            Positioned.fill(
-                child: GridView(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 10, childAspectRatio: 1),
-                  children: [
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay,
-                      skill: Skill.nodejs,
-                      size: iconSize,
-                    ),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay+1000,
-                      skill: Skill.mariadb,
-                      size: iconSize,
-                    ),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay+1500,
-                      skill: Skill.nestjs,
-                      size: iconSize,
-                    ),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-      
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay+2000,
-                      skill: Skill.linux,
-                      size: iconSize,
-                    ),
-                    SizedBox(),
-                    SizedBox(),
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay+2200,
-                      skill: Skill.nginx,
-                      size: iconSize,
-                    ),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay+2400,
-                      skill: Skill.dotnet,
-                      size: iconSize,
-                    ),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay+2500,
-                      skill: Skill.androidstudio,
-                      size: iconSize,
-                    ),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay+2600,
-                      skill: Skill.vscode,
-                      size: iconSize,
-                    ),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay+2700,
-                      skill: Skill.github,
-                      size: iconSize,
-                    ),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    SizedBox(),
-                    _SkillIconButton(
-                      animateMs: _skillAnimationDelay+2800,
-                      skill: Skill.socketio,
-                      size: iconSize,
-                    ),
-                  ],
-                ))
+            Positioned(
+              left: 1,
+              right: 3,
+              child: _SkillIconButton(
+                animateMs: 0,
+                skill: Skill.nodejs,
+                size: iconSize,
+              ),
+            ),
           ],
         ),
       ),
@@ -219,14 +94,19 @@ class _SkillIconButton extends StatelessWidget {
   final Skill skill;
   final double size;
 
-  const _SkillIconButton({super.key, this.animateDurMs = 700, required this.animateMs, required this.skill, this.size = 70});
+  const _SkillIconButton(
+      {super.key,
+      this.animateDurMs = 700,
+      required this.animateMs,
+      required this.skill,
+      this.size = 70});
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final SkillModel skillModel = mySkills[skill]!;
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         print('onTap : ${skillModel.skill}');
       },
       child: Center(
@@ -235,13 +115,18 @@ class _SkillIconButton extends StatelessWidget {
           width: size,
           child: SvgPicture.asset(
             skillModel.iconAsset,
-            colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
+            colorFilter:
+                ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
           ),
         ),
-      ).animate(delay: Duration(milliseconds: animateMs),autoPlay: true, effects: [
-        ScaleEffect(duration: Duration(milliseconds: animateDurMs),curve: Curves.elasticOut)
-      ]),
+      ).animate(
+          delay: Duration(milliseconds: animateMs),
+          autoPlay: true,
+          effects: [
+            ScaleEffect(
+                duration: Duration(milliseconds: animateDurMs),
+                curve: Curves.elasticOut)
+          ]),
     );
   }
 }
-
