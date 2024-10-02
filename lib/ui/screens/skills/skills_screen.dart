@@ -1,4 +1,4 @@
-import 'package:aboutme/ui/screens/skills/skill_detail_screen.dart';
+import 'package:aboutme/ui/screens/skills/skill_detail_page.dart';
 import 'package:aboutme/ui/screens/skills/skill_total_page.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/scaffold/responsive_glassy_scaffold.dart';
