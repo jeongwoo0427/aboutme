@@ -12,7 +12,7 @@ class APIService {
 
   APIService._internal() //DIO 싱글톤으로 관리
       : dio = Dio(BaseOptions(
-            baseUrl: 'http://izvillain.com:3000',
+            baseUrl: 'https://clipboardfor.me:3030',
             receiveTimeout: const Duration(seconds: 5),
             connectTimeout: const Duration(seconds: 5)));
 

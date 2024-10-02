@@ -2,6 +2,7 @@
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../ui/widgets/dialogs/card_button_dialog.dart';
 import '../../../ui/widgets/dialogs/progress_dialog/progress_dialog.dart';
 import '../handlers/exception_handler.dart';
@@ -63,7 +64,7 @@ mixin DialogMixin {
         await onError(ex, stack);
       }
       if(!context.mounted) return;
-      await showExceptionDialog(context, ex, stack);
+      await showExceptionDialog( ex, stack);
     }
   }
 
@@ -144,12 +145,22 @@ mixin DialogMixin {
     return result;
   }
 
-  Future<dynamic> showExceptionDialog(BuildContext context, ex, stack) async {
+  Future<dynamic> showExceptionDialog(ex, stack) async {
     final ExceptionHandlerResult exceptionResult =
-        ExceptionHandler.handlingException(context, ex, stack);
-    await showAlertDialog(context,
-        title: Text(exceptionResult.title),
-        content: Text(exceptionResult.message));
+        ExceptionHandler.handlingException( ex, stack);
+    // await showAlertDialog(context,
+    //     title: Text(exceptionResult.title),
+    //     content: Text(exceptionResult.message));
+
+    await Fluttertoast.showToast(
+        msg: exceptionResult.message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 5,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 
   Future<bool> showWillPopDialog(

@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +12,10 @@ import 'filters/exception_filter.dart';
 
 ///각종 오류가 발생했을때 메시지 선별, 오류 로깅, 데이터 변환 등을 맡는다.
 class ExceptionHandler {
-  static ExceptionHandlerResult handlingException(
-      BuildContext context, ex, stack) {
+  static ExceptionHandlerResult handlingException(ex, stack) {
     if (kDebugMode) {
       var logger = Logger();
-      logger.e(StackTrace.current,
-          error: ex, stackTrace: stack, time: DateTime.now());
+      logger.e(StackTrace.current, error: ex, stackTrace: stack, time: DateTime.now());
     }
 
     String type = ExceptionResultTypes.UNDEFINED;
@@ -32,32 +29,29 @@ class ExceptionHandler {
 
     if (ex is CustomException) type = ExceptionResultTypes.CUSTOM;
 
-    message = _convertStaticMessage(context, type: type);
+    message = _convertStaticMessage(type: type);
 
     //message = '$message [$type]';
 
     if (type == ExceptionResultTypes.CUSTOM) {
       final CustomException customException = ex as CustomException;
-      title =
-          customException.title ?? 'Warning';
+      title = customException.title ?? 'Warning';
       message = customException.message;
     }
 
-    ExceptionHandlerResult result = ExceptionHandlerResult(
-        exceptionResultType: type,
-        title: title,
-        message: message,
-        exception: ex,
-        stackTrace: stack);
+    ExceptionHandlerResult result = ExceptionHandlerResult(exceptionResultType: type, title: title, message: message, exception: ex, stackTrace: stack);
     return result;
   }
 
-  static String _convertStaticMessage(BuildContext context,
-      {required String type}) {
+  static String _convertStaticMessage({required String type}) {
     String message = 'Exception Message Undefined.';
 
     if (type == ExceptionResultTypes.HTTP_NOT_FOUND) {
       message = 'HTTP Error : Not found.';
+    }
+
+    if (type == ExceptionResultTypes.HTTP_BAD_REQUEST) {
+      message = 'HTTP Error : Bad request';
     }
 
     if (type == ExceptionResultTypes.HTTP_INTERNAL_SERVER_ERROR) {

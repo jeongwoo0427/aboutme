@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 class PublicAuthInterceptor implements Interceptor {
   static const String _API_KEY =
-      'iej833kj34idridf09iDKJ939dkjf023kwjeiwjwieidiewerojoek2j120309dkfjlkcjlcvjoeiwekrkjoif8e3kncmncvilqwiejkjlkjdeieiweiu8';
+      'iej833kj34idridf09iDKJ9we121312wqsdasfwpod03120kljdfoid8w3hoshjlkcjlcvjoeiwekrkjoif8e3kncmncvilqwiejkjlkjdeieiweiu8';
 
   PublicAuthInterceptor();
 
@@ -14,7 +14,7 @@ class PublicAuthInterceptor implements Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    options.headers['key-authorization'] = _API_KEY;
+    options.headers['public-key'] = _API_KEY;
     handler.next(options);
   }
 

@@ -1,6 +1,11 @@
-import 'package:aboutme/app_router.dart';
+
+
+import 'dart:developer';
+
 import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
+import 'package:aboutme/cores/mixins/dialog_mixin.dart';
 import 'package:aboutme/cores/mixins/validator_mixin.dart';
+import 'package:aboutme/cores/services/api/datas/contact/contact_data.dart';
 import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
 import 'package:aboutme/ui/widgets/buttons/rounded_flat_button.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
@@ -20,7 +25,7 @@ class ContactScreen extends ConsumerStatefulWidget {
   ConsumerState<ContactScreen> createState() => _ContactScreenState();
 }
 
-class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProviderStateMixin {
+class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProviderStateMixin, DialogMixin {
 
   late final _ContactForm _contactForm = _ContactForm(onPressedSend: _onPressedSend);
 
@@ -88,8 +93,6 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
   }
 
   Future<void> _onPressedSend(String message, String myContact) async{
-    print(message);
-    print(myContact);
     setState(() {
       _isBusy = true;
     });
@@ -100,10 +103,11 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
     await Future.delayed(const Duration(milliseconds: 3300));
 
     try{
-
+      await ContactData().newContact(message: message, myContact: myContact,ipAddress: 'UNKNOWN');
       _loadAndResultWidgetController.success();
       _contactForm.clearForm();
-    }catch(ex){
+    }catch(ex,stack){
+      showExceptionDialog(ex,stack);
       _loadAndResultWidgetController.failed();
     }
 

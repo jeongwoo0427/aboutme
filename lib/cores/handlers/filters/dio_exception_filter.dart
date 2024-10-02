@@ -24,6 +24,7 @@ class DioExceptionFilter {
           return ExceptionResultTypes.HTTP_UNAUTHORIZED_UNKNOWN;
         }
       }
+      if(statusCode == 400) return ExceptionResultTypes.HTTP_BAD_REQUEST;
       if(statusCode == 404) return ExceptionResultTypes.HTTP_NOT_FOUND;
       if(statusCode == 500) return ExceptionResultTypes.HTTP_INTERNAL_SERVER_ERROR;
     }

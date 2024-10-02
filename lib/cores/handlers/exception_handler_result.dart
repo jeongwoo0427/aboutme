@@ -24,6 +24,7 @@ class ExceptionResultTypes {
   static const String HTTP_UNAUTHORIZED_JWT = 'HTTP_UNAUTHORIZED_JWT';
   static const String HTTP_UNAUTHORIZED_KEY = 'HTTP_UNAUTHORIZED_KEY';
   static const String HTTP_UNAUTHORIZED_UNKNOWN = 'HTTP_UNAUTHORIZED_UNKNOWN';
+  static const String HTTP_BAD_REQUEST = 'HTTP_BAD_REQUEST';
 
   ///AUTH FAILED
   static const String AUTH_LOGIN_FAILED = 'AUTH_LOGIN_FAILED';
