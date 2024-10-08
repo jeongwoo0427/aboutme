@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:aboutme/ui/screens/skills/skill_model.dart';
 import 'package:aboutme/ui/screens/skills/widgets/circle_border_conatainer_widget.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +38,33 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
     final colorScheme = Theme.of(context).colorScheme;
     final Size screenSize = MediaQuery.sizeOf(context);
     //폭, 너비 중 작을 것을 기준으로 사이즈를 적용
-    final minScreenLength = screenSize.height > screenSize.width ? screenSize.width : screenSize.height;
+    final double minScreenLength = screenSize.height > screenSize.width ? screenSize.width : screenSize.height;
     //print(minScreenLength);
-    final holderSize = minScreenLength / 1.15;
-    final iconSize = minScreenLength / 15;
+    final double holderSize = minScreenLength / 1.15;
+    final double iconSize = minScreenLength / 15;
+
+    final int widgetCount = 30;
+    final List<Widget> skills = [];
+
+    final double r = (holderSize)/2; //반지름
+    final double interval = r/widgetCount;
+
+
+    for(int i = 0; i<=widgetCount; i++){
+      final xPosition = interval*i;
+      final yPosition = sqrt((pow(r,2))-(pow(xPosition,2)));
+      skills.add(
+        Positioned(
+          left: xPosition,
+          bottom: yPosition,
+          child: _SkillIconButton(
+            animateMs: 0,
+            skill: Skill.nodejs,
+            size: iconSize/2,
+          ),
+        ),
+      );
+    }
 
     return Center(
       child: SizedBox(
@@ -49,7 +74,7 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
           children: [
             Positioned.fill(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                padding: EdgeInsets.all(holderSize/15),
                 child: AnimatedBuilder(
                   animation: _circleAnimation,
                   builder: (context, child) {
@@ -69,15 +94,8 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
                 size: iconSize * 1.7,
               ),
             ),
-            Positioned(
-              left: 1,
-              right: 3,
-              child: _SkillIconButton(
-                animateMs: 0,
-                skill: Skill.nodejs,
-                size: iconSize,
-              ),
-            ),
+            ...skills
+
           ],
         ),
       ),
