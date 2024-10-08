@@ -17,6 +17,7 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
   late final AnimationController _circleAnimationController;
   late final Animation<double> _circleAnimation;
   final int _skillAnimationDelay = 3500;
+  final List<SkillModel> skills = mySkills.values.toList()..removeWhere((element) => element.skill == Skill.flutter,);
 
   @override
   void initState() {
@@ -33,6 +34,8 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
     });
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -43,24 +46,27 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
     final double holderSize = minScreenLength / 1.15;
     final double iconSize = minScreenLength / 15;
 
-    final int widgetCount = 30;
-    final List<Widget> skills = [];
-
-    final double r = (holderSize)/2; //반지름
-    final double interval = r/widgetCount;
 
 
-    for(int i = 0; i<=widgetCount; i++){
-      final xPosition = interval*i;
-      final yPosition = sqrt((pow(r,2))-(pow(xPosition,2)));
-      skills.add(
+    final double r = (holderSize) / 2; //반지름이자 거리
+    final double distance = r/1.5;
+    final double degreeInterval = 360/skills.length;
+
+    final List<Widget> skillWidgets = [];
+    final Offset centerOffset = Offset(holderSize/2 - (iconSize/2),holderSize/2 - (iconSize/2));
+
+    for(int i =0; i<skills.length; i++){
+      final double degree = i * degreeInterval + 90; //12시 방향에서 시작하기 위해 90도 더함
+      final Offset position = _getPosition(degree: degree , distance: distance);
+      final SkillModel skill = skills[i];
+      skillWidgets.add(
         Positioned(
-          left: xPosition,
-          bottom: yPosition,
+          left: position.dx + centerOffset.dx,
+          bottom: position.dy + centerOffset.dy,
           child: _SkillIconButton(
-            animateMs: 0,
-            skill: Skill.nodejs,
-            size: iconSize/2,
+            animateMs: _skillAnimationDelay+i*150,
+            skill: skill.skill,
+            size: iconSize,
           ),
         ),
       );
@@ -74,7 +80,7 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
           children: [
             Positioned.fill(
               child: Padding(
-                padding: EdgeInsets.all(holderSize/15),
+                padding: EdgeInsets.all(holderSize / 15),
                 child: AnimatedBuilder(
                   animation: _circleAnimation,
                   builder: (context, child) {
@@ -88,20 +94,30 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
             ),
             Positioned.fill(
               child: _SkillIconButton(
-                animateDurMs: 1500,
-                animateMs: _skillAnimationDelay + 3500,
+                animateDurMs: 1200,
+                animateMs: _skillAnimationDelay + 2300,
                 skill: Skill.flutter,
                 size: iconSize * 1.7,
               ),
             ),
-            ...skills
-
+            ...skillWidgets
           ],
         ),
       ),
     );
   }
+
+  //각도와 거리에 따른 x,y 좌표값 구하기
+  //degree가 커질수록  3시 방향에서 반시계 방향으로 위치가 결정됨
+  Offset _getPosition({required double degree, required double distance}) {
+    final double radian = degree * (pi / 180); //각도를 라디안 단위로 변경
+    final double dx = distance * cos(radian);
+    final double dy = distance * sin(radian);
+    return Offset(dx, dy);
+  }
 }
+
+
 
 class _SkillIconButton extends StatelessWidget {
   final int animateDurMs;
