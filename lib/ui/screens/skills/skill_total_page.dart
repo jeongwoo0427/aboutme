@@ -16,7 +16,7 @@ class SkillTotalPage extends StatefulWidget {
 class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProviderStateMixin {
   late final AnimationController _circleAnimationController;
   late final Animation<double> _circleAnimation;
-  final int _skillAnimationDelay = 3500;
+  final int _skillAnimationDelay = 3100;
   final List<SkillModel> skills = mySkills.values.toList()..removeWhere((element) => element.skill == Skill.flutter,);
 
   @override
@@ -95,7 +95,7 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
             Positioned.fill(
               child: _SkillIconButton(
                 animateDurMs: 1200,
-                animateMs: _skillAnimationDelay + 2300,
+                animateMs: _skillAnimationDelay + 2000,
                 skill: Skill.flutter,
                 size: iconSize * 1.7,
               ),
