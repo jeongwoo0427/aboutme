@@ -11,8 +11,7 @@ class SkillTotalPage extends StatefulWidget {
   State<SkillTotalPage> createState() => _SkillTotalPageState();
 }
 
-class _SkillTotalPageState extends State<SkillTotalPage>
-    with SingleTickerProviderStateMixin {
+class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProviderStateMixin {
   late final AnimationController _circleAnimationController;
   late final Animation<double> _circleAnimation;
   final int _skillAnimationDelay = 3500;
@@ -24,10 +23,8 @@ class _SkillTotalPageState extends State<SkillTotalPage>
   }
 
   void _initAnimations() {
-    _circleAnimationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 2000));
-    _circleAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-        parent: _circleAnimationController, curve: Curves.easeInOutCubic));
+    _circleAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 2000));
+    _circleAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _circleAnimationController, curve: Curves.easeInOutCubic));
 
     Future.delayed(const Duration(milliseconds: 1000), () {
       _circleAnimationController.forward();
@@ -37,31 +34,31 @@ class _SkillTotalPageState extends State<SkillTotalPage>
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final Size screenSize = MediaQuery.of(context).size;
+    final Size screenSize = MediaQuery.sizeOf(context);
     //폭, 너비 중 작을 것을 기준으로 사이즈를 적용
-    final minScreenLength = screenSize.height > screenSize.width
-        ? screenSize.width
-        : screenSize.height;
+    final minScreenLength = screenSize.height > screenSize.width ? screenSize.width : screenSize.height;
     //print(minScreenLength);
-    final circleSize = minScreenLength / 1.15;
+    final holderSize = minScreenLength / 1.15;
     final iconSize = minScreenLength / 15;
 
     return Center(
-      child: Container(
-        width: circleSize,
-        height: circleSize,
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+      child: SizedBox(
+        width: holderSize,
+        height: holderSize,
         child: Stack(
           children: [
             Positioned.fill(
-              child: AnimatedBuilder(
-                animation: _circleAnimation,
-                builder: (context, child) {
-                  return CircleBorderContainerWidget(
-                    progress: _circleAnimation.value,
-                    color: colorScheme.onSurface.withOpacity(0.8),
-                  );
-                },
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                child: AnimatedBuilder(
+                  animation: _circleAnimation,
+                  builder: (context, child) {
+                    return CircleBorderContainerWidget(
+                      progress: _circleAnimation.value,
+                      color: colorScheme.onSurface.withOpacity(0.8),
+                    );
+                  },
+                ),
               ),
             ),
             Positioned.fill(
@@ -94,12 +91,7 @@ class _SkillIconButton extends StatelessWidget {
   final Skill skill;
   final double size;
 
-  const _SkillIconButton(
-      {super.key,
-      this.animateDurMs = 700,
-      required this.animateMs,
-      required this.skill,
-      this.size = 70});
+  const _SkillIconButton({super.key, this.animateDurMs = 700, required this.animateMs, required this.skill, this.size = 70});
 
   @override
   Widget build(BuildContext context) {
@@ -115,18 +107,13 @@ class _SkillIconButton extends StatelessWidget {
           width: size,
           child: SvgPicture.asset(
             skillModel.iconAsset,
-            colorFilter:
-                ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
           ),
         ),
       ).animate(
           delay: Duration(milliseconds: animateMs),
           autoPlay: true,
-          effects: [
-            ScaleEffect(
-                duration: Duration(milliseconds: animateDurMs),
-                curve: Curves.elasticOut)
-          ]),
+          effects: [ScaleEffect(duration: Duration(milliseconds: animateDurMs), curve: Curves.elasticOut)]),
     );
   }
 }
