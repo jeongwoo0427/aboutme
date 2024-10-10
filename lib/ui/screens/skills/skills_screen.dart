@@ -16,6 +16,7 @@ class SkillsScreen extends StatefulWidget {
 class _SkillsScreenState extends State<SkillsScreen> with TickerProviderStateMixin {
   final PageController _pageController = PageController();
 
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveGlassyScaffold(
@@ -29,7 +30,7 @@ class _SkillsScreenState extends State<SkillsScreen> with TickerProviderStateMix
             SkillTotalPage(
               onClickSkill: _onClickSkill,
             ),
-            SkillDetailPage()
+            SkillDetailPage(skillModel: mySkills[Skill.flutter]!,)
           ],
         ));
   }
