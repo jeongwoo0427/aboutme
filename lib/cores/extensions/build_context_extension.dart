@@ -6,10 +6,12 @@ import 'package:responsive_framework/responsive_framework.dart';
 extension BuildContextExtension on BuildContext{
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   TextTheme get textTheme => Theme.of(this).textTheme;
-  Size get screenSize => MediaQuery.sizeOf(this);
   T getResponsiveValue<T>(T defaultValue, T whenSmallerThanTabletValue){
     return ResponsiveValue<T>(this,defaultValue:defaultValue,conditionalValues: [
       Condition.smallerThan(name: TABLET, value: whenSmallerThanTabletValue)
     ]).value;
   }
+  Size get screenSize => MediaQuery.sizeOf(this);
+  double get minScreenLength => screenSize.height > screenSize.width ? screenSize.width : screenSize.height;
+  double get screenSizeRatio => minScreenLength / 1000;
 }
