@@ -20,9 +20,14 @@ class _SkillDetailPageState extends State<SkillDetailPage> {
       child: SizedBox(
         height: 100,
         width: 100,
-        child: SvgPicture.asset(
-          skillModel.iconAsset,
-          colorFilter: ColorFilter.mode(context.colorScheme.onSurface, BlendMode.srcIn),
+        child: Hero(
+          tag: 'SkillIconHero-${skillModel.name}',
+          child: Material(
+            child: SvgPicture.asset(
+              skillModel.iconAsset,
+              colorFilter: ColorFilter.mode(context.colorScheme.onSurface, BlendMode.srcIn),
+            ),
+          ),
         ),
       ),
     ),);

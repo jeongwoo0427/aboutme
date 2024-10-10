@@ -154,9 +154,14 @@ class _SkillIconButton extends StatelessWidget {
         child: SizedBox(
           height: size,
           width: size,
-          child: SvgPicture.asset(
-            skillModel.iconAsset,
-            colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
+          child: Hero(
+            tag: 'SkillIconHero-${skillModel.name}',
+            child: Material(
+              child: SvgPicture.asset(
+                skillModel.iconAsset,
+                colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
+              ),
+            ),
           ),
         ),
       ).animate(
