@@ -24,6 +24,7 @@ class SkillsScreen extends ConsumerWidget {
       body: HeroControllerScope(
         controller: MaterialApp.createMaterialHeroController(),
         child: Navigator(
+
           key: _navigatorKey,
           initialRoute: SkillTotalPage.routeName,
           onGenerateRoute: (settings) {
@@ -31,23 +32,41 @@ class SkillsScreen extends ConsumerWidget {
             if (settings.name == SkillTotalPage.routeName) {
               page = SkillTotalPage(onClickSkill: _onClickSkill,);
             } else if (settings.name == SkillDetailPage.routeName) {
-              page = SkillDetailPage(skill: Skill.nestjs,);
+              page = SkillDetailPage(skill: settings.arguments as Skill,);
             }
 
             return PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 700),
+              reverseTransitionDuration: const Duration(milliseconds: 700),
               pageBuilder: (context,animation, secondaryAnimation){
                 return page;
               },
               transitionsBuilder: (context,animation,secondaryAnimation,child){
-                var begin = Offset(1.0, 0.0);
-                var end = Offset.zero;
-                var curve = Curves.easeInOut;
+                final TextDirection textDirection = Directionality.of(context);
 
-                var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                Curve curve = Curves.ease;
+
+                final Animation<Offset> _primaryPositionAnimation= CurvedAnimation(
+                  parent: animation,
+                  curve: curve,
+                  reverseCurve: curve.flipped,
+                ).drive(Tween<Offset>(
+                    begin: const Offset(1,0),
+                    end: Offset.zero));
+
+                final Animation<Offset> _secondaryPositionAnimation = CurvedAnimation(
+                  parent: secondaryAnimation,
+                  curve: curve,
+                  reverseCurve: curve.flipped,
+                ).drive(Tween<Offset>(
+                    begin: Offset.zero,
+                    end:  Offset(-1, 0)));
 
                 return SlideTransition(
-                  position: animation.drive(tween),
-                  child: child,
+                  position: _secondaryPositionAnimation,
+                  textDirection: textDirection,
+                  transformHitTests: false,
+                  child: SlideTransition(position: _primaryPositionAnimation, textDirection: textDirection, child: child),
                 );
               },
               settings: settings
@@ -69,6 +88,6 @@ class SkillsScreen extends ConsumerWidget {
   }
 
   _onClickSkill(Skill skill) {
-    _navigatorKey.currentState!.pushNamed(SkillDetailPage.routeName);
+    _navigatorKey.currentState!.pushNamed(SkillDetailPage.routeName,arguments: skill);
   }
 }

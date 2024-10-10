@@ -20,7 +20,6 @@ class _SkillDetailPageState extends State<SkillDetailPage> {
   Widget build(BuildContext context) {
     final SkillModel skillModel = mySkills[widget.skill]!;
     return Container(
-      color: Colors.red,
       child:  Center(
       child: SizedBox(
         height: 100,
