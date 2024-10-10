@@ -16,30 +16,32 @@ class SkillsScreen extends StatefulWidget {
 class _SkillsScreenState extends State<SkillsScreen> with TickerProviderStateMixin {
   final PageController _pageController = PageController();
 
-
   @override
   Widget build(BuildContext context) {
     return ResponsiveGlassyScaffold(
       onPressedBack: _onPressedBack,
-        appbarTitle: const Text('Skills'),
-        isTranparentAppbar: true,
-        body: PageView(
-          controller: _pageController,
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-            SkillTotalPage(
-              onClickSkill: _onClickSkill,
-            ),
-            SkillDetailPage(skillModel: mySkills[Skill.flutter]!,)
-          ],
-        ));
+      appbarTitle: const Text('Skills'),
+      isTranparentAppbar: true,
+      body: PageView(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          SkillTotalPage(
+            onClickSkill: _onClickSkill,
+          ),
+          SkillDetailPage(
+            skillModel: mySkills[Skill.flutter]!,
+          )
+        ],
+      ),
+    );
   }
 
-  void _nextPage(){
+  void _nextPage() {
     _pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
   }
 
-  void _previousPage(){
+  void _previousPage() {
     _pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
   }
 
@@ -48,11 +50,10 @@ class _SkillsScreenState extends State<SkillsScreen> with TickerProviderStateMix
   }
 
   void _onPressedBack() {
-    if(_pageController.page == 0){
+    if (_pageController.page == 0) {
       Navigator.pop(context);
-    }else{
+    } else {
       _previousPage();
     }
   }
-
 }
