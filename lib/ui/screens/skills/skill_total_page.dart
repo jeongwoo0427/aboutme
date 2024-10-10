@@ -7,6 +7,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SkillTotalPage extends StatefulWidget {
+  static const String routeName = 'SkillTotalPage';
+
   final Function(Skill skill) onClickSkill;
 
   const SkillTotalPage({Key? key, required this.onClickSkill}) : super(key: key);

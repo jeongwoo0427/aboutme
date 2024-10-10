@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SkillDetailPage extends StatefulWidget {
+
+  static const String routeName = 'SkillDetailPage';
+
   final Skill skill;
 
   const SkillDetailPage({super.key, required this.skill});
@@ -16,7 +19,9 @@ class _SkillDetailPageState extends State<SkillDetailPage> {
   @override
   Widget build(BuildContext context) {
     final SkillModel skillModel = mySkills[widget.skill]!;
-    return Container(child:  Center(
+    return Container(
+      color: Colors.red,
+      child:  Center(
       child: SizedBox(
         height: 100,
         width: 100,
