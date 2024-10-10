@@ -7,7 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SkillTotalPage extends StatefulWidget {
-  final Function(SkillModel skillModel) onClickSkill;
+  final Function(Skill skill) onClickSkill;
 
   const SkillTotalPage({Key? key, required this.onClickSkill}) : super(key: key);
 
@@ -25,6 +25,12 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
   void initState() {
     _initAnimations();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _circleAnimationController.dispose();
+    super.dispose();
   }
 
   void _initAnimations() {
@@ -132,7 +138,7 @@ class _SkillIconButton extends StatelessWidget {
   final int animateMs;
   final Skill skill;
   final double size;
-  final Function(SkillModel skillModel) onClickSkill;
+  final Function(Skill skill) onClickSkill;
 
   const _SkillIconButton({super.key, this.animateDurMs = 700, required this.animateMs, required this.skill, this.size = 70, required this.onClickSkill});
 
@@ -142,7 +148,7 @@ class _SkillIconButton extends StatelessWidget {
     final SkillModel skillModel = mySkills[skill]!;
     return GestureDetector(
       onTap: () {
-        onClickSkill(skillModel);
+        onClickSkill(skill);
       },
       child: Center(
         child: SizedBox(

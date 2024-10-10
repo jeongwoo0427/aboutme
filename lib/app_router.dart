@@ -36,7 +36,7 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           name: SkillsScreen.routeName,
           path: 'skills',
-          pageBuilder: customPageBuilder(const SkillsScreen(), movePageDirection: MovePageDirection.topRight),
+          pageBuilder: customPageBuilder(SkillsScreen(), movePageDirection: MovePageDirection.topRight),
         ),
         GoRoute(
           name: ProjectsScreen.routeName,
