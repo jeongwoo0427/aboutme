@@ -7,13 +7,15 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SkillTotalPage extends StatefulWidget {
-  const SkillTotalPage({Key? key}) : super(key: key);
+  final Function(SkillModel skillModel) onClickSkill;
+
+  const SkillTotalPage({Key? key, required this.onClickSkill}) : super(key: key);
 
   @override
   State<SkillTotalPage> createState() => _SkillTotalPageState();
 }
 
-class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProviderStateMixin {
+class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   late final AnimationController _circleAnimationController;
   late final Animation<double> _circleAnimation;
   final int _skillAnimationDelay = 3100;
@@ -67,6 +69,7 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
             animateMs: _skillAnimationDelay+i*150,
             skill: skill.skill,
             size: iconSize,
+            onClickSkill: widget.onClickSkill,
           ),
         ),
       );
@@ -98,6 +101,7 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
                 animateMs: _skillAnimationDelay + 2000,
                 skill: Skill.flutter,
                 size: iconSize * 1.7,
+                onClickSkill: widget.onClickSkill,
               ),
             ),
             ...skillWidgets
@@ -115,6 +119,10 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
     final double dy = distance * sin(radian);
     return Offset(dx, dy);
   }
+
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 
@@ -124,8 +132,9 @@ class _SkillIconButton extends StatelessWidget {
   final int animateMs;
   final Skill skill;
   final double size;
+  final Function(SkillModel skillModel) onClickSkill;
 
-  const _SkillIconButton({super.key, this.animateDurMs = 700, required this.animateMs, required this.skill, this.size = 70});
+  const _SkillIconButton({super.key, this.animateDurMs = 700, required this.animateMs, required this.skill, this.size = 70, required this.onClickSkill});
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +142,7 @@ class _SkillIconButton extends StatelessWidget {
     final SkillModel skillModel = mySkills[skill]!;
     return GestureDetector(
       onTap: () {
-        print('onTap : ${skillModel.skill}');
+        onClickSkill(skillModel);
       },
       child: Center(
         child: SizedBox(

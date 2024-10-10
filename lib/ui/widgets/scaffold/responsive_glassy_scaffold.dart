@@ -12,8 +12,10 @@ class ResponsiveGlassyScaffold extends StatefulWidget {
   final double topPosition;
   final Function(bool)? onChangedPageState;
   final Function(ScrollNotification)? onNotificationScroll;
+  final bool? isTranparentAppbar;
+  final Function? onPressedBack;
 
-  const ResponsiveGlassyScaffold({super.key, required this.body, this.topPosition = 0, this.appbarTitle, this.onChangedPageState, this.onNotificationScroll});
+  const ResponsiveGlassyScaffold({super.key, required this.body, this.topPosition = 0, this.appbarTitle, this.onChangedPageState, this.onNotificationScroll, this.isTranparentAppbar, this.onPressedBack});
 
   @override
   State<ResponsiveGlassyScaffold> createState() => _ResponsiveGlassyScaffoldState();
@@ -81,7 +83,7 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
                 ),
               ).animate(
                 effects: [
-                  const FadeEffect(
+                  const FadeEffect( //나갈때 페이드아웃 효과
                     begin: 1,
                     end: 0,
                     curve: Curves.decelerate,
@@ -99,8 +101,9 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
                 right: 0,
                 child: MaxSizedBox(
                   child: GlassyAppbar(
-                    isTransparentBackground: _isTop,
+                    isTransparentBackground: widget.isTranparentAppbar??_isTop,
                     title: widget.appbarTitle??const SizedBox(),
+                    onPressedBack: widget.onPressedBack,
                   ),
                 ),
               ),

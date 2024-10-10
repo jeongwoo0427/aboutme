@@ -12,9 +12,10 @@ import 'package:responsive_framework/responsive_framework.dart';
 class GlassyAppbar extends ConsumerWidget implements PreferredSizeWidget {
   final Widget? title;
   final bool isTransparentBackground;
+  final Function? onPressedBack;
 
   const GlassyAppbar(
-      {Key? key, this.title, this.isTransparentBackground = false})
+      {Key? key, this.title, this.isTransparentBackground = false, this.onPressedBack})
       : super(key: key);
 
   @override
@@ -43,7 +44,11 @@ class GlassyAppbar extends ConsumerWidget implements PreferredSizeWidget {
                   ),
                   iconSize: context.getResponsiveValue<double>(35, 30),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    if( onPressedBack == null) {
+                      Navigator.of(context).pop();
+                    }else{
+                      onPressedBack!();
+                    }
                   },
                 ),
               ),
