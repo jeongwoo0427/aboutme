@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../app_font_family.dart';
 
 
-const _defaultFont = TextStyle(fontFamily: AppFontFamily.notoSansKR);
+const _defaultFont = TextStyle(fontFamily: AppFontFamily.nanumGothic);
 ///TODO : 모바일 단말기에서 테스트 진행해보기
 
 //final _defaultFont = GoogleFonts.notoSans();

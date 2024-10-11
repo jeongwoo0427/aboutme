@@ -1,3 +1,4 @@
+import 'package:aboutme/constants/app_font_family.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,10 +18,6 @@ void main() async {
       DeviceOrientation.portraitDown,
     ],
   );
-
-  // Show a loading indicator before running the full app (optional)
-  // The platform's loading screen will be used while awaiting if you omit this.
-  //runApp(const ErrorScreen());
 
   // Get the instance of shared preferences
   SharedPreferencesService.initialize(await SharedPreferences.getInstance()); //initial preferences singleton

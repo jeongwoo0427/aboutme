@@ -1,7 +1,7 @@
 class AppFontFamily{
-  // static const String notoSansKR = 'NotoSansKR';
-  // static const String cookieRunKR = 'CookieRunKR';
-  static const String notoSansKR = 'NotoSansKR';
+
+  //static const String notoSansKR = 'NotoSansKR';
+  static const String nanumGothic = 'NanumGothic';
 
 
   // static const String cookie_run = 'cookie_run';

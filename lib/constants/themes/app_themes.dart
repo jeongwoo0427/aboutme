@@ -9,7 +9,7 @@ class AppThemes {
   static final ThemeData lightTheme = ThemeData(
     //useMaterial3: true,
     brightness: Brightness.light,
-    fontFamily: AppFontFamily.notoSansKR,
+    fontFamily: AppFontFamily.nanumGothic,
     scaffoldBackgroundColor: AppColorSchemes.lightColorScheme.background,
     appBarTheme: const AppBarTheme().copyWith(
         surfaceTintColor: AppColorSchemes.lightColorScheme.background,
@@ -27,7 +27,7 @@ class AppThemes {
   static final ThemeData darkTheme = ThemeData(
       //useMaterial3: true,
       brightness: Brightness.dark,
-      fontFamily: AppFontFamily.notoSansKR,
+      fontFamily: AppFontFamily.nanumGothic,
       scaffoldBackgroundColor: Colors.black,
       appBarTheme: const AppBarTheme().copyWith(
           surfaceTintColor: AppColorSchemes.darkColorScheme.surfaceTint,
