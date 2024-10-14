@@ -52,6 +52,7 @@ class _SkillDetailPageState extends ConsumerState<SkillDetailPage>
   Widget build(BuildContext context) {
     final SkillModel skillModel = mySkills[widget.skill]!;
     final double sizeRatio = context.screenSizeRatio;
+    final DateTime skillStartedAt = DateTime.parse(skillModel.startedAt);
 
     return AnimatedBuilder(
       animation: _showInfoAnimation,
@@ -115,7 +116,7 @@ class _SkillDetailPageState extends ConsumerState<SkillDetailPage>
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  'Started at 23. 02. 09',
+                                  'Started at ${skillStartedAt.year}. ${skillStartedAt.month}',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                       fontSize:
