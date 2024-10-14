@@ -100,7 +100,7 @@ class _SkillDetailPageState extends ConsumerState<SkillDetailPage>
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                       fontSize:
-                                      context.getResponsiveValue(20, 14),
+                                      context.getResponsiveValue(18, 14),
                                       fontWeight: FontWeight.w300),
                                 );
                               }else{
