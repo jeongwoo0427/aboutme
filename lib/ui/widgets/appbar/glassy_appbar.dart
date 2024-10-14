@@ -83,11 +83,11 @@ class GlassyAppbar extends ConsumerWidget implements PreferredSizeWidget {
                   initValue: currentLanguageNotifier.currentLanguage,
                   items: [
                     GlassyDropdownButtonItem(
-                        value: LanguageCode.ko, text: 'Korean'),
+                        value: Language.kr, text: 'Korean'),
                     GlassyDropdownButtonItem(
-                        value: LanguageCode.en, text: 'English'),
+                        value: Language.en, text: 'English'),
                     GlassyDropdownButtonItem(
-                        value: LanguageCode.jp, text: 'Japan'),
+                        value: Language.jp, text: 'Japan'),
                   ],
                 ),
               ),

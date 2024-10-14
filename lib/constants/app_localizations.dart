@@ -7,10 +7,10 @@ class AppLocalizations{
   static final KoreanLocalizations koreanLocalizations = KoreanLocalizations();
   static final EnglishLocalizations englishLocalizations = EnglishLocalizations();
 
-  static Localizations get(LanguageCode code){
-    if(code == LanguageCode.ko) {
+  static Localizations get(Language code){
+    if(code == Language.kr) {
       return koreanLocalizations;
-    }else if(code== LanguageCode.en){
+    }else if(code== Language.en){
       return englishLocalizations;
     }else{
       return englishLocalizations;

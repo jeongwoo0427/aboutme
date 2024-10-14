@@ -3,16 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final currentLanguageProvider =
-    StateNotifierProvider<CurrentLanguageNotifier, LanguageCode>((ref) {
+    StateNotifierProvider<CurrentLanguageNotifier, Language>((ref) {
   return CurrentLanguageNotifier();
 });
 
-class CurrentLanguageNotifier extends StateNotifier<LanguageCode> {
-  CurrentLanguageNotifier() : super(LanguageCode.ko);
+class CurrentLanguageNotifier extends StateNotifier<Language> {
+  CurrentLanguageNotifier() : super(Language.kr);
 
-  LanguageCode get currentLanguage => state;
+  Language get currentLanguage => state;
 
-  void changeLanguage(LanguageCode targetLanguage) {
+  void changeLanguage(Language targetLanguage) {
     state = targetLanguage;
   }
 }

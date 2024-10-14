@@ -23,10 +23,15 @@ enum ManageMode{
   edit
 }
 
-enum LanguageCode{
-  ko,
+enum Language{
+  kr,
   en,
   jp,
 }
 
+const Map<Language,String> languageCodes = {
+  Language.kr : 'kr',
+  Language.en : 'en',
+  Language.jp : 'jp'
+};
 

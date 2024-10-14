@@ -1,11 +1,18 @@
+import 'dart:convert';
+
+import 'package:aboutme/constants/app_assets.dart';
+import 'package:aboutme/constants/app_constants.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
 import 'package:aboutme/ui/screens/skills/skill_model.dart';
 import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SkillDetailPage extends StatefulWidget {
+class SkillDetailPage extends ConsumerStatefulWidget {
   static const String routeName = 'SkillDetailPage';
 
   final Skill skill;
@@ -13,16 +20,18 @@ class SkillDetailPage extends StatefulWidget {
   const SkillDetailPage({super.key, required this.skill});
 
   @override
-  State<SkillDetailPage> createState() => _SkillDetailPageState();
+  ConsumerState<SkillDetailPage> createState() => _SkillDetailPageState();
 }
 
-class _SkillDetailPageState extends State<SkillDetailPage>
+class _SkillDetailPageState extends ConsumerState<SkillDetailPage>
     with TickerProviderStateMixin {
   late final Animation<double> _circleContainerAnimation;
   late final AnimationController _circleContainerAnimationController;
 
   late final Animation<double> _showInfoAnimation;
   late final AnimationController _showInfoAnimationController;
+
+  Future<Map<String,dynamic>>? _futureSkillDescriptions;
 
   @override
   void dispose() {
@@ -32,7 +41,8 @@ class _SkillDetailPageState extends State<SkillDetailPage>
   }
 
   @override
-  void initState() {
+  void initState(){
+    _futureSkillDescriptions = getSkillDescriptions();
     initAnimations();
 
     super.initState();
@@ -81,14 +91,22 @@ class _SkillDetailPageState extends State<SkillDetailPage>
 
                         Expanded(
                             flex: 5,
-                            child: Text(
-                              'this is my lovely stack and i love it so much so i will be good developer at it\ndkdkkfj\ndfkewrerwerwerwerwerewrwerwerwrwerwer',
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  fontSize:
-                                  context.getResponsiveValue(20, 14),
-                                  fontWeight: FontWeight.w300),
-                            )),
+                            child: FutureBuilder<Map<String,dynamic>>(
+                              future: _futureSkillDescriptions,
+                              builder: (context,snapshot){
+                              if(snapshot.hasData){
+                                return Text(
+                                  snapshot.data?[languageCodes[ref.currentLanguage]]?[skillModel.code] ?? 'UNKNOWN',
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                      fontSize:
+                                      context.getResponsiveValue(20, 14),
+                                      fontWeight: FontWeight.w300),
+                                );
+                              }else{
+                                return Container();
+                              }
+                            },)),
                         Expanded(
                             flex: 1,
                             child: Row(
@@ -187,5 +205,11 @@ class _SkillDetailPageState extends State<SkillDetailPage>
         () => {_circleContainerAnimationController.forward()});
     Future.delayed(const Duration(milliseconds: 1600),
         () => {_showInfoAnimationController.forward()});
+  }
+
+  Future<Map<String,dynamic>> getSkillDescriptions()async {
+    final jsonString = await rootBundle.loadString(AppAssets.JSON_SKILL_DETAILS);
+    final descriptions = jsonDecode(jsonString);
+    return descriptions;
   }
 }
