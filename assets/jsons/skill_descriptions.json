@@ -10,7 +10,7 @@
     "nginx": "서버 호스팅 및 WebAPI 프록시 호스팅에 탁월한 기술입니다.\nNginx를 통해 가상 호스트 및 다양한 서버 환경을 구축해 본 경험이 있습니다.\n현재 제가 호스팅중인 이 웹사이트나 Code-Server 또는 기타 프로젝트들 모두 Nginx로 관리중입니다.",
     "vscode": "개인화된 Code-Server를 구축해 아이패드에서도 메인으로 사용할 정도로 좋아하는 IDE입니다.\n가벼운 무게와 자유로운 커스터마이징의 매력에 빠져버려 필요한 익스텐션까지도 직접 개발해 사용해보기도 했습니다.",
     "socketio": "WebAPI 개발에 익숙해질 무렵, 실시간 통신의 매력을 알게 되었습니다.\n동적인 서비스 구현을 위해서는 필수요소라 생각을 하여 WebSocket으로 입문하여, 편의성과 유지보수 측면에서 뛰어난 SocketIO를 공부했습니다.\n이후 Flutter와 결합해 실시간 게임, 채팅앱 등의 프로젝트를 진행한 경험이 있습니다.",
-    "github": "처음엔 단순한 클라우드 저장소로만 생각했지만, 형상 관리의 중요성을 깨닫고 나서부터는 Git과 GitHub을 애용하고 있습니다.\n이를 통해 협업 및 프로젝트 관리 경험도 풍부해졌습니다."
+    "github": "처음엔 단순한 클라우드 저장소로만 생각했지만, 형상 관리의 중요성을 깨닫고 나서부터는 Git과 GitHub을 애용하고 있습니다.\n이를 통해 협업 및 프로젝트 관리 경험도 풍부해졌고,\n지금 이 웹사이트를 호스팅중인 서버에 마저 Github Action을 활용하여 배포 자동화의 이점을 누리고 있습니다."
   },
   "en": {
     "flutter": "Flutter is the best cross-platform framework providing smooth UI and animations.\nWith a single codebase, you can build apps for various platforms, and it's the technology I'm most confident in.\nI have gained deep experience through multiple projects and can proficiently utilize all of Flutter's features.",
@@ -23,7 +23,7 @@
     "nginx": "Nginx is a reliable technology for server hosting and WebAPI proxy hosting.\nI’ve used Nginx to set up virtual hosts and manage various server environments.\nIn fact, I manage this website, my Code-Server, and other projects all through Nginx.",
     "vscode": "I love Visual Studio Code so much that I've even set up a customized Code-Server to use it on my iPad as my main IDE.\nI was drawn to its lightweight nature and flexibility, and I’ve even developed custom extensions to add features I needed.",
     "socketio": "As I became more familiar with WebAPI development, I discovered the appeal of real-time communication.\nI started with WebSocket for implementing dynamic services, then moved to Socket.IO for its convenience and maintainability.\nSince then, I’ve used it with Flutter to create real-time games and chat apps.",
-    "github": "At first, I thought GitHub was just a cloud storage solution,\nbut after realizing the importance of version control, I started using Git and GitHub extensively.\nThrough this, I’ve gained a wealth of experience in collaboration and project management."
+    "github": "At first, I thought GitHub was just a simple cloud storage, but after realizing the importance of version control, I became a frequent user of Git and GitHub.\nThrough this, I have gained extensive experience in collaboration and project management,\nand I am now taking advantage of deployment automation using GitHub Actions on the server hosting this website."
   },
   "jp": {
     "flutter": "Flutterは、滑らかなUIとアニメーションを提供する最高のクロスプラットフォームフレームワークです。\n1つのコードベースでさまざまなプラットフォーム向けのアプリを作成でき、最も自信のある技術です。\n複数のプロジェクトを通じて深い経験を積み、Flutterのすべての機能を巧みに活用できます。",
@@ -36,7 +36,7 @@
     "nginx": "Nginxは、サーバーホスティングやWebAPIプロキシホスティングに非常に優れた技術です。\nNginxを使って、仮想ホストやさまざまなサーバー環境を構築した経験があります。\n現在、私がホスティングしているこのウェブサイトやCode-Server、その他のプロジェクトもすべてNginxで管理しています。",
     "vscode": "iPadでもメインのIDEとして使えるように、カスタマイズしたCode-Serverを構築するほどVS Codeが大好きです。\n軽量で自由にカスタマイズできる魅力に惹かれ、必要な機能を追加するために独自の拡張機能を開発したこともあります。",
     "socketio": "WebAPI開発に慣れてきたころ、リアルタイム通信の魅力に気づきました。\n動的なサービスの実装には不可欠だと考え、WebSocketから始めましたが、利便性とメンテナンス性の観点から優れたSocket.IOを学びました。\nその後、Flutterと組み合わせてリアルタイムゲームやチャットアプリなどのプロジェクトを進めた経験があります。",
-    "github": "最初は単なるクラウドストレージだと思っていましたが、バージョン管理の重要性に気づいてからはGitとGitHubを愛用しています。\nこれにより、コラボレーションやプロジェクト管理に関する豊富な経験を得ることができました。"
+    "github": "最初はGitHubを単なるクラウドストレージだと思っていましたが、バージョン管理の重要性に気づいてからはGitとGitHubを頻繁に使うようになりました。\nこれにより、コラボレーションやプロジェクト管理における豊富な経験を得ることができ、\n現在、このウェブサイトをホスティングしているサーバーでは、GitHub Actionsを活用してデプロイ自動化の利点を享受しています。"
   },
   "unknown": {
     "flutter": "",
