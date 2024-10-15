@@ -13,5 +13,5 @@ extension BuildContextExtension on BuildContext{
   }
   Size get screenSize => MediaQuery.sizeOf(this);
   double get minScreenLength => screenSize.height > screenSize.width ? screenSize.width : screenSize.height;
-  double get screenSizeRatio => minScreenLength / 1000;
+  double get minScreenLengthRatio => minScreenLength / 1000;
 }

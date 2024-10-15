@@ -51,7 +51,7 @@ class _SkillDetailPageState extends ConsumerState<SkillDetailPage>
   @override
   Widget build(BuildContext context) {
     final SkillModel skillModel = mySkills[widget.skill]!;
-    final double sizeRatio = context.screenSizeRatio;
+    final double sizeRatio = context.minScreenLengthRatio;
     final DateTime skillStartedAt = DateTime.parse(skillModel.startedAt);
 
     return AnimatedBuilder(

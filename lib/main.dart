@@ -50,7 +50,6 @@ class MyApp extends ConsumerWidget {
           const Breakpoint(start: 641, end: 1080, name: TABLET),
           const Breakpoint(start: 1081, end: double.infinity, name: DESKTOP),
         ]),
-        //home: const MainMenuScreen(),
       ),
     );
   }
