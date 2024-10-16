@@ -39,7 +39,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
   @override
   Widget build(BuildContext context) {
     return ResponsiveGlassyScaffold(
-      isTranparentAppbar: false,
+      isTranparentAppbar: true,
       appbarTitle: Text('Projects'),
       body: Stack(
         children: [
@@ -52,7 +52,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
                   return Positioned(
                     left: (-context.screenSize.width / 2) * _pageLoadAnim.value,
                     right: (context.screenSize.width / 2) * _pageLoadAnim.value,
-                    top: context.screenSize.height / 1.5 * _pageToBottomAnim.value,
+                    top: context.screenSize.height / 1.4 * _pageToBottomAnim.value,
                     bottom: 0,
                     child: Center(
                       child: SizedBox(
@@ -66,7 +66,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
                                 child: GlassyContainer(
                                   width: 250 * context.minScreenLengthRatio,
                                   height: double.infinity,
-                                  child: Text('hi'),
+                                  child: const Center(child: Text('hi')),
                                 ),
                               );
                               //return getItem(width: 250 * context.minScreenLengthRatio, height: double.infinity);
