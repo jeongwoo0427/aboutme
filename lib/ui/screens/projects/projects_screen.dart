@@ -116,9 +116,11 @@ class ProjectDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        print(constraints.maxWidth);
+        final bool isPotrait = constraints.maxWidth < 1000;
 
-        final Widget imageBox = Container(color: Colors.red);
+        final Widget imageBox = AspectRatio(
+            aspectRatio: 5/3,
+            child: Container(color: Colors.red));
 
         final Widget detailBox = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,13 +132,28 @@ class ProjectDetailView extends StatelessWidget {
             Text('yayayayayayay'),
           ],
         );
-
-        if (constraints.maxWidth > 800) {
-          return Row(
+        if (isPotrait) {
+          return Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Spacer(
                 flex: 2,
+              ),
+              Expanded(flex: 4, child: imageBox),
+              Expanded(flex: 7, child: SizedBox(
+                  width: 400,
+                  child: detailBox)),
+              Spacer(
+                flex: 4,
+              )
+            ],
+          );
+        } else {
+          return Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Spacer(
+                flex: 4,
               ),
               Expanded(flex: 6, child: imageBox),
               Spacer(flex: 1),
@@ -144,20 +161,6 @@ class ProjectDetailView extends StatelessWidget {
               Spacer(
                 flex: 3,
               ),
-            ],
-          );
-        } else {
-          return Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Spacer(
-                flex: 2,
-              ),
-              Expanded(flex: 6, child: imageBox),
-              Expanded(flex: 5, child: detailBox),
-              Spacer(
-                flex: 4,
-              )
             ],
           );
         }
