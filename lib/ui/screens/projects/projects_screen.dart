@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import '../../widgets/scaffold/responsive_glassy_scaffold.dart';
 
 class ProjectsScreen extends StatefulWidget {
@@ -19,6 +20,9 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
 
   late final AnimationController _pageToBottomAnimController;
   late final Animation _pageToBottomAnim;
+
+  late final AnimationController _projectDetailAnimController;
+  late final Animation _projectDetailAnim;
 
   final PageController _pageController = PageController(viewportFraction: 0.3, initialPage: 9);
 
@@ -49,8 +53,12 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
               left: 0,
               right: 0,
               child: Center(
-                child: ProjectDetailView(),
-              )),
+                  child: AnimatedBuilder(
+                animation: _projectDetailAnim,
+                builder: (_, __) {
+                  return Opacity(opacity: _projectDetailAnim.value, child: ProjectDetailView());
+                },
+              ))),
           AnimatedBuilder(
             animation: _pageToBottomAnim,
             builder: (context, child) {
@@ -101,11 +109,15 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
     _pageToBottomAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
     _pageToBottomAnim = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _pageToBottomAnimController, curve: Curves.ease));
 
+    _projectDetailAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
+    _projectDetailAnim = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _projectDetailAnimController, curve: Curves.decelerate));
+
     await Future.delayed(const Duration(milliseconds: 300));
 
     await _pageLoadAnimController.forward();
     await _pageController.animateToPage(0, duration: const Duration(milliseconds: 2300), curve: Curves.decelerate);
     await _pageToBottomAnimController.forward();
+    await _projectDetailAnimController.forward();
   }
 }
 
@@ -118,9 +130,12 @@ class ProjectDetailView extends StatelessWidget {
       builder: (context, constraints) {
         final bool isPotrait = constraints.maxWidth < 1000;
 
-        final Widget imageBox = AspectRatio(
-            aspectRatio: 5/3,
-            child: Container(color: Colors.red));
+        final Widget imageBox = MaxWidthBox(
+          maxWidth: 500,
+          child: Center(
+            child: AspectRatio(aspectRatio: 5 / 3, child: Container(color: Colors.red)),
+          ),
+        );
 
         final Widget detailBox = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,12 +152,10 @@ class ProjectDetailView extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Spacer(
-                flex: 2,
+                flex: 3,
               ),
-              Expanded(flex: 4, child: imageBox),
-              Expanded(flex: 7, child: SizedBox(
-                  width: 400,
-                  child: detailBox)),
+              Expanded(flex: 5, child: imageBox),
+              Expanded(flex: 7, child: SizedBox(width: 400, child: detailBox)),
               Spacer(
                 flex: 4,
               )
