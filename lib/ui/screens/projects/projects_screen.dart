@@ -26,10 +26,13 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
 
   final PageController _pageController = PageController(viewportFraction: 0.3, initialPage: 9);
 
+  bool _isAnimationLoadComplete = false;
+
   @override
   void dispose() {
     _pageLoadAnimController.dispose();
     _pageToBottomAnimController.dispose();
+    _projectDetailAnimController.dispose();
     super.dispose();
   }
 
@@ -77,6 +80,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
                           behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
                           child: PageView.builder(
                             controller: _pageController,
+                            onPageChanged: _onPageChanged,
                             itemBuilder: (context, index) {
                               return Center(
                                 child: GlassyContainer(
@@ -102,6 +106,20 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
     );
   }
 
+  Future<void> _onPageChanged(int value) async {
+    if(_isAnimationLoadComplete){
+      await _projectDetailAnimController.reverse();
+      await Future.delayed(const Duration(milliseconds: 100));
+    }
+
+
+
+    if(_isAnimationLoadComplete){
+      await Future.delayed(const Duration(milliseconds: 100));
+      await _projectDetailAnimController.forward();
+    }
+  }
+
   Future<void> _initAnimations() async {
     _pageLoadAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
     _pageLoadAnim = Tween<double>(begin: 1, end: 0).animate(_pageLoadAnimController);
@@ -110,7 +128,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
     _pageToBottomAnim = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _pageToBottomAnimController, curve: Curves.ease));
 
     _projectDetailAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
-    _projectDetailAnim = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _projectDetailAnimController, curve: Curves.decelerate));
+    _projectDetailAnim = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _projectDetailAnimController, curve: Curves.ease));
 
     await Future.delayed(const Duration(milliseconds: 300));
 
@@ -118,7 +136,11 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
     await _pageController.animateToPage(0, duration: const Duration(milliseconds: 2300), curve: Curves.decelerate);
     await _pageToBottomAnimController.forward();
     await _projectDetailAnimController.forward();
+
+    _isAnimationLoadComplete = true;
   }
+
+
 }
 
 class ProjectDetailView extends StatelessWidget {
