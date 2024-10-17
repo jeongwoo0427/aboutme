@@ -148,58 +148,55 @@ class ProjectDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final bool isPotrait = constraints.maxWidth < 1000;
+    final bool isPotrait = MediaQuery.of(context).size.width < 1000;
 
-        final Widget imageBox = MaxWidthBox(
-          maxWidth: 500,
-          child: Center(
-            child: AspectRatio(aspectRatio: 5 / 3, child: Container(color: Colors.red)),
-          ),
-        );
-
-        final Widget detailBox = Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('hihiih'),
-            SizedBox(height: 100),
-            Text('yayayayayayay'),
-          ],
-        );
-        if (isPotrait) {
-          return Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Spacer(
-                flex: 3,
-              ),
-              Expanded(flex: 5, child: imageBox),
-              Expanded(flex: 7, child: SizedBox(width: 400, child: detailBox)),
-              Spacer(
-                flex: 4,
-              )
-            ],
-          );
-        } else {
-          return Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Spacer(
-                flex: 4,
-              ),
-              Expanded(flex: 6, child: imageBox),
-              Spacer(flex: 1),
-              Expanded(flex: 5, child: detailBox),
-              Spacer(
-                flex: 3,
-              ),
-            ],
-          );
-        }
-      },
+    final Widget imageBox = MaxWidthBox(
+      maxWidth: 600,
+      child: Center(
+        child: AspectRatio(aspectRatio: 5 / 3, child: GlassyContainer(child: Text(''),)),
+      ),
     );
+
+    final Widget detailBox = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('hihiih'),
+        SizedBox(height: 100),
+        Text('yayayayayayay'),
+      ],
+    );
+
+    if (isPotrait) {
+      return Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Spacer(
+            flex: 3,
+          ),
+          Expanded(flex: 5, child: imageBox),
+          Expanded(flex: 7, child: SizedBox(width: 400, child: detailBox)),
+          Spacer(
+            flex: 4,
+          )
+        ],
+      );
+    } else {
+      return Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Spacer(
+            flex: 4,
+          ),
+          Expanded(flex: 6, child: imageBox),
+          Spacer(flex: 1),
+          Expanded(flex: 5, child: detailBox),
+          Spacer(
+            flex: 3,
+          ),
+        ],
+      );
+    }
   }
 }
