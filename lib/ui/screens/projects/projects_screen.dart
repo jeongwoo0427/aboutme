@@ -43,6 +43,14 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
       appbarTitle: Text('Projects'),
       body: Stack(
         children: [
+          Positioned(
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: ProjectDetailView(),
+              )),
           AnimatedBuilder(
             animation: _pageToBottomAnim,
             builder: (context, child) {
@@ -56,7 +64,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
                     bottom: 0,
                     child: Center(
                       child: SizedBox(
-                        height: 150 * context.minScreenLengthRatio,
+                        height: 120 * context.minScreenLengthRatio,
                         child: ScrollConfiguration(
                           behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
                           child: PageView.builder(
@@ -96,7 +104,64 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
     await Future.delayed(const Duration(milliseconds: 300));
 
     await _pageLoadAnimController.forward();
-    await _pageController.animateToPage(0, duration: const Duration(milliseconds: 3000), curve: Curves.decelerate);
+    await _pageController.animateToPage(0, duration: const Duration(milliseconds: 2300), curve: Curves.decelerate);
     await _pageToBottomAnimController.forward();
+  }
+}
+
+class ProjectDetailView extends StatelessWidget {
+  const ProjectDetailView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        print(constraints.maxWidth);
+
+        final Widget imageBox = Container(color: Colors.red);
+
+        final Widget detailBox = Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('hihiih'),
+            SizedBox(height: 100),
+            Text('yayayayayayay'),
+          ],
+        );
+
+        if (constraints.maxWidth > 800) {
+          return Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Spacer(
+                flex: 2,
+              ),
+              Expanded(flex: 6, child: imageBox),
+              Spacer(flex: 1),
+              Expanded(flex: 5, child: detailBox),
+              Spacer(
+                flex: 3,
+              ),
+            ],
+          );
+        } else {
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Spacer(
+                flex: 2,
+              ),
+              Expanded(flex: 6, child: imageBox),
+              Expanded(flex: 5, child: detailBox),
+              Spacer(
+                flex: 4,
+              )
+            ],
+          );
+        }
+      },
+    );
   }
 }
