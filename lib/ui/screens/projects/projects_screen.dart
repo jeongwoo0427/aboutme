@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
 import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
@@ -209,7 +210,7 @@ class ProjectDetailView extends ConsumerWidget {
             flex: 2,
             child: Row(children: [
               Text(
-                '프로젝트 기간: ',
+                '${ref.localizations.projects_details_project_date}: ',
                 style: TextStyle(
                     fontSize: isPotrait ?15:17, fontWeight: FontWeight.w900),
               ),
@@ -224,7 +225,7 @@ class ProjectDetailView extends ConsumerWidget {
             flex: 3,
             child:Row(children: [
               Text(
-                '사용스택: ',
+                '${ref.localizations.projects_details_use_skills}: ',
                 style: TextStyle(
                     fontSize: isPotrait ?15:17, fontWeight: FontWeight.w900),
               ),

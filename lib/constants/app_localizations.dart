@@ -29,6 +29,8 @@ abstract class Localizations{
   String get validation_error_contact_message_is_empty;
   String get validation_error_contact_mycontact_is_empty;
   String get validation_error_contact_mycontact_is_too_long;
+  String get projects_details_project_date;
+  String get projects_details_use_skills;
 }
 
 class KoreanLocalizations implements Localizations{
@@ -64,6 +66,14 @@ class KoreanLocalizations implements Localizations{
   // TODO: implement validation_error_contact_mycontact_is_too_long
   String get validation_error_contact_mycontact_is_too_long => '연락처는 최대 ${ValidatorConstants.contactMyContactMaxLength}글자 이하입니다.';
 
+  @override
+  // TODO: implement projects_details_project_date
+  String get projects_details_project_date => '기간';
+
+  @override
+  // TODO: implement projects_details_use_skills
+  String get projects_details_use_skills =>'스택';
+
 }
 
 class EnglishLocalizations implements Localizations{
@@ -98,6 +108,14 @@ class EnglishLocalizations implements Localizations{
   @override
   // TODO: implement validation_error_contact_mycontact_is_too_long
   String get validation_error_contact_mycontact_is_too_long => 'Contact information max length is ${ValidatorConstants.contactMyContactMaxLength}';
+
+  @override
+  // TODO: implement projects_details_project_date
+  String get projects_details_project_date => 'Period';
+
+  @override
+  // TODO: implement projects_details_use_skills
+  String get projects_details_use_skills => 'Skills';
 
 
 }
