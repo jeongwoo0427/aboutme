@@ -1,16 +1,18 @@
 import 'dart:ui';
 
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
+import 'package:aboutme/cores/services/api/datas/project/data_objects/project_get.dro.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/container/glassy_container.dart';
 
 class ProjectPageWidget extends StatelessWidget {
 
+  final List<ProjectGetDro> projects;
   final PageController controller;
   final ValueChanged<int> onPageChanged;
 
-  const ProjectPageWidget({Key? key, required this.controller, required this.onPageChanged}) : super(key: key);
+  const ProjectPageWidget({Key? key, required this.projects, required this.controller, required this.onPageChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +29,12 @@ class ProjectPageWidget extends StatelessWidget {
                 child: GlassyContainer(
                   width: 250 * context.minScreenLengthRatio,
                   height: double.infinity,
-                  child: const Center(child: Text('hi')),
+                  child: Center(child: Text('title')),
                 ),
               );
               //return getItem(width: 250 * context.minScreenLengthRatio, height: double.infinity);
             },
-            itemCount: 10,
+            itemCount: projects.length,
           ),
         ),
       ),
