@@ -33,7 +33,7 @@ class APIService {
       final response = await dio.request(pathString, data: data);
 
 
-      return response.data;
+      return response.data['_data'];
     }catch(ex){
       //rethrow;
       throw ex; //rethrow 를 사용할 경우 StackTrace 추적이 어려움
