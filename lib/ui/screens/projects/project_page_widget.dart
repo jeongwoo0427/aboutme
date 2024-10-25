@@ -34,12 +34,13 @@ class ProjectPageWidget extends ConsumerWidget {
                       onTapItem(index);
                     },
                     child: GlassyContainer(
-                        width: 250 * context.minScreenLengthRatio,
+                        width: 270 * context.minScreenLengthRatio,
                         height: double.infinity,
+                        borderRadius: BorderRadius.circular(10),
                         child: Center(
                           child: Text(
                             LanguageUtility().findDetailByLanguage(language: ref.currentLanguage, details: projects[index].details)?.title ?? '',
-                            style: TextStyle(fontSize: context.getResponsiveValue(18, 13), fontWeight: FontWeight.w700),
+                            style: TextStyle(fontSize: context.getResponsiveValue(18, 12), fontWeight: FontWeight.w700),
                           ),
                         )),
                   ));

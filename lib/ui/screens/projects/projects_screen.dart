@@ -83,18 +83,20 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
               ),
             ),
           ),
-          Positioned.fill(
-              child: Center(
-                  child: AnimatedBuilder(
+          AnimatedBuilder(
             animation: _projectDetailAnim,
             builder: (_, __) {
-              return Opacity(
-                  opacity: _projectDetailAnim.value,
+              return Positioned.fill(
+                  child: Opacity(
+                opacity: _projectDetailAnim.value,
+                child: Center(
                   child: ProjectDetailsWidget(
                     project: _currentProject,
-                  ));
+                  ),
+                ),
+              ));
             },
-          ))),
+          ),
           AnimatedBuilder(
             animation: _pageToBottomAnim,
             builder: (context, child) {
