@@ -32,7 +32,7 @@ class ProjectPageWidget extends ConsumerWidget {
                       width: 250 * context.minScreenLengthRatio,
                       height: double.infinity,
                       child: Center(
-                        child: Text(LanguageUtility().findDetailByLanguage(language: ref.currentLanguage, details: projects[index].details)?.title??''),
+                        child: Text(LanguageUtility().findDetailByLanguage(language: ref.currentLanguage, details: projects[index].details)?.title??'',style: TextStyle(fontSize: context.getResponsiveValue(18, 13),fontWeight: FontWeight.w700),),
                       )));
               //return getItem(width: 250 * context.minScreenLengthRatio, height: double.infinity);
             },
