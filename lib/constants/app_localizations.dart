@@ -6,13 +6,16 @@ class AppLocalizations{
 
   static final KoreanLocalizations koreanLocalizations = KoreanLocalizations();
   static final EnglishLocalizations englishLocalizations = EnglishLocalizations();
+  static final JapaneseLocalizations japaneseLocalizations = JapaneseLocalizations();
 
   static Localizations get(Language code){
     if(code == Language.kr) {
       return koreanLocalizations;
     }else if(code== Language.en){
       return englishLocalizations;
-    }else{
+    }else if (code == Language.jp) {
+      return japaneseLocalizations;
+    } else{
       return englishLocalizations;
     }
   }
@@ -118,4 +121,38 @@ class EnglishLocalizations implements Localizations{
   String get projects_details_use_skills => 'Skills';
 
 
+}
+
+class JapaneseLocalizations implements Localizations {
+  @override
+  String get introduction_screen_greeting_page_scroll_text => '下にスクロールしてください';
+
+  @override
+  String get introduction_screen_letter_page_hi => 'こんにちは';
+
+  @override
+  String get introduction_screen_letter_page_letter => '私はFlutterで世界を描く開発者です。\n\n'
+      'コードの一行一行に感情を込め、iOSとAndroidという二つの舞台で一つの美しいパフォーマンスを作り上げます。\n\n'
+      '新しい技術や挑戦を愛し、日々より良いソフトウェアを作ることを夢見ています。';
+
+  @override
+  String get contact_message_input_label => 'メッセージを残してください';
+
+  @override
+  String get contact_mycontact_input_label => 'メールアドレスまたは連絡先';
+
+  @override
+  String get validation_error_contact_message_is_empty => 'メッセージを入力してください。';
+
+  @override
+  String get validation_error_contact_mycontact_is_empty => '連絡先を入力してください。';
+
+  @override
+  String get validation_error_contact_mycontact_is_too_long => '連絡先は最大${ValidatorConstants.contactMyContactMaxLength}文字以内で入力してください。';
+
+  @override
+  String get projects_details_project_date => '期間';
+
+  @override
+  String get projects_details_use_skills => 'スキル';
 }
