@@ -84,11 +84,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
               ),
             ),
           ),
-          Positioned(
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
+          Positioned.fill(
               child: Center(
                   child: AnimatedBuilder(
                 animation: _projectDetailAnim,
