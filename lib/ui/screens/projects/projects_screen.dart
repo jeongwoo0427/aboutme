@@ -58,8 +58,6 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
     super.initState();
   }
 
-
-
   Future<void> _initAsync() async {
     await _initAnimations();
     await Future.delayed(Duration(milliseconds: 1000));
@@ -88,11 +86,15 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
           Positioned.fill(
               child: Center(
                   child: AnimatedBuilder(
-                animation: _projectDetailAnim,
-                builder: (_, __) {
-                  return Opacity(opacity: _projectDetailAnim.value, child: ProjectDetailsWidget(project: _currentProject ,));
-                },
-              ))),
+            animation: _projectDetailAnim,
+            builder: (_, __) {
+              return Opacity(
+                  opacity: _projectDetailAnim.value,
+                  child: ProjectDetailsWidget(
+                    project: _currentProject,
+                  ));
+            },
+          ))),
           AnimatedBuilder(
             animation: _pageToBottomAnim,
             builder: (context, child) {
@@ -108,6 +110,9 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
                       projects: _projects,
                       controller: _pageController,
                       onPageChanged: _onPageChanged,
+                      onTapItem: (index) {
+                        _pageController.animateToPage(index, duration: const Duration(milliseconds: 400), curve: Curves.ease);
+                      },
                     ),
                   );
                 },
@@ -160,13 +165,13 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
   }
 
   Future<void> _fetchProjects() async {
-    try{
+    try {
       _projects = await ProjectData().getProjectsV1();
       setState(() {
         _currentProject = _projects.firstOrNull;
       });
-    }catch(ex,stack){
-      showExceptionDialog(ex,stack);
+    } catch (ex, stack) {
+      showExceptionDialog(ex, stack);
     }
   }
 }

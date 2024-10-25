@@ -13,8 +13,9 @@ class ProjectPageWidget extends ConsumerWidget {
   final List<ProjectGetDro> projects;
   final PageController controller;
   final ValueChanged<int> onPageChanged;
+  final Function(int) onTapItem;
 
-  const ProjectPageWidget({Key? key, required this.projects, required this.controller, required this.onPageChanged}) : super(key: key);
+  const ProjectPageWidget({Key? key, required this.projects, required this.controller, required this.onPageChanged, required this.onTapItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,12 +29,20 @@ class ProjectPageWidget extends ConsumerWidget {
             onPageChanged: onPageChanged,
             itemBuilder: (context, index) {
               return Center(
-                  child: GlassyContainer(
-                      width: 250 * context.minScreenLengthRatio,
-                      height: double.infinity,
-                      child: Center(
-                        child: Text(LanguageUtility().findDetailByLanguage(language: ref.currentLanguage, details: projects[index].details)?.title??'',style: TextStyle(fontSize: context.getResponsiveValue(18, 13),fontWeight: FontWeight.w700),),
-                      )));
+                  child: GestureDetector(
+                    onTap: (){
+                      onTapItem(index);
+                    },
+                    child: GlassyContainer(
+                        width: 250 * context.minScreenLengthRatio,
+                        height: double.infinity,
+                        child: Center(
+                          child: Text(
+                            LanguageUtility().findDetailByLanguage(language: ref.currentLanguage, details: projects[index].details)?.title ?? '',
+                            style: TextStyle(fontSize: context.getResponsiveValue(18, 13), fontWeight: FontWeight.w700),
+                          ),
+                        )),
+                  ));
               //return getItem(width: 250 * context.minScreenLengthRatio, height: double.infinity);
             },
             itemCount: projects.length,
