@@ -1,16 +1,27 @@
-
 import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
+import 'package:aboutme/cores/services/api/datas/project/data_objects/project_detail_get.dro.dart';
+import 'package:aboutme/cores/services/api/datas/project/data_objects/project_get.dro.dart';
+import 'package:aboutme/cores/utils/language_utility.dart';
+import 'package:aboutme/cores/utils/shared_utility.dart';
 import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProjectDetailsWidget extends ConsumerWidget {
-  const ProjectDetailsWidget({Key? key}) : super(key: key);
+  final ProjectGetDro? project;
+
+  ProjectDetailsWidget({super.key, required this.project});
+
+  final SharedUtility _sharedUtility = SharedUtility();
+  final LanguageUtility _languageUtility = LanguageUtility();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bool isPotrait = MediaQuery.of(context).size.width < 1000;
+    final currentLanguage = ref.currentLanguage;
+    final List<ProjectDetailGetDro> details = project?.details ?? [];
+    final ProjectDetailGetDro? detail = _languageUtility.findDetailByLanguage(language: currentLanguage, details: details);
 
     final Widget imageBox = MaxSizedBox(
       maxWidth: 600,
@@ -37,46 +48,51 @@ class ProjectDetailsWidget extends ConsumerWidget {
           Expanded(
               flex: 3,
               child: Text(
-                'hihiih',
+                detail?.title ?? '',
                 style: TextStyle(
-                  fontSize: isPotrait ? 28 : 33, fontWeight: FontWeight.w700,),
+                  fontSize: isPotrait ? 28 : 33,
+                  fontWeight: FontWeight.w700,
+                ),
               )),
           Expanded(
             flex: 8,
             child: Text(
-              'yayayayayayay',
-              style: TextStyle(
-                  fontSize: isPotrait ?15:17, fontWeight: FontWeight.w300),
+              detail?.detail ?? '',
+              style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w300),
             ),
           ),
-          Spacer(flex: 1,),
+          Spacer(
+            flex: 1,
+          ),
           Expanded(
             flex: 2,
-            child: Row(children: [
-              Text(
-                '${ref.localizations.projects_details_project_date}: ',
-                style: TextStyle(
-                    fontSize: isPotrait ?15:17, fontWeight: FontWeight.w900),
-              ),
-              Text(
-                '23.09 ~ 23.11',
-                style: TextStyle(
-                    fontSize: isPotrait ?15:17, fontWeight: FontWeight.w500),
-              ),
-            ],),
+            child: Row(
+              children: [
+                Text(
+                  '${ref.localizations.projects_details_project_date}: ',
+                  style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w900),
+                ),
+                Text(
+                  '${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodStart)} ~ ${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodEnd)}',
+                  style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
           ),
           Expanded(
               flex: 3,
-              child:Row(children: [
-                Text(
-                  '${ref.localizations.projects_details_use_skills}: ',
-                  style: TextStyle(
-                      fontSize: isPotrait ?15:17, fontWeight: FontWeight.w900),
-                ),
-                Icon(Icons.gamepad)
-              ],)
-          ),
-
+              child: Row(
+                children: [
+                  Text(
+                    '${ref.localizations.projects_details_use_skills}: ',
+                    style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w900),
+                  ),
+                  Text(
+                    project?.skills ?? '',
+                    style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              )),
         ],
       ),
     );
@@ -88,12 +104,8 @@ class ProjectDetailsWidget extends ConsumerWidget {
           Spacer(
             flex: 3,
           ),
-          Expanded(
-              flex: 5,
-              child: Padding(padding: EdgeInsets.all(15), child: imageBox)),
-          Expanded(
-              flex: 7,
-              child: Padding(padding: EdgeInsets.all(15), child: detailBox)),
+          Expanded(flex: 5, child: Padding(padding: EdgeInsets.all(15), child: imageBox)),
+          Expanded(flex: 7, child: Padding(padding: EdgeInsets.all(15), child: detailBox)),
           Spacer(
             flex: 4,
           )

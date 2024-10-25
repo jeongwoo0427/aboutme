@@ -56,6 +56,17 @@ class SharedUtility {
     return result;
   }
 
+  // 24. 02 형식으로 변환
+  String? convertDateTimeToYearAndDateOnlyString(DateTime? dateTime){
+    if(dateTime == null) return null;
+    String year = dateTime.year.toString();
+    String month = dateTime.month.toString();
+    if(month.length ==1){
+      month = '0$month';
+    }
+    return '$year-$month';
+  }
+
   String timeToFormattedString(TimeOfDay time) {
     String hour = '';
     String minute = '';

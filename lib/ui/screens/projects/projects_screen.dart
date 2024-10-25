@@ -40,6 +40,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
 
   bool _isAnimationLoadComplete = false;
   List<ProjectGetDro> _projects = [];
+  ProjectGetDro? _currentProject;
 
   @override
   void dispose() {
@@ -89,7 +90,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
                   child: AnimatedBuilder(
                 animation: _projectDetailAnim,
                 builder: (_, __) {
-                  return Opacity(opacity: _projectDetailAnim.value, child: ProjectDetailsWidget());
+                  return Opacity(opacity: _projectDetailAnim.value, child: ProjectDetailsWidget(project: _currentProject ,));
                 },
               ))),
           AnimatedBuilder(
@@ -123,6 +124,9 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
       await _projectDetailAnimController.reverse();
       await Future.delayed(const Duration(milliseconds: 100));
     }
+    setState(() {
+      _currentProject = _projects[value];
+    });
 
     if (_isAnimationLoadComplete) {
       await Future.delayed(const Duration(milliseconds: 100));
@@ -158,7 +162,9 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
   Future<void> _fetchProjects() async {
     try{
       _projects = await ProjectData().getProjectsV1();
-      setState(() { });
+      setState(() {
+        _currentProject = _projects.firstOrNull;
+      });
     }catch(ex,stack){
       showExceptionDialog(ex,stack);
     }
