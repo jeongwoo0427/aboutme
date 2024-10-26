@@ -28,8 +28,9 @@ class ProjectDetailsWidget extends ConsumerWidget {
       child: Center(
         child: AspectRatio(
             aspectRatio: 5 / 3,
-            child: GlassyContainer(
-              child: Text(''),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network('https://cdn.pixabay.com/animation/2023/01/22/07/18/07-18-28-799_512.gif',fit: BoxFit.fitHeight),
             )),
       ),
     );
