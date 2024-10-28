@@ -1,5 +1,6 @@
 import 'package:aboutme/ui/screens/contact/contact_screen.dart';
 import 'package:aboutme/ui/screens/home/home_screen.dart';
+import 'package:aboutme/ui/screens/projects/projects_manage_screen.dart';
 import 'package:aboutme/ui/screens/projects/projects_screen.dart';
 import 'package:aboutme/ui/screens/skills/skills_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,6 +49,12 @@ final GoRouter appRouter = GoRouter(
           path: 'contact',
           pageBuilder: customPageBuilder(const ContactScreen(), movePageDirection: MovePageDirection.bottomRight),
         ),
+        GoRoute(
+          name: ProjectsManageScreen.routeName,
+          path: 'projects-manage',
+          pageBuilder: customPageBuilder(const ProjectsManageScreen(),type: 'cupertino'),
+        ),
+
       ]
       // routes: <RouteBase>[
       //   // GoRoute(

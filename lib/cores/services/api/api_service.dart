@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 class APIService {
   final Dio dio;
 
+  static const String baseUrl = 'https://clipboardfor.me:3030';
+
   static final APIService _instance = APIService._internal();
 
   factory APIService() {
@@ -12,7 +14,7 @@ class APIService {
 
   APIService._internal() //DIO 싱글톤으로 관리
       : dio = Dio(BaseOptions(
-            baseUrl: 'https://clipboardfor.me:3030',
+            baseUrl: baseUrl,
             receiveTimeout: const Duration(seconds: 5),
             connectTimeout: const Duration(seconds: 5)));
 

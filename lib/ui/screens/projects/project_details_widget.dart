@@ -1,4 +1,7 @@
+import 'package:aboutme/constants/app_assets.dart';
 import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
+import 'package:aboutme/cores/services/api/api_service.dart';
+import 'package:aboutme/cores/services/api/datas/project/data_objects/project_attachment_get.dro.dart';
 import 'package:aboutme/cores/services/api/datas/project/data_objects/project_detail_get.dro.dart';
 import 'package:aboutme/cores/services/api/datas/project/data_objects/project_get.dro.dart';
 import 'package:aboutme/cores/utils/language_utility.dart';
@@ -22,6 +25,8 @@ class ProjectDetailsWidget extends ConsumerWidget {
     final currentLanguage = ref.currentLanguage;
     final List<ProjectDetailGetDro> details = project?.details ?? [];
     final ProjectDetailGetDro? detail = _languageUtility.findDetailByLanguage(language: currentLanguage, details: details);
+    final List<ProjectAttachmentGetDro> attachments = project?.attachments ?? [];
+
 
     final Widget imageBox = MaxSizedBox(
       maxWidth: 600,
@@ -30,7 +35,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
             aspectRatio: 5 / 3,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network('https://cdn.pixabay.com/animation/2023/01/22/07/18/07-18-28-799_512.gif',fit: BoxFit.fitHeight),
+              child: (project ==null || attachments.isEmpty)? Image.asset(AppAssets.BG_IMAGE_BACKGROUND_POLYGON,fit: BoxFit.cover): Image.network('${APIService.baseUrl}/v1/portfolio/project/${project!.no}/attachment/download/${attachments.first.uuid}',fit: BoxFit.cover),
             )),
       ),
     );
