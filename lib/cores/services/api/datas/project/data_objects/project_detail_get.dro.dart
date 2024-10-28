@@ -1,10 +1,10 @@
 class ProjectDetailGetDro {
-  final int no;
-  final int projectNo;
+  final int? no;
+  final int? projectNo;
   final String language;
   final String title;
   final String detail;
-  final DateTime createdAt;
+  final DateTime? createdAt;
   final DateTime? updatedAt;
 
   ProjectDetailGetDro(
@@ -23,7 +23,7 @@ class ProjectDetailGetDro {
         language: map['language'],
         title: map['title'],
         detail: map['detail'],
-        createdAt: DateTime.parse(map['createdAt']),
+        createdAt: map['createdAt'] == null ? null : DateTime.parse(map['createdAt']),
         updatedAt: map['updatedAt'] == null ? null : DateTime.parse(map['updatedAt']));
   }
 

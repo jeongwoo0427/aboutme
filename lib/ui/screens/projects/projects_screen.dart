@@ -176,7 +176,8 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
 
   Future<void> _fetchProjects() async {
     try {
-      _projects = await ProjectData().getProjectsV1();
+      _projects = await ProjectData().getProjectsFromAsset();
+      //_projects = await ProjectData().getProjectsV1();
       setState(() {
         _currentProject = _projects.firstOrNull;
       });

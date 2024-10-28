@@ -27,7 +27,8 @@ class ProjectDetailsWidget extends ConsumerWidget {
     final List<ProjectDetailGetDro> details = project?.details ?? [];
     final ProjectDetailGetDro? detail = _languageUtility.findDetailByLanguage(language: currentLanguage, details: details);
     final List<ProjectAttachmentGetDro> attachments = project?.attachments ?? [];
-
+    final Image imageWidget =  Image.asset('assets/images/projects/${attachments.first.originalFilename}',fit: BoxFit.cover,);
+    //final Image imageWidget =  Image.network('${APIService.baseUrl}/v1/portfolio/project/${project!.no}/attachment/download/${attachments.first.uuid}?${_pageEnteredTime.toString()}',fit: BoxFit.cover,)
 
     final Widget imageBox = MaxSizedBox(
       maxWidth: 600,
@@ -36,7 +37,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
             aspectRatio: 5 / 3,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: (project ==null || attachments.isEmpty)? Image.asset(AppAssets.BG_IMAGE_BACKGROUND_POLYGON,fit: BoxFit.cover): Image.network('${APIService.baseUrl}/v1/portfolio/project/${project!.no}/attachment/download/${attachments.first.uuid}?${_pageEnteredTime.toString()}',fit: BoxFit.cover,),
+              child: (project ==null || attachments.isEmpty)? const Text('No Image'):imageWidget,
             )),
       ),
     );

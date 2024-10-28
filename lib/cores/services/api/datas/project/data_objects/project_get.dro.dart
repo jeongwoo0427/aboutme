@@ -7,7 +7,7 @@ class ProjectGetDro {
   final DateTime periodStart;
   final DateTime periodEnd;
   final String skills;
-  final DateTime createdAt;
+  final DateTime? createdAt;
   final DateTime? updatedAt;
   final List<ProjectDetailGetDro> details;
   final List<ProjectAttachmentGetDro> attachments;
@@ -39,7 +39,7 @@ class ProjectGetDro {
       periodStart: DateTime.parse(map['periodStart']),
       periodEnd: DateTime.parse(map['periodEnd']),
       skills: map['skills'],
-      createdAt: DateTime.parse(map['createdAt']),
+      createdAt: map['createdAt'] == null ? null : DateTime.parse(map['createdAt']),
       updatedAt: map['updatedAt'] == null ? null : DateTime.parse(map['updatedAt']),
       details: details,
       attachments: attachments
