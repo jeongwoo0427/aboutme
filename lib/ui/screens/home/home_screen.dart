@@ -60,8 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Padding(
                   padding: EdgeInsets.all(context.getResponsiveValue(100, 10)),
                   child: Center(
-                      child: Image.network(
-                    'https://static.wixstatic.com/media/214ac5_06ec3f6a31da4945a90ff8638dbec6fd~mv2.gif',
+                      child: Image(
+                    //image: const NetworkImage('https://static.wixstatic.com/media/214ac5_06ec3f6a31da4945a90ff8638dbec6fd~mv2.gif'),
+                    image: const AssetImage(AppAssets.BG_EARTH_ANIM),
                     fit: BoxFit.cover,
                     frameBuilder: (context, child, frame, wasSyncLoaded) {
                       if (wasSyncLoaded) {
@@ -117,9 +118,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 isTablet: isTablet,
                                 delayMs: 2000,
                                 onTap: () async {
-                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
-                                        await context.pushNamed(IntroductionScreen.routeName);
-                                      },
+                                  HomeScreen.dynamicCurrentDirection = MovePageDirection.topLeft;
+                                  await context.pushNamed(IntroductionScreen.routeName);
+                                },
                               ),
                               GlassySectorButton(
                                 sectorTitle: Text('Skills'),
@@ -127,9 +128,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 isTablet: isTablet,
                                 delayMs: 3000,
                                 onTap: () async {
-                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.topRight;
-                                        await context.pushNamed(SkillsScreen.routeName);
-                                      },
+                                  HomeScreen.dynamicCurrentDirection = MovePageDirection.topRight;
+                                  await context.pushNamed(SkillsScreen.routeName);
+                                },
                               ),
                             ],
                           ),
@@ -143,9 +144,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 isTablet: isTablet,
                                 delayMs: 2500,
                                 onTap: () async {
-                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomLeft;
-                                        await context.pushNamed(ProjectsScreen.routeName);
-                                      },
+                                  HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomLeft;
+                                  await context.pushNamed(ProjectsScreen.routeName);
+                                },
                               ),
                               GlassySectorButton(
                                 sectorTitle: Text('Contact'),
@@ -153,9 +154,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 isTablet: isTablet,
                                 delayMs: 3500,
                                 onTap: () async {
-                                        HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomRight;
-                                        await context.pushNamed(ContactScreen.routeName);
-                                      },
+                                  HomeScreen.dynamicCurrentDirection = MovePageDirection.bottomRight;
+                                  await context.pushNamed(ContactScreen.routeName);
+                                },
                               ),
                             ],
                           ),
@@ -191,7 +192,6 @@ class _HomeScreenState extends State<HomeScreen> {
           )),
     );
   }
-
 }
 
 class GlassySectorButton extends StatelessWidget {
