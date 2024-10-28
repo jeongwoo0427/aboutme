@@ -38,6 +38,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    Future.delayed(Duration(milliseconds: 100),(){
+      setState(() {
+        isLoadingEarthImage = false;
+      });
+    });
     super.initState();
   }
 
@@ -60,13 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Padding(
                   padding: EdgeInsets.all(context.getResponsiveValue(100, 10)),
                   child: Center(
-                      child: Image.network(
-                    'https://static.wixstatic.com/media/214ac5_06ec3f6a31da4945a90ff8638dbec6fd~mv2.gif',
+                      child: Image.asset(
+                    AppAssets.BG_EARTH_ANIM,
                     fit: BoxFit.cover,
                     frameBuilder: (context, child, frame, wasSyncLoaded) {
-                      if (wasSyncLoaded) {
-                        return child;
-                      }
                       return AnimatedScale(
                         child: child,
                         scale: isLoadingEarthImage ? 0 : 1,
@@ -74,23 +76,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         curve: Curves.easeOut,
                       );
                     },
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) {
-                        // The child (AnimatedOpacity) is build with loading == true, and then the setState will change loading to false, which trigger the animation
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          setState(() => isLoadingEarthImage = false);
-                        });
-
-                        return child;
-                      }
-                      isLoadingEarthImage = true;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value:
-                              loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
-                        ),
-                      );
-                    },
+                    // loadingBuilder: (context, child, loadingProgress) {
+                    //   if (loadingProgress == null) {
+                    //     // The child (AnimatedOpacity) is build with loading == true, and then the setState will change loading to false, which trigger the animation
+                    //     WidgetsBinding.instance.addPostFrameCallback((_) {
+                    //       setState(() => isLoadingEarthImage = false);
+                    //     });
+                    //
+                    //     return child;
+                    //   }
+                    //   isLoadingEarthImage = true;
+                    //   return Center(
+                    //     child: CircularProgressIndicator(
+                    //       value:
+                    //           loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
+                    //     ),
+                    //   );
+                    // },
                   )),
                 ),
               ),
