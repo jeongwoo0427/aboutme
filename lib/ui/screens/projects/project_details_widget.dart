@@ -6,6 +6,7 @@ import 'package:aboutme/cores/services/api/datas/project/data_objects/project_de
 import 'package:aboutme/cores/services/api/datas/project/data_objects/project_get.dro.dart';
 import 'package:aboutme/cores/utils/language_utility.dart';
 import 'package:aboutme/cores/utils/shared_utility.dart';
+import 'package:aboutme/ui/screens/projects/image_viewer_dialog.dart';
 import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
@@ -27,18 +28,23 @@ class ProjectDetailsWidget extends ConsumerWidget {
     final List<ProjectDetailGetDro> details = project?.details ?? [];
     final ProjectDetailGetDro? detail = _languageUtility.findDetailByLanguage(language: currentLanguage, details: details);
     final List<ProjectAttachmentGetDro> attachments = project?.attachments ?? [];
-    final Image imageWidget =  Image.asset('assets/images/projects/${attachments.first.originalFilename}',fit: BoxFit.cover,);
+    final ImageProvider imageProvider =  AssetImage('assets/images/projects/${attachments.first.originalFilename}',);
     //final Image imageWidget =  Image.network('${APIService.baseUrl}/v1/portfolio/project/${project!.no}/attachment/download/${attachments.first.uuid}?${_pageEnteredTime.toString()}',fit: BoxFit.cover,)
 
-    final Widget imageBox = MaxSizedBox(
-      maxWidth: 600,
-      child: Center(
-        child: AspectRatio(
-            aspectRatio: 5 / 3,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: (project ==null || attachments.isEmpty)? const Text('No Image'):imageWidget,
-            )),
+    final Widget imageBox = GestureDetector(
+      onTap: (){
+        _showImageZoomDialog(context, imageProvider);
+      },
+      child: MaxSizedBox(
+        maxWidth: 600,
+        child: Center(
+          child: AspectRatio(
+              aspectRatio: 5 / 3,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: (project ==null || attachments.isEmpty)? const Text('No Image'):Image(image: imageProvider,fit: BoxFit.cover),
+              )),
+        ),
       ),
     );
 
@@ -135,5 +141,15 @@ class ProjectDetailsWidget extends ConsumerWidget {
         ],
       );
     }
+  }
+
+  Future<void> _showImageZoomDialog(BuildContext context, ImageProvider imageProvider) async {
+    print('onTaP');
+    final result = await showDialog(
+
+      context: context,
+      builder: (context){return ImageViewerDialog(imageProvider: imageProvider,);}
+    );
+
   }
 }
