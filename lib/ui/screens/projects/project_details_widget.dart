@@ -57,7 +57,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
               child: Text(
                 detail?.title ?? '',
                 style: TextStyle(
-                  fontSize: isPotrait ? 28 : 33,
+                  fontSize: isPotrait ? 25 : 30,
                   fontWeight: FontWeight.w700,
                 ),
               )),
@@ -111,7 +111,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
           Spacer(
             flex: 3,
           ),
-          Expanded(flex: 5, child: Padding(padding: EdgeInsets.all(15), child: imageBox)),
+          if(attachments.length>=1)Expanded(flex: 5, child: Padding(padding: EdgeInsets.all(15), child: imageBox)),
           Expanded(flex: 7, child: Padding(padding: EdgeInsets.all(15), child: detailBox)),
           Spacer(
             flex: 4,
@@ -122,10 +122,10 @@ class ProjectDetailsWidget extends ConsumerWidget {
       return Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Spacer(
+          if(attachments.length>=1)Spacer(
             flex: 4,
           ),
-          Expanded(flex: 6, child: imageBox),
+          if(attachments.length>=1)Expanded(flex: 6, child: imageBox),
           Spacer(flex: 1),
           Expanded(flex: 8, child: detailBox),
           Spacer(
