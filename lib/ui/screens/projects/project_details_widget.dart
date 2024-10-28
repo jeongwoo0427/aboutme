@@ -18,6 +18,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
 
   final SharedUtility _sharedUtility = SharedUtility();
   final LanguageUtility _languageUtility = LanguageUtility();
+  final DateTime _pageEnteredTime = DateTime.now();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,7 +36,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
             aspectRatio: 5 / 3,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: (project ==null || attachments.isEmpty)? Image.asset(AppAssets.BG_IMAGE_BACKGROUND_POLYGON,fit: BoxFit.cover): Image.network('${APIService.baseUrl}/v1/portfolio/project/${project!.no}/attachment/download/${attachments.first.uuid}',fit: BoxFit.cover),
+              child: (project ==null || attachments.isEmpty)? Image.asset(AppAssets.BG_IMAGE_BACKGROUND_POLYGON,fit: BoxFit.cover): Image.network('${APIService.baseUrl}/v1/portfolio/project/${project!.no}/attachment/download/${attachments.first.uuid}?${_pageEnteredTime.toString()}',fit: BoxFit.cover,),
             )),
       ),
     );
