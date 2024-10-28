@@ -73,6 +73,28 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
       appbarTitle: Text('Projects'),
       body: Stack(
         children: [
+
+
+          Positioned.fill(
+              child: Center(
+                child: ProjectDetailsWidget(
+                  project: _currentProject,
+                ),
+              )),
+
+          Positioned.fill(
+            child: AnimatedBuilder(
+              animation: _projectDetailAnim,
+              builder: (_, __) {
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: context.colorScheme.surface.withOpacity(_projectDetailAnim.value),
+                );
+              },
+            ),
+          ),
+
           Positioned.fill(
             child: Center(
               child: AnimatedBuilder(
@@ -82,20 +104,6 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
                 },
               ),
             ),
-          ),
-          AnimatedBuilder(
-            animation: _projectDetailAnim,
-            builder: (_, __) {
-              return Positioned.fill(
-                  child: Opacity(
-                opacity: _projectDetailAnim.value,
-                child: Center(
-                  child: ProjectDetailsWidget(
-                    project: _currentProject,
-                  ),
-                ),
-              ));
-            },
           ),
           AnimatedBuilder(
             animation: _pageToBottomAnim,
@@ -152,7 +160,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
     _pageToBottomAnim = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _pageToBottomAnimController, curve: Curves.ease));
 
     _projectDetailAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
-    _projectDetailAnim = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _projectDetailAnimController, curve: Curves.ease));
+    _projectDetailAnim = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _projectDetailAnimController, curve: Curves.ease));
   }
 
   Future<void> _startAnimations() async {
