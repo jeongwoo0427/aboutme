@@ -273,5 +273,34 @@
         "originalFilename": "discordbot_1.png"
       }
     ]
+  },
+  {
+    "no": 10,
+    "projectCode": "jwapi",
+    "periodStart": "2023-04-05",
+    "skills": "Node.js, Nest.js, MySQL, SocketIO, Ubuntu, PM2",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "개인 API",
+        "detail": "여러 개인 프로젝트를 진행하다 보니 자잘한 기능들에 대해 서버 연동이 필요한 경우가 생겼습니다.\n이를 위해 개인용 API 서버를 구축하였고, 저의 모든 백엔드 기술을 결합하여 다양한 프로젝트에 연동하고 있습니다. (이 포트폴리오 웹사이트의 일부 기능도 포함)\n또한, 이 API 서버는 다양한 테스트를 위한 도화지 역할도 하고 있습니다."
+      },
+      {
+        "language": "en",
+        "title": "Personal API",
+        "detail": "As I worked on various personal projects, I found the need for server integration for small functionalities.\nTo address this, I built a personal API server that incorporates all my backend skills, linking it with various projects, including some features on this portfolio website.\nAdditionally, this API server serves as a canvas for testing diverse experiments."
+      },
+      {
+        "language": "jp",
+        "title": "個人API",
+        "detail": "さまざまな個人プロジェクトを進める中で、小さな機能にサーバー連携が必要になることがありました。\nそのため、個人用APIサーバーを構築し、自分のすべてのバックエンド技術を集約し、さまざまなプロジェクトに連携しています。（このポートフォリオウェブサイトの一部機能も含む）\nまた、このAPIサーバーはさまざまなテストのためのキャンバスの役割も果たしています。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "jwapi_1.png"
+      }
+    ]
   }
 ]
