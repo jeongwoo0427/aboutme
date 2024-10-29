@@ -59,5 +59,129 @@
         "originalFilename": "gogoroutine_1.png"
       }
     ]
+  },
+  {
+    "no": 3,
+    "projectCode": "diadoo",
+    "periodStart": "2020-09-13",
+    "periodEnd": "2020-12-05",
+    "skills": ".Net, C#, MSSQL",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "Diadoo",
+        "detail": "저의 졸업작품인 캘린더 프로그램입니다.\n팀원들과 협업을 하며 일정을 맞추는데 쓸 수 있는 협업툴이 필요하였고, 직접 이를 구현하자 생각하고 만들게 된 프로그램입니다."
+      },
+      {
+        "language": "en",
+        "title": "Diadoo",
+        "detail": "This is my graduation project, a calendar program. Our team needed a collaboration tool to help manage and align schedules effectively, so we decided to develop this program ourselves."
+      },
+      {
+        "language": "jp",
+        "title": "Diadoo",
+        "detail": "卒業制作として作成したカレンダープログラムです。チームメンバーと協力してスケジュールを調整するために、コラボレーションツールが必要でした。そのため、自分たちで実装しようと考えて作成したプログラムです。"
+      }
+
+
+    ],
+    "attachments": [
+      {
+        "originalFilename": "diadoo_1.png"
+      }
+    ]
+  },
+  {
+    "no": 4,
+    "projectCode": "meting",
+    "periodStart": "2021-02-13",
+    "periodEnd": "2021-02-18",
+    "skills": "Flutter, Firebase",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "MeTing",
+        "detail": "스마트폰을 아이폰으로 바꾸면서 크로스플랫폼의 필요성을 느꼈고, 플러터의 매력에 빠져 21년 초에 학습을 시작했습니다.\n스토어에 출시한 첫 플러터 프로젝트로, 비록 프로토타입 단계의 앱이었지만, 회의실에 QR 코드를 배치하여 사용 중인 회의실을 Firebase를 통해 실시간으로 공유할 수 있는 앱을 개발했습니다.\n덕분에 아이디어 실현의 장벽을 크게 낮출 수 있었습니다."
+      },
+      {
+        "language": "en",
+        "title": "MeTing",
+        "detail": "When I switched my smartphone to an iPhone, I realized the need for cross-platform solutions and became fascinated with Flutter.\nStarting in early 2021, I created my first Flutter project and released it on the store.\nAlthough it was a prototype, this app enabled real-time sharing of occupied meeting rooms by placing QR codes in the rooms and using Firebase. This experience greatly lowered the barrier to bringing my ideas to life."
+      },
+      {
+        "language": "jp",
+        "title": "MeTing",
+        "detail": "スマートフォンをiPhoneに変更したことで、クロスプラットフォームの必要性を感じ、Flutterの魅力に惹かれました。\n2021年初めから学習を始め、ストアにリリースした最初のFlutterプロジェクトです。\nプロトタイプ段階のアプリでしたが、会議室にQRコードを配置し、Firebaseを使って使用中の会議室をリアルタイムで共有できるアプリを開発しました。\nこれにより、アイデア実現の壁を大きく下げることができました。"
+      }
+
+    ],
+    "attachments": [
+      {
+        "originalFilename": "meting_1.png"
+      }
+    ]
+  },
+  {
+    "no": 5,
+    "projectCode": "kat",
+    "periodStart": "2021-05-13",
+    "periodEnd": "2022-08-07",
+    "skills": "Flutter, SQFLite",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "ADHD 검사 시스템",
+        "detail": "장기간 맡아 진행한 플러터 프로젝트입니다.\n주로 소아 또는 청소년을 대상으로 ADHD 검사를 수행하는 앱으로, 내담자 관리, 5가지 검사 시행, 검사별 보고서 출력, 라이선스 기능, 데이터 백업, 오류 로깅, 자동 업데이트 배포 등의 기능을 탑재하여 출시했습니다.\n출시 후 200여 개의 기관에 판매 성과를 이루었으며, 지속적으로 피드백을 반영하고 기능을 개선하고 있습니다."
+      },
+      {
+        "language": "en",
+        "title": "ADHD Testing System",
+        "detail": "This is a long-term Flutter project.\nThe app is primarily designed for conducting ADHD assessments for children and adolescents, featuring client management, five types of assessments, report generation for each test, licensing, data backup, error logging, and automatic update deployment.\nSince its launch, it has achieved sales in over 200 institutions, and ongoing feedback and functionality improvements have been implemented."
+      },
+      {
+        "language": "jp",
+        "title": "ADHD検査システム",
+        "detail": "長期間担当しているFlutterプロジェクトです。\n主に小児または青少年を対象としたADHD検査を実施するためのアプリで、クライアント管理、5種類の検査実施、検査別レポート出力、ライセンス機能、データバックアップ、エラーロギング、自動更新配信などの機能を備えてリリースしました。\nリリース後、200以上の機関に販売され、継続的なフィードバック反映と機能改善を行っています。"
+      }
+
+    ],
+    "attachments": [
+      {
+        "originalFilename": "kat_1.png"
+      }
+    ]
+  },
+  {
+    "no": 6,
+    "projectCode": "pretestmanager",
+    "periodStart": "2021-09-22",
+    "periodEnd": "2022-10-03",
+    "skills": "Flutter, ExpressJS, MySQL",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "모의고사 감독관 앱",
+        "detail": "사내에서 운영 중인 서비스 중 간호대학생을 위한 온라인 모의고사 플랫폼이 있습니다.\n보통 학생들을 중심으로 모의고사가 진행되지만, 교수님이나 조교들이 실시간으로 학생들의 응시 상태와 정보를 관리하고 싶다는 요청이 많았습니다.\n이에 따라 Flutter Web 형태로 제작하여, 진행 상황 확인, 학생 정보 수정 등의 기능을 갖춘 프로젝트를 배포했습니다."
+      },
+      {
+        "language": "en",
+        "title": "Exam Supervisor App",
+        "detail": "Within our company, we operate an online mock exam platform for nursing students.\nTypically, the platform is student-focused, but we frequently received requests from supervisors, such as professors and teaching assistants, to manage student participation status and information in real-time.\nIn response, I developed and deployed a Flutter Web-based project that includes features for tracking progress, editing student information, and more."
+      },
+      {
+        "language": "jp",
+        "title": "模擬試験監督アプリ",
+        "detail": "社内で運営中のサービスの一つに、看護学生向けのオンライン模擬試験プラットフォームがあります。\n通常は学生主体で模擬試験が行われますが、教授や助手から、学生の受験状況や情報をリアルタイムで管理したいという要望が多く寄せられていました。\nこれに応えて、Flutter Web形式で進行状況の確認や学生情報の修正などの機能を搭載したプロジェクトを展開しました。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "pretest_manager_1.png"
+      }
+    ]
   }
 ]

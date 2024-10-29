@@ -73,10 +73,10 @@ class ProjectDetailsWidget extends ConsumerWidget {
                 ),
               )),
           Expanded(
-            flex: 8,
+            flex: 10,
             child: Text(
               detail?.detail ?? '',
-              style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w300),
+              style: TextStyle(fontSize: isPotrait ? 13 : 15, fontWeight: FontWeight.w300),
             ),
           ),
           Spacer(
@@ -98,7 +98,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
             ),
           ),
           Expanded(
-              flex: 3,
+              flex: 2,
               child: Row(
                 children: [
                   Text(
