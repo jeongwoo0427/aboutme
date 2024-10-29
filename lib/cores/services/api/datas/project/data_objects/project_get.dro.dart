@@ -5,7 +5,7 @@ class ProjectGetDro {
   final int no;
   final String projectCode;
   final DateTime periodStart;
-  final DateTime periodEnd;
+  final DateTime? periodEnd;
   final String skills;
   final bool isHide;
   final DateTime? createdAt;
@@ -39,7 +39,7 @@ class ProjectGetDro {
         no: map['no'],
         projectCode: map['projectCode'],
         periodStart: DateTime.parse(map['periodStart']),
-        periodEnd: DateTime.parse(map['periodEnd']),
+        periodEnd: map['periodEnd'] == null ? null : DateTime.parse(map['periodEnd']),
         skills: map['skills'],
         isHide: map['isHide']??false,
         createdAt: map['createdAt'] == null ? null : DateTime.parse(map['createdAt']),

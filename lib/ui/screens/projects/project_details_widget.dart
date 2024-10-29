@@ -73,7 +73,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
                 ),
               )),
           Expanded(
-            flex: 10,
+            flex: 11,
             child: Text(
               detail?.detail ?? '',
               style: TextStyle(fontSize: isPotrait ? 13 : 15, fontWeight: FontWeight.w300),
@@ -91,7 +91,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
                   style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w900),
                 ),
                 Text(
-                  '${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodStart)} - ${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodEnd)}',
+                  '${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodStart)} - ${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodEnd)??'Now'}',
                   style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w500),
                 ),
               ],
@@ -120,10 +120,10 @@ class ProjectDetailsWidget extends ConsumerWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Spacer(
-            flex: 3,
+            flex: 2,
           ),
           if(attachments.length>=1)Expanded(flex: 5, child: Padding(padding: EdgeInsets.all(15), child: imageBox)),
-          Expanded(flex: 7, child: Padding(padding: EdgeInsets.all(15), child: detailBox)),
+          Expanded(flex: 8, child: Padding(padding: EdgeInsets.all(15), child: detailBox)),
           Spacer(
             flex: 4,
           )
