@@ -1,4 +1,5 @@
 import 'package:aboutme/constants/app_assets.dart';
+import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
 import 'package:aboutme/cores/services/api/api_service.dart';
 import 'package:aboutme/cores/services/api/datas/project/data_objects/project_attachment_get.dro.dart';
@@ -28,7 +29,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
     final List<ProjectDetailGetDro> details = project?.details ?? [];
     final ProjectDetailGetDro? detail = _languageUtility.findDetailByLanguage(language: currentLanguage, details: details);
     final List<ProjectAttachmentGetDro> attachments = project?.attachments ?? [];
-    final ImageProvider imageProvider =  AssetImage('assets/images/projects/${attachments.first.originalFilename}',);
+    final ImageProvider imageProvider =  AssetImage('assets/images/projects/${attachments.firstOrNull?.originalFilename??''}',);
     //final Image imageWidget =  Image.network('${APIService.baseUrl}/v1/portfolio/project/${project!.no}/attachment/download/${attachments.first.uuid}?${_pageEnteredTime.toString()}',fit: BoxFit.cover,)
 
     final Widget imageBox = GestureDetector(
@@ -42,7 +43,10 @@ class ProjectDetailsWidget extends ConsumerWidget {
               aspectRatio: 5 / 3,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: (project ==null || attachments.isEmpty)? const Text('No Image'):Image(image: imageProvider,fit: BoxFit.cover),
+                child: (project ==null || attachments.isEmpty)? const Text('No Image'):Stack(children: [
+                  Positioned.fill(child: Center(child: CircularProgressIndicator(color: context.colorScheme.onSurface,),),),
+                  Positioned.fill(child: Image(image: imageProvider,fit: BoxFit.cover),)
+                ],),
               )),
         ),
       ),
@@ -144,9 +148,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
   }
 
   Future<void> _showImageZoomDialog(BuildContext context, ImageProvider imageProvider) async {
-    print('onTaP');
     final result = await showDialog(
-
       context: context,
       builder: (context){return ImageViewerDialog(imageProvider: imageProvider,);}
     );

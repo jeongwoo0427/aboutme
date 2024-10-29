@@ -20,8 +20,29 @@ class ImageViewerDialog extends StatelessWidget {
           width: context.screenSize.width * 0.9,
           height: context.screenSize.height * 0.9,
           color: context.colorScheme.surface,
-          child: PhotoView(
-            imageProvider: imageProvider,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: PhotoView(
+                  imageProvider: imageProvider,
+
+                ),
+              ),
+              Positioned(
+                top: context.getResponsiveValue(20, 10),
+                right: context.getResponsiveValue(20, 10),
+                child: IconButton(
+                  icon: Icon(Icons.close,
+                      size: context.getResponsiveValue(
+                        30,
+                        20,
+                      )),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              )
+            ],
           ),
         ),
       ),

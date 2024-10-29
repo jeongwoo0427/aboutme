@@ -86,10 +86,12 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
             child: AnimatedBuilder(
               animation: _projectDetailAnim,
               builder: (_, __) {
-                return Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  color: context.colorScheme.surface.withOpacity(_projectDetailAnim.value),
+                return IgnorePointer(
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: context.colorScheme.surface.withOpacity(_projectDetailAnim.value),
+                  ),
                 );
               },
             ),
@@ -100,7 +102,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
               child: AnimatedBuilder(
                 animation: _progressHideAnim,
                 builder: (_, __) {
-                  return Transform.scale(scale: _progressHideAnim.value, child: LoadingAnimationWidget.fourRotatingDots(color: Colors.white, size: 50));
+                  return IgnorePointer(child: Transform.scale(scale: _progressHideAnim.value, child: LoadingAnimationWidget.fourRotatingDots(color: Colors.white, size: 50)));
                 },
               ),
             ),

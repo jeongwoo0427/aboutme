@@ -27,5 +27,34 @@
         "originalFilename": "test.png"
       }
     ]
+  },
+  {
+    "no": 2,
+    "projectCode": "giftest",
+    "periodStart": "2020-02-09",
+    "periodEnd": "2020-05-03",
+    "skills": "GIF",
+    "details": [
+      {
+        "language": "kr",
+        "title": "움직이는 사진 테스트",
+        "detail": "이것은 움직이는 사진을 보기 위한 용도입니다."
+      },
+      {
+        "language": "en",
+        "title": "Test Project",
+        "detail": "This is for Gif"
+      },
+      {
+        "language": "jp",
+        "title": "타스트노 프로작또",
+        "detail": "코노 지아이에푸"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "gif_test.gif"
+      }
+    ]
   }
 ]
