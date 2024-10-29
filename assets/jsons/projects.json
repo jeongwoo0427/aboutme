@@ -183,5 +183,35 @@
         "originalFilename": "pretest_manager_1.png"
       }
     ]
+  },
+  {
+    "no": 7,
+    "projectCode": "bottari",
+    "periodStart": "2022-03-13",
+    "periodEnd": "2022-05-25",
+    "skills": "Flutter, Firebase",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "보따리",
+        "detail": "플레이스토어에 세 번째로 배포한 플러터 프로젝트입니다.\n예전에 인상 깊게 사용했던 앱 중 하나가 익명으로 서로 하고 싶었던 이야기를 편하게 나눌 수 있는 앱이었는데, 그 앱에서 영감을 받아 개발하게 되었습니다.\n옛날에 할머니가 들려주시던 이야기 보따리의 추억을 담아 '보따리'라는 이름을 붙였으며, 누구나 이야기꾼이 될 수 있는 플랫폼을 만들고자 했습니다.\n현재 플레이스토어에서 다운로드할 수 있으며, 사용자들의 적극적인 피드백을 받고 있습니다."
+      },
+      {
+        "language": "en",
+        "title": "Bottari",
+        "detail": "This is my third Flutter project released on the Play Store.\nInspired by an app I used a while ago, where people could comfortably share their thoughts anonymously, I developed 'Bottari,' a name reminiscent of the storytelling bundle my grandmother used to share tales from.\nThe goal is to create a platform where anyone can become a storyteller.\nIt is currently available on the Play Store, and I am actively collecting user feedback to improve it."
+      },
+      {
+        "language": "jp",
+        "title": "Bottari",
+        "detail": "これは、Playストアに3回目に公開したFlutterプロジェクトです。\n以前、匿名で自分の言いたいことを気軽に話せるアプリを使ったことがあり、そのアプリからインスピレーションを受けて開発しました。\n昔、祖母が話してくれた物語の思い出を込め、「ボッタリ（包み）」という名前を付け、誰もが語り手になれるプラットフォームを作りたいと考えました。\n現在、Playストアでダウンロードでき、ユーザーから積極的にフィードバックを受け取っています。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "bottari_1.png"
+      }
+    ]
   }
 ]
