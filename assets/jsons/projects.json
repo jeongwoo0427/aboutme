@@ -332,5 +332,36 @@
         "originalFilename": "recog_1.png"
       }
     ]
+  },
+  {
+    "no": 12,
+    "projectCode": "zioyouemailcrawler",
+    "periodStart": "2023-12-05",
+    "periodEnd": "2023-12-12",
+    "skills": "Flutter, Node.js, Nest.js",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "이메일 백업기",
+        "detail": "회사 내에서 기존에 사용하던 'Zioyou'라는 그룹웨어를 변경하게 되었는데, 그룹웨어에 있는 400만 통의 사내 메일을 백업해야 했습니다.\n무조건 자동화 방법을 찾아야 했고, 그룹웨어의 모든 이벤트를 크롬 WebInspector로 조사하던 중 모바일 API로 데이터를 추출할 수 있다는 것을 알게 되었습니다.\n약 7일간 백업 작업을 진행했으며, 첨부 파일은 별도로 구축한 이메일 첨부 파일 서버에 저장하고, 백업된 EML 파일에 다운로드 링크를 추가해 프로젝트를 성공적으로 마무리할 수 있었습니다."
+      },
+      {
+        "language": "en",
+        "title": "Email Backup Tool",
+        "detail": "Our company decided to switch from the existing groupware, 'Zioyou,' and needed to back up 4,000,000 internal emails.\nI needed to find a way to automate this process, and after investigating all groupware events using Chrome WebInspector, I discovered that I could extract data via the mobile API.\nThe backup took about 7 days, during which I stored attachments on a separate email attachment server and added download links in the backed-up EML files, successfully completing the project."
+      },
+      {
+        "language": "jp",
+        "title": "メールバックアップツール",
+        "detail": "社内で使用していた『Zioyou』というグループウェアを変更することになり、グループウェア上の400万通の社内メールをバックアップする必要がありました。\nそこで自動化方法を探すことになり、Chrome WebInspectorでグループウェアイベントを調査していると、モバイルAPIでデータを抽出できることがわかりました。\n約7日間バックアップ作業を行い、添付ファイルは別途構築したメール添付ファイルサーバーに保存し、バックアップされたEMLファイルにダウンロードリンクを追加してプロジェクトを無事に完了することができました。"
+      }
+
+    ],
+    "attachments": [
+      {
+        "originalFilename": "zioyou_email_crawler_1.png"
+      }
+    ]
   }
 ]
