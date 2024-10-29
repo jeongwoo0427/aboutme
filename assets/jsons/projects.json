@@ -278,7 +278,7 @@
     "no": 10,
     "projectCode": "jwapi",
     "periodStart": "2023-04-05",
-    "skills": "Node.js, Nest.js, MySQL, SocketIO, Ubuntu, PM2",
+    "skills": "Node.js, Nest.js, MariaDB, SocketIO, PM2",
     "isHide": false,
     "details": [
       {
@@ -300,6 +300,36 @@
     "attachments": [
       {
         "originalFilename": "jwapi_1.png"
+      }
+    ]
+  },
+  {
+    "no": 11,
+    "projectCode": "recog",
+    "periodStart": "2023-06-05",
+    "periodEnd": "2023-11-04",
+    "skills": "Flutter, Node.js, Nest.js, MariaDB",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "훈련 관리 시스템",
+        "detail": "디지털 훈련과 관련된 프로젝트가 시작되었으나, 팀에 Back-Office 개발 인력이 부족하여 제가 직접 프로젝트를 맡게 되었습니다.\n5개월 내에 완료해야 하는 프로젝트였기에 빠르게 진행해야 했고, 주력 기술인 Flutter를 활용하여 Native Web 기술 없이도 무리 없이 Web 구현을 할 수 있다고 판단하여 개발을 진행했습니다.\nAPI 서버와 연동하여 모의고사 형식의 응시, 사용자 관리, 권한 관리, 결제 모듈, 라이선스 관리 등의 기능을 제공하게 되었습니다."
+      },
+      {
+        "language": "en",
+        "title": "Training Management System",
+        "detail": "A project related to digital training began, but due to a shortage of Back-Office development resources in the team, I took on the project myself.\nWith only three months to complete it, rapid progress was essential. I determined that using my primary skill, Flutter, would allow for efficient web implementation without Native Web technology.\nThe system integrates with an API server and provides features such as mock exam participation, user management, permission control, payment module, and license management."
+      },
+      {
+        "language": "jp",
+        "title": "トレーニング管理システム",
+        "detail": "デジタルトレーニングに関連するプロジェクトが始まりましたが、チーム内でBack-Officeを開発する人材が不足していたため、私が直接プロジェクトを担当することになりました。\n3ヶ月以内に完了する必要があり、迅速な進行が求められましたが、私の主力技術であるFlutterを使えば、Native Web技術なしでも問題なくWeb実装が可能であると判断し、開発を進めました。\nAPIサーバーと連携し、模擬試験形式の受験、ユーザー管理、権限管理、決済モジュール、ライセンス管理などの機能を提供しています。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "recog_1.png"
       }
     ]
   }
