@@ -158,7 +158,7 @@
     "no": 6,
     "projectCode": "pretestmanager",
     "periodStart": "2021-09-22",
-    "periodEnd": "2022-10-03",
+    "periodEnd": "2021-10-03",
     "skills": "Flutter, ExpressJS, MySQL",
     "isHide": false,
     "details": [
@@ -217,8 +217,8 @@
   {
     "no": 8,
     "projectCode": "bannermaker",
-    "periodStart": "2022-06-13",
-    "periodEnd": "2022-06-17",
+    "periodStart": "2022-07-13",
+    "periodEnd": "2022-07-17",
     "skills": "Flutter",
     "isHide": false,
     "details": [
@@ -241,6 +241,36 @@
     "attachments": [
       {
         "originalFilename": "bannermaker_1.png"
+      }
+    ]
+  },
+  {
+    "no": 9,
+    "projectCode": "discordbot",
+    "periodStart": "2022-10-05",
+    "periodEnd": "2023-01-12",
+    "skills": "Node.js, Sequelize, MySQL",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "권병덕",
+        "detail": "여가 시간에 주로 친구들과 디스코드를 통해 활동합니다.\n디스코드에서는 각 서버에서 봇을 사용할 수 있는데, 기존 TTS 봇들이 자주 셧다운되거나 성능 저하 문제가 발생했습니다.\n또한, 자유롭게 음성을 선택할 수 없어 발표자를 구분하기 어려운 점이 있었습니다.\n이 기회에 그동안 갈고닦은 NodeJS 실력을 발휘해 봇을 구현하기 시작했으며, TTS 외에도 다양한 활동에 필요한 기능들을 추가했습니다.\n현재도 활발히 사용 중이며, 계속해서 개선 사항을 반영하고 있습니다. 참고로 '권병덕'은 독립운동가의 성함을 따서 만들었습니다."
+      },
+      {
+        "language": "en",
+        "title": "Discord Bot",
+        "detail": "In my free time, I often interact with friends on Discord.\nWhile each server can utilize bots, existing TTS bots frequently faced shutdowns or performance issues.\nAdditionally, it was difficult to distinguish between speakers, as there was no option for flexible voice selection.\nI took this opportunity to apply my NodeJS skills and started developing my own bot, incorporating not only TTS but also various features to enhance our activities. The bot is actively used, and I am continuously implementing improvements."
+      },
+      {
+        "language": "jp",
+        "title": "Discord Bot",
+        "detail": "余暇時間に主に友人とDiscordを通じて活動しています。\nDiscordでは各サーバーでボットを利用できますが、既存のTTSボットは頻繁にシャットダウンしたり、性能が低下する問題がありました。\nまた、自由な音声選択ができないため、発表者を区別するのが難しい点もありました。\nこの機会に、これまで磨いてきたNodeJSのスキルを活かしてボットの開発を開始し、TTSだけでなく活動に必要なさまざまな機能も追加しました。\n現在も活発に使用しており、改善点を継続して反映しています。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "discordbot_1.png"
       }
     ]
   }

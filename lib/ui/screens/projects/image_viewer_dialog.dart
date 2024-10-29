@@ -25,7 +25,7 @@ class ImageViewerDialog extends StatelessWidget {
               Positioned.fill(
                 child: PhotoView(
                   imageProvider: imageProvider,
-
+                  filterQuality: FilterQuality.high,
                 ),
               ),
               Positioned(
