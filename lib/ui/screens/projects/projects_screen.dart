@@ -87,6 +87,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
               animation: _projectDetailAnim,
               builder: (_, __) {
                 return IgnorePointer(
+                  ignoring: _isAnimationLoadComplete,
                   child: Container(
                     width: double.infinity,
                     height: double.infinity,
@@ -173,12 +174,16 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
     await _pageToBottomAnimController.forward();
     await _projectDetailAnimController.forward();
 
-    _isAnimationLoadComplete = true;
+    setState(() {
+      _isAnimationLoadComplete = true;
+    });
+
   }
 
   Future<void> _fetchProjects() async {
     try {
-      _projects = await ProjectData().getProjectsFromAsset();
+      final projects = await ProjectData().getProjectsFromAsset();
+      _projects = projects.where((element)=> element.isHide==false).toList();
       //_projects = await ProjectData().getProjectsV1();
       setState(() {
         _currentProject = _projects.firstOrNull;

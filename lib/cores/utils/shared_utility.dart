@@ -64,7 +64,7 @@ class SharedUtility {
     if(month.length ==1){
       month = '0$month';
     }
-    return '$year-$month';
+    return '$year.$month';
   }
 
   String timeToFormattedString(TimeOfDay time) {

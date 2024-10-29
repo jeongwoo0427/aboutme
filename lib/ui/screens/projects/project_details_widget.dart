@@ -91,7 +91,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
                   style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w900),
                 ),
                 Text(
-                  '${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodStart)} ~ ${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodEnd)}',
+                  '${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodStart)} - ${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodEnd)}',
                   style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w500),
                 ),
               ],

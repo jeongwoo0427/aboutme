@@ -7,6 +7,7 @@ class ProjectGetDro {
   final DateTime periodStart;
   final DateTime periodEnd;
   final String skills;
+  final bool isHide;
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final List<ProjectDetailGetDro> details;
@@ -18,6 +19,7 @@ class ProjectGetDro {
       required this.periodStart,
       required this.periodEnd,
       required this.skills,
+      required this.isHide,
       required this.createdAt,
       required this.updatedAt,
       required this.details,
@@ -34,15 +36,15 @@ class ProjectGetDro {
       attachments.add(ProjectAttachmentGetDro.fromMap(map['attachments'][i]));
     }
     return ProjectGetDro(
-      no: map['no'],
-      projectCode: map['projectCode'],
-      periodStart: DateTime.parse(map['periodStart']),
-      periodEnd: DateTime.parse(map['periodEnd']),
-      skills: map['skills'],
-      createdAt: map['createdAt'] == null ? null : DateTime.parse(map['createdAt']),
-      updatedAt: map['updatedAt'] == null ? null : DateTime.parse(map['updatedAt']),
-      details: details,
-      attachments: attachments
-    );
+        no: map['no'],
+        projectCode: map['projectCode'],
+        periodStart: DateTime.parse(map['periodStart']),
+        periodEnd: DateTime.parse(map['periodEnd']),
+        skills: map['skills'],
+        isHide: map['isHide']??false,
+        createdAt: map['createdAt'] == null ? null : DateTime.parse(map['createdAt']),
+        updatedAt: map['updatedAt'] == null ? null : DateTime.parse(map['updatedAt']),
+        details: details,
+        attachments: attachments);
   }
 }
