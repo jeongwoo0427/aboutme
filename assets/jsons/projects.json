@@ -336,8 +336,8 @@
   {
     "no": 12,
     "projectCode": "zioyouemailcrawler",
-    "periodStart": "2023-12-05",
-    "periodEnd": "2023-12-12",
+    "periodStart": "2024-02-05",
+    "periodEnd": "2024-02-12",
     "skills": "Flutter, Node.js, Nest.js",
     "isHide": false,
     "details": [
