@@ -41,6 +41,7 @@ class ProjectPageWidget extends ConsumerWidget {
                           child: Text(
                             LanguageUtility().findDetailByLanguage(language: ref.currentLanguage, details: projects[index].details)?.title ?? '',
                             style: TextStyle(fontSize: context.getResponsiveValue(18, 12), fontWeight: FontWeight.w700),
+                            textAlign: TextAlign.center,
                           ),
                         )),
                   ));

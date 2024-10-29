@@ -213,5 +213,35 @@
         "originalFilename": "bottari_1.png"
       }
     ]
+  },
+  {
+    "no": 8,
+    "projectCode": "bannermaker",
+    "periodStart": "2022-06-13",
+    "periodEnd": "2022-06-17",
+    "skills": "Flutter",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "스플래툰 배너 제작기",
+        "detail": "제가 좋아하는 TPS 게임인 닌텐도의 '스플래툰'이라는 게임이 있습니다.\n이 게임에서는 사용자마다 자신만의 배너를 꾸밀 수 있지만, 게임 내에서 얻은 배너 이미지로만 꾸밀 수 있어 원하는 디자인을 만들기 어려웠습니다.\n또한 원하는 배너를 아크릴 키링으로 제작하고 싶었기 때문에, 한글 지원, 커스텀 이미지, 배지 크기 조정 등의 기능을 포함한 간단한 플러터 웹 툴을 제작하여 배너를 커스터마이징하고 추출할 수 있게 했습니다."
+      },
+      {
+        "language": "en",
+        "title": "Splatoon Banner Creator",
+        "detail": "There is a TPS game I love called 'Splatoon' by Nintendo.\nIn this game, each user can design their own banner, but customization is limited to images earned within the game, making it difficult to create a banner exactly as I wanted.\nTo make banners that could be used as acrylic keychains, I created a simple Flutter web tool that provides features such as Korean language support, custom images, badge resizing, and more, allowing users to customize and extract their desired banners."
+      },
+      {
+        "language": "jp",
+        "title": "スプラトゥーンバナー制作ツール",
+        "detail": "私が好きなTPSゲームに任天堂の『スプラトゥーン』があります。\nこのゲームでは、各ユーザーが自分のバナーをカスタマイズできますが、ゲーム内で獲得したバナー画像しか使えないため、理想のデザインを作るのが難しいです。\n自分が望むバナーをアクリルキーホルダーとして制作するため、韓国語対応、カスタム画像、バッジサイズ調整などの機能を含む簡単なFlutter Webツールを制作し、カスタムバナーの生成と抽出を可能にしました。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "bannermaker_1.png"
+      }
+    ]
   }
 ]
