@@ -41,12 +41,18 @@ class ProjectDetailsWidget extends ConsumerWidget {
         child: Center(
           child: AspectRatio(
               aspectRatio: 5 / 3,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: (project ==null || attachments.isEmpty)? const Text('No Image'):Stack(children: [
-                  Positioned.fill(child: Center(child: CircularProgressIndicator(color: context.colorScheme.onSurface,),),),
-                  Positioned.fill(child: Image(image: imageProvider,fit: BoxFit.cover),)
-                ],),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(21),
+                  border: Border.all(color: context.colorScheme.onSurface,width: 1)
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: (project ==null || attachments.isEmpty)? const Text('No Image'):Stack(children: [
+                    Positioned.fill(child: Center(child: CircularProgressIndicator(color: context.colorScheme.onSurface,),),),
+                    Positioned.fill(child: Image(image: imageProvider,fit: BoxFit.cover),)
+                  ],),
+                ),
               )),
         ),
       ),
