@@ -1,6 +1,7 @@
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class ImageViewerDialog extends StatelessWidget {
   final double borderRadiusCircular;
@@ -10,15 +11,19 @@ class ImageViewerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final bool isTablet = context.getResponsiveValue(false, true);
+
     return Dialog(
+      insetPadding: isTablet?EdgeInsets.zero:null,
       backgroundColor: Colors.transparent,
       shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadiusCircular), side: BorderSide(color: context.colorScheme.onSurface, width: 1)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(isTablet?0:borderRadiusCircular), side: BorderSide(color: isTablet?Colors.transparent:context.colorScheme.onSurface, width: 1)),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadiusCircular),
+        borderRadius: BorderRadius.circular(isTablet?0:borderRadiusCircular),
         child: Container(
-          width: context.screenSize.width * 0.9,
-          height: context.screenSize.height * 0.9,
+          width: double.infinity,
+          height: double.infinity,
           color: context.colorScheme.surface,
           child: Stack(
             children: [
