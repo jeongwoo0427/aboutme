@@ -363,5 +363,95 @@
         "originalFilename": "zioyou_email_crawler_1.png"
       }
     ]
+  },
+  {
+    "no": 13,
+    "projectCode": "aboutme",
+    "periodStart": "2024-05-05",
+    "periodEnd": "2024-06-12",
+    "skills": "Flutter",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "이 곳",
+        "detail": "저에게도 제가 어떤 사람인지 알려줄 수 있는 수단이 필요했습니다.\n처음에는 Native Web으로 간단히 호스팅을 시도했지만, 저를 대표하는 사이트인 만큼 최대한 저의 기술을 발휘해 보고 싶었습니다.\n그 결과, Flutter를 이용하여 반응형 웹사이트를 만들게 되었습니다."
+      },
+      {
+        "language": "en",
+        "title": "This Place",
+        "detail": "I needed a way to introduce who I am.\nMy first attempt was to host a simple site using Native Web, but for a site that represents me, I wanted to bring out my full technical abilities.\nThus, I created a responsive website using Flutter."
+      },
+      {
+        "language": "jp",
+        "title": "この場所",
+        "detail": "私自身がどんな人間なのかを紹介する手段が必要でした。\n最初はNative Webで簡単にホスティングしようとしましたが、自分を表すサイトであるため、私の技術を最大限に発揮したいと思いました。\nその結果、Flutterを使用してレスポンシブWebサイトを作成しました。"
+      }
+
+    ],
+    "attachments": [
+      {
+        "originalFilename": "aboutme_1.png"
+      }
+    ]
+  },
+  {
+    "no": 14,
+    "projectCode": "clipboardforme",
+    "periodStart": "2024-07-05",
+    "periodEnd": "2024-07-22",
+    "skills": "HTML, EJS, NestJS, SocketIO",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "clipboardfor.me",
+        "detail": "애플 기기끼리는 iCloud를 통해 파일이나 텍스트를 매우 쉽게 주고받을 수 있습니다.\n하지만 가끔 애플이 아닌 기기에서도 파일을 주고받아야 하는 상황이 발생하기도 합니다.\n'clipboardfor.me' 는 이름 그대로, 다른 단말기와 클립보드를 공유할 수 있는 도구입니다.\nSocketIO를 통해 실시간 통신을 구성하여 접속 중인 단말기를 모니터링하고, 텍스트나 파일의 변화를 지속적으로 감지할 수 있습니다."
+      },
+      {
+        "language": "en",
+        "title": "clipboardfor.me",
+        "detail": "Apple devices make it easy to share files and text via iCloud.\nHowever, there are times when sharing files across non-Apple devices is necessary.\n'clipboardfor.me', as the name suggests, provides a tool for sharing the clipboard across different devices.\nWith SocketIO, it establishes real-time communication to monitor connected devices and continuously detect changes in text or files."
+      },
+      {
+        "language": "jp",
+        "title": "clipboardfor.me",
+        "detail": "Appleデバイス同士では、iCloudを通じてファイルやテキストを非常に簡単に共有できます。\nしかし、Apple以外のデバイスでもファイルをやり取りする必要がある場合があります。\n'clipboardfor.me'はその名の通り、他のデバイスにクリップボードを提供するツールです。\nSocketIOを使用してリアルタイム通信を構成し、接続中のデバイスをモニタリングし、テキストやファイルの変化を継続的に検出します。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "aboutme_1.png"
+      }
+    ]
+  },
+  {
+    "no": 999,
+    "projectCode": "commingsoon",
+    "periodStart": "2024-08-05",
+    "skills": "Flutter, Nest.js, MariaDB, Firebase",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "엄청난 것",
+        "detail": "올해 여름부터 시작하여 현재까지 계속 개발 중인 개인 프로젝트가 있습니다.\n올해 저의 최고의 아이디어와 가장 직관적인 아키텍처, 핵심적인 기술들을 결합해 시장에 선보일 예정입니다.\n많은 기대 부탁드리며, 저의 작품들을 봐주셔서 대단히 감사합니다. (꾸벅)"
+      },
+      {
+        "language": "en",
+        "title": "Something Incredible",
+        "detail": "Since this summer, I have been continuously working on a personal project.\nCombining my best ideas of the year with the most intuitive architecture and core technologies, I plan to bring this project to market soon.\nI sincerely appreciate your interest in my work and hope you look forward to it. (bows)"
+      },
+      {
+        "language": "jp",
+        "title": "すごいもの",
+        "detail": "今年の夏から現在まで継続して開発している個人プロジェクトがあります。\n今年の最高のアイデアと最も直感的なアーキテクチャ、そして重要な技術を組み合わせて市場にお披露目する予定です。\n私の作品にご興味を持っていただき、大変感謝しています。どうぞご期待ください。（ぺこり）"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "transparent_rect.png"
+      }
+    ]
   }
 ]
