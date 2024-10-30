@@ -129,7 +129,7 @@
     "periodStart": "2021-05-13",
     "periodEnd": "2022-08-07",
     "skills": "Flutter, SQFLite",
-    "isHide": false,
+    "isHide": true,
     "details": [
       {
         "language": "kr",
@@ -160,7 +160,7 @@
     "periodStart": "2021-09-22",
     "periodEnd": "2021-10-03",
     "skills": "Flutter, ExpressJS, MySQL",
-    "isHide": false,
+    "isHide": true,
     "details": [
       {
         "language": "kr",
@@ -309,7 +309,7 @@
     "periodStart": "2023-06-05",
     "periodEnd": "2023-11-04",
     "skills": "Flutter, Node.js, Nest.js, MariaDB",
-    "isHide": false,
+    "isHide": true,
     "details": [
       {
         "language": "kr",
