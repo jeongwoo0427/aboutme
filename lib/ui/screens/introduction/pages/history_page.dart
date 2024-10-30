@@ -1,8 +1,12 @@
+import 'dart:html' as html;
+
+import 'package:aboutme/constants/app_assets.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:aboutme/ui/widgets/scaffold/fitted_screen_size_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
@@ -52,12 +56,12 @@ class _HistoryPageState extends State<HistoryPage> {
                       SizedBox(
                         height: 12,
                       ),
-                      Text.rich(TextSpan(children: [TextSpan(text: 'Age: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: '1998. 04')])),
+                      Text.rich(TextSpan(children: [TextSpan(text: 'Birth: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: '1998. 04')])),
                       SizedBox(
                         height: 12,
                       ),
                       Text.rich(
-                          TextSpan(children: [TextSpan(text: 'Job: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: 'Flutter Engineer')])),
+                          TextSpan(children: [TextSpan(text: 'Job: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: 'Software Engineer')])),
                       SizedBox(
                         height: 12,
                       ),
@@ -68,6 +72,40 @@ class _HistoryPageState extends State<HistoryPage> {
               ],
             ),
           ),
+        ),
+        SizedBox(height: 50),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: (){
+                html.window.open('https://cajava.tistory.com', 'jw_tistory');
+              },
+              child: SizedBox(
+                height: 50,
+                width: 50,
+                child: SvgPicture.asset(
+                  AppAssets.SVG_TISTORY,
+                  colorFilter: ColorFilter.mode(context.colorScheme.onSurface, BlendMode.srcIn),
+                ),
+              ),
+            ),
+            SizedBox(width: 50),
+            GestureDetector(
+              onTap: (){
+                html.window.open('https://github.com/jeongwoo0427', 'jw_github');
+              },
+              child: SizedBox(
+                height: 50,
+                width: 50,
+                child: SvgPicture.asset(
+                  AppAssets.SVG_GITHUB,
+                  colorFilter: ColorFilter.mode(context.colorScheme.onSurface, BlendMode.srcIn),
+                ),
+              ),
+            )
+          ],
         )
       ],
     ));

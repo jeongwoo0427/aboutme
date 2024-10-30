@@ -26,6 +26,8 @@ class AppAssets{
 
 
   static const String SVG_FLUTTER = 'assets/vectors/flutter.svg';
+  static const String SVG_TISTORY = 'assets/vectors/tistory.svg';
+  static const String SVG_GITHUB = 'assets/vectors/github.svg';
 
   static const String JSON_SKILL_DETAILS = 'assets/jsons/skill_descriptions.json';
   static const String JSON_PROJECTS = 'assets/jsons/projects.json';
