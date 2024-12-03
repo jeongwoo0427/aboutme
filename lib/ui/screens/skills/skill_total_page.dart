@@ -20,7 +20,7 @@ class SkillTotalPage extends StatefulWidget {
 class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   late final AnimationController _circleAnimationController;
   late final Animation<double> _circleAnimation;
-  final int _skillAnimationDelay = 3100;
+  final int _skillAnimationDelay = 2300;
   final List<SkillModel> skills = mySkills.values.toList()..removeWhere((element) => element.skill == Skill.flutter,);
 
   @override
@@ -36,7 +36,7 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
   }
 
   void _initAnimations() {
-    _circleAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 2000));
+    _circleAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1300));
     _circleAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _circleAnimationController, curve: Curves.easeInOutCubic));
 
     Future.delayed(const Duration(milliseconds: 1000), () {
@@ -74,7 +74,7 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
           left: position.dx + centerOffset.dx,
           bottom: position.dy + centerOffset.dy,
           child: _SkillIconButton(
-            animateMs: _skillAnimationDelay+i*150,
+            animateMs: _skillAnimationDelay+i*120,
             skill: skill.skill,
             size: iconSize,
             onClickSkill: widget.onClickSkill,
@@ -105,8 +105,8 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
             ),
             Positioned.fill(
               child: _SkillIconButton(
-                animateDurMs: 1200,
-                animateMs: _skillAnimationDelay + 2000,
+                animateDurMs: 1000,
+                animateMs: _skillAnimationDelay + 1700,
                 skill: Skill.flutter,
                 size: iconSize * 1.7,
                 onClickSkill: widget.onClickSkill,
