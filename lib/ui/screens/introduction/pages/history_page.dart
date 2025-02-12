@@ -39,11 +39,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 CircleAvatar(
                   minRadius: context.getResponsiveValue(60, 45),
                   backgroundColor: Colors.white24,
-                  child: Icon(
-                    Icons.person,
-                    color: context.colorScheme.onSurface.withOpacity(0.7),
-                    size: context.getResponsiveValue(80, 50),
-                  ),
+                  foregroundImage: const AssetImage(AppAssets.IMG_MY_PROFILE),
                 ),
                 DefaultTextStyle(
                   style: profileStateTextStyle,

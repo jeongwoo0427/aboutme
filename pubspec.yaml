@@ -75,6 +75,7 @@ flutter:
   assets:
     - assets/images/backgrounds/
     - assets/images/projects/
+    - assets/images/common/
     - assets/vectors/
     - assets/jsons/
 

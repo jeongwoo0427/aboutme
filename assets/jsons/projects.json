@@ -220,7 +220,7 @@
     "periodStart": "2022-07-13",
     "periodEnd": "2022-07-17",
     "skills": "Flutter",
-    "isHide": false,
+    "isHide": true,
     "details": [
       {
         "language": "kr",
