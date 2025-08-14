@@ -51,7 +51,7 @@ class _ContactScreenState extends ConsumerState<ContactScreen> with TickerProvid
   @override
   Widget build(BuildContext context) {
     return ResponsiveGlassyScaffold(
-      appbarTitle: Text('Contact'),
+      appbarTitle: const Text('Contact'),
       body: MaxSizedBox(
         maxWidth: 600,
         maxHeight: 400,

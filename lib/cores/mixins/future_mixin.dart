@@ -12,15 +12,15 @@ mixin  FutureMixin{
     return Center(
         child: Column(children: [
           Text(errMsg),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           if(onPressedRetry!=null)
-          ElevatedButton(onPressed: (){onPressedRetry();}, child: Text('Retry'))
+          ElevatedButton(onPressed: (){onPressedRetry();}, child: const Text('Retry'))
         ],)
     );
   }
 
   Widget buildNoData(){
-    return Center(
+    return const Center(
       child: Text('No Data.')
     );
   }

@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 
 class ProjectData{
   Future<List<ProjectGetDro>> getProjectsV1() async{
-    final String pathString = '/v1/portfolio/project';
+    const String pathString = '/v1/portfolio/project';
     final data = await APIService().request(pathString,method: 'GET');
     final List<ProjectGetDro> projects = [];
     for(int i = 0; i<data.length; i++){

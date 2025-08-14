@@ -100,20 +100,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  child: Container(
+                  child: SizedBox(
                       width: double.infinity,
                       height: double.infinity,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          SizedBox(),
+                          const SizedBox(),
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               GlassySectorButton(
-                                sectorTitle: Text('Who am I ?'),
+                                sectorTitle: const Text('Who am I ?'),
                                 icon: Icons.person,
                                 isTablet: isTablet,
                                 delayMs: 2000,
@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               GlassySectorButton(
-                                sectorTitle: Text('Projects'),
+                                sectorTitle: const Text('Projects'),
                                 icon: Icons.newspaper_outlined,
                                 isTablet: isTablet,
                                 delayMs: 2500,
@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               ),
                               GlassySectorButton(
-                                sectorTitle: Text('Contact'),
+                                sectorTitle: const Text('Contact'),
                                 icon: Icons.email,
                                 isTablet: isTablet,
                                 delayMs: 3500,
@@ -160,10 +160,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          SizedBox(),
+                          const SizedBox(),
                         ],
                       ))),
-              Positioned(
+              const Positioned(
                 bottom: 20,
                 left: 0,
                 right: 0,
@@ -195,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class GlassySectorButton extends StatelessWidget {
-  GlassySectorButton({Key? key, required this.sectorTitle, required this.icon, required this.onTap, required bool this.isTablet, required this.delayMs})
+  const GlassySectorButton({Key? key, required this.sectorTitle, required this.icon, required this.onTap, required bool this.isTablet, required this.delayMs})
       : super(key: key);
 
   final Widget? sectorTitle;
@@ -223,7 +223,7 @@ class GlassySectorButton extends StatelessWidget {
                 child: DefaultTextStyle(
                   style: TextStyle(fontSize: isTablet ? 15 : 30, fontWeight: FontWeight.w900, color: context.colorScheme.onSurface),
                   child: Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                    sectorTitle ?? SizedBox(),
+                    sectorTitle ?? const SizedBox(),
                     Icon(icon, size: isTablet ? 30 : 60, color: context.colorScheme.onSurface),
                   ]),
                 ),

@@ -29,7 +29,7 @@ class GlassyAppbar extends ConsumerWidget implements PreferredSizeWidget {
         borderOpacity: isTransparentBackground ? 0 : 0.6,
         height: 60,
         //기본높이 60
-        padding: EdgeInsets.symmetric(horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Stack(
           children: [
             Positioned(

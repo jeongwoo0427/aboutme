@@ -23,31 +23,31 @@ class ProjectPageWidget extends ConsumerWidget {
       child: SizedBox(
         height: 120 * context.minScreenLengthRatio,
         child: ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse}),
-          child: PageView.builder(
+          behavior: scrollconfiguration.of(context).copywith(dragdevices: {pointerdevicekind.touch, pointerdevicekind.mouse}),
+          child: pageview.builder(
             controller: controller,
-            onPageChanged: onPageChanged,
-            itemBuilder: (context, index) {
-              return Center(
-                  child: GestureDetector(
-                    onTap: (){
-                      onTapItem(index);
+            onpagechanged: onpagechanged,
+            itembuilder: (context, index) {
+              return center(
+                  child: gesturedetector(
+                    ontap: (){
+                      ontapitem(index);
                     },
-                    child: GlassyContainer(
-                        width: 270 * context.minScreenLengthRatio,
+                    child: glassycontainer(
+                        width: 270 * context.minscreenlengthratio,
                         height: double.infinity,
-                        borderRadius: BorderRadius.circular(10),
-                        child: Center(
-                          child: Text(
-                            LanguageUtility().findDetailByLanguage(language: ref.currentLanguage, details: projects[index].details)?.title ?? '',
-                            style: TextStyle(fontSize: context.getResponsiveValue(18, 12), fontWeight: FontWeight.w700),
-                            textAlign: TextAlign.center,
+                        borderradius: borderradius.circular(10),
+                        child: center(
+                          child: text(
+                            languageutility().finddetailbylanguage(language: ref.currentlanguage, details: projects[index].details)?.title ?? '',
+                            style: textstyle(fontsize: context.getresponsivevalue(18, 12), fontweight: fontweight.w700),
+                            textalign: textalign.center,
                           ),
                         )),
                   ));
-              //return getItem(width: 250 * context.minScreenLengthRatio, height: double.infinity);
+              //return getitem(width: 250 * context.minscreenlengthratio, height: double.infinity);
             },
-            itemCount: projects.length,
+            itemcount: projects.length,
           ),
         ),
       ),

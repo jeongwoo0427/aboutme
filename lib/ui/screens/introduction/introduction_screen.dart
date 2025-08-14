@@ -36,7 +36,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveGlassyScaffold(
-      appbarTitle: Text('Who am I ?'),
+      appbarTitle: const Text('Who am I ?'),
       onChangedPageState: (isTop) {
         setState(() {
           _isTop = isTop;
@@ -69,7 +69,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           children: [
             GreetingPage(showContinueText: _isTop,),
             CoverLetterPage(),
-            HistoryPage()
+            const HistoryPage()
           ],
         ),
       ),
