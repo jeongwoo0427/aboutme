@@ -1,6 +1,6 @@
 # aboutme
 
-flutter : 3.29.0
+flutter : 3.35.4
 
 # Build Prompt
 

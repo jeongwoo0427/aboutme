@@ -1,4 +1,4 @@
-import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:aboutme/constants/app_assets.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
@@ -75,9 +75,7 @@ class _HistoryPageState extends State<HistoryPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: (){
-                html.window.open('https://cajava.tistory.com', 'jw_tistory');
-              },
+              onTap: () => _openUrl('https://cajava.tistory.com'),
               child: SizedBox(
                 height: 50,
                 width: 50,
@@ -89,9 +87,7 @@ class _HistoryPageState extends State<HistoryPage> {
             ),
             SizedBox(width: 50),
             GestureDetector(
-              onTap: (){
-                html.window.open('https://github.com/jeongwoo0427', 'jw_github');
-              },
+              onTap: () => _openUrl('https://github.com/jeongwoo0427'),
               child: SizedBox(
                 height: 50,
                 width: 50,
@@ -106,4 +102,12 @@ class _HistoryPageState extends State<HistoryPage> {
       ],
     ));
   }
+
+
+  Future<void> _openUrl(String url) async {
+  final uri = Uri.parse(url);
+  if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    throw Exception('Could not launch $url');
+  }
+}
 }
