@@ -1,3 +1,4 @@
+import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
 import 'package:aboutme/cores/mixins/dialog_mixin.dart';
 import 'package:aboutme/cores/mixins/validator_mixin.dart';
@@ -142,6 +143,25 @@ class _ContactForm extends ConsumerWidget with ValidatorMixin {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 7),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text.rich(
+                    TextSpan(children: [
+                      TextSpan(text: 'To.'),
+                      TextSpan(text: '  '),
+                      TextSpan(text: 'jwk9022648@gmail.com', style: TextStyle(fontWeight: FontWeight.w500)),
+                    ]),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             Expanded(
               child: RoundedTextFieldWidget(
                 controller: _messageControler,
