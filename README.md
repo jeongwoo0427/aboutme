@@ -1,6 +1,15 @@
 # aboutme
 
-flutter : 3.35.4
+flutter : 3.38.5
+
+# Launch Prompt
+
+- Local
+fvm flutter run -d chrome 
+
+- Server
+fvm flutter run -d web-server --web-hostname 0.0.0.0 --web-port 8080
+
 
 # Build Prompt
 

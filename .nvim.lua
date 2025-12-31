@@ -3,7 +3,6 @@ require("flutter-tools").setup_project({
     name = "Chrome Dev (debug)",
     target = "lib/main.dart",
     flutter_mode = "debug",
-    device = "chrome",
   },
   {
     name = "Web-server Dev (debug)",
