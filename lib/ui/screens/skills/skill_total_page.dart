@@ -11,7 +11,7 @@ class SkillTotalPage extends StatefulWidget {
 
   final Function(Skill skill) onClickSkill;
 
-  const SkillTotalPage({Key? key, required this.onClickSkill}) : super(key: key);
+  const SkillTotalPage({super.key, required this.onClickSkill});
 
   @override
   State<SkillTotalPage> createState() => _SkillTotalPageState();
@@ -48,6 +48,7 @@ class _SkillTotalPageState extends State<SkillTotalPage> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final colorScheme = Theme.of(context).colorScheme;
     final Size screenSize = MediaQuery.sizeOf(context);
     //폭, 너비 중 작을 것을 기준으로 사이즈를 적용
@@ -142,7 +143,7 @@ class _SkillIconButton extends StatelessWidget {
   final double size;
   final Function(Skill skill) onClickSkill;
 
-  const _SkillIconButton({super.key, this.animateDurMs = 700, required this.animateMs, required this.skill, this.size = 70, required this.onClickSkill});
+  const _SkillIconButton({this.animateDurMs = 700, required this.animateMs, required this.skill, this.size = 70, required this.onClickSkill});
 
   @override
   Widget build(BuildContext context) {

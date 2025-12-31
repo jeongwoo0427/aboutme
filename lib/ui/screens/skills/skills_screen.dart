@@ -3,7 +3,6 @@ import 'package:aboutme/ui/screens/skills/skill_model.dart';
 import 'package:aboutme/ui/screens/skills/skill_total_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../cores/states/providers/selected_skill_provider.dart';
 import '../../widgets/scaffold/responsive_glassy_scaffold.dart';
 
 class SkillsScreen extends ConsumerWidget {
@@ -15,8 +14,6 @@ class SkillsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Skill? skill = ref.watch(selectedSkillProvider);
-
     return ResponsiveGlassyScaffold(
       onPressedBack: ()=> _onPressedBack(context),
       appbarTitle: const Text('Skills'),

@@ -18,8 +18,10 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
-    final TextStyle profileStateTextStyle =
-        TextStyle(fontSize: context.getResponsiveValue(18, 14), fontWeight: FontWeight.w300, color: context.colorScheme.onSurface);
+    final TextStyle profileStateTextStyle = TextStyle(
+        fontSize: context.getResponsiveValue(18, 14),
+        fontWeight: FontWeight.w300,
+        color: context.colorScheme.onSurface);
 
     return FittedScreenSizeBody(
         body: Column(
@@ -48,20 +50,31 @@ class _HistoryPageState extends State<HistoryPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text.rich(TextSpan(children: [TextSpan(text: 'Name: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: 'Kim Jeong Woo')])),
+                      Text.rich(TextSpan(children: [
+                        TextSpan(text: 'Name: ', style: TextStyle(fontWeight: FontWeight.w900)),
+                        TextSpan(text: 'Kim Jeong Woo')
+                      ])),
                       SizedBox(
                         height: 12,
                       ),
-                      Text.rich(TextSpan(children: [TextSpan(text: 'Birth: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: '1998. 04')])),
+                      Text.rich(TextSpan(children: [
+                        TextSpan(text: 'Birth: ', style: TextStyle(fontWeight: FontWeight.w900)),
+                        TextSpan(text: '1998. 04')
+                      ])),
                       SizedBox(
                         height: 12,
                       ),
-                      Text.rich(
-                          TextSpan(children: [TextSpan(text: 'Job: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: 'Software Engineer')])),
+                      Text.rich(TextSpan(children: [
+                        TextSpan(text: 'Job: ', style: TextStyle(fontWeight: FontWeight.w900)),
+                        TextSpan(text: 'Software Engineer')
+                      ])),
                       SizedBox(
                         height: 12,
                       ),
-                      Text.rich(TextSpan(children: [TextSpan(text: 'Area: ', style: TextStyle(fontWeight: FontWeight.w900)), TextSpan(text: 'Seoul')])),
+                      Text.rich(TextSpan(children: [
+                        TextSpan(text: 'Area: ', style: TextStyle(fontWeight: FontWeight.w900)),
+                        TextSpan(text: 'Seoul')
+                      ])),
                     ],
                   ),
                 )
@@ -69,7 +82,7 @@ class _HistoryPageState extends State<HistoryPage> {
             ),
           ),
         ),
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +98,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 ),
               ),
             ),
-            SizedBox(width: 50),
+            const SizedBox(width: 50),
             GestureDetector(
               onTap: () => _openUrl('https://github.com/jeongwoo0427'),
               child: SizedBox(
@@ -103,11 +116,10 @@ class _HistoryPageState extends State<HistoryPage> {
     ));
   }
 
-
   Future<void> _openUrl(String url) async {
-  final uri = Uri.parse(url);
-  if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-    throw Exception('Could not launch $url');
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
   }
-}
 }

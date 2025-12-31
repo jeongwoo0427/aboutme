@@ -1,5 +1,4 @@
 import 'package:aboutme/constants/app_constants.dart';
-import 'package:aboutme/constants/app_localizations.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/cores/states/providers/current_language_provider.dart';
 import 'package:aboutme/ui/widgets/container/glassy_container.dart';
@@ -7,7 +6,6 @@ import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:aboutme/ui/widgets/glassy_dropdown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 class GlassyAppbar extends ConsumerWidget implements PreferredSizeWidget {
   final Widget? title;

@@ -15,7 +15,7 @@ class ProjectPageWidget extends ConsumerWidget {
   final ValueChanged<int> onPageChanged;
   final Function(int) onTapItem;
 
-  const ProjectPageWidget({Key? key, required this.projects, required this.controller, required this.onPageChanged, required this.onTapItem}) : super(key: key);
+  const ProjectPageWidget({super.key, required this.projects, required this.controller, required this.onPageChanged, required this.onTapItem});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,7 +34,7 @@ class ProjectPageWidget extends ConsumerWidget {
                       onTapItem(index);
                     },
                     child: GlassyContainer(
-                        width: 270 * context.minScreenLengthRatio??1,
+                        width: 270 * context.minScreenLengthRatio,
                         height: double.infinity,
                         borderRadius: BorderRadius.circular(10),
                         child: Center(

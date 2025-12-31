@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CardButtonDialog extends StatelessWidget {
   final Widget? child;
@@ -13,7 +11,7 @@ class CardButtonDialog extends StatelessWidget {
   final VoidCallback? onTapNegative;
 
   const CardButtonDialog(
-      {Key? key,
+      {super.key,
       this.child,
       this.width = 200,
       this.maxHeight = double.infinity,
@@ -21,8 +19,7 @@ class CardButtonDialog extends StatelessWidget {
       required this.positiveText,
       this.negativeText,
       this.onTapPositive,
-      this.onTapNegative})
-      : super(key: key);
+      this.onTapNegative});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +35,7 @@ class CardButtonDialog extends StatelessWidget {
             width: width,
             constraints: BoxConstraints(minHeight: 160, maxHeight: maxHeight),
             decoration: BoxDecoration(
-              color: colorScheme.background,
+              color: colorScheme.surface,
               // border: Border.all(
               //   color: colorScheme.primary,
               //   width: 3,
@@ -49,14 +46,14 @@ class CardButtonDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(),
+                const SizedBox(),
                 Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     child: DefaultTextStyle(
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
-                            color: colorScheme.onBackground),
-                        child: child ?? SizedBox())),
+                            color: colorScheme.onSurface),
+                        child: child ?? const SizedBox())),
                 Row(
                   children: [
 
@@ -66,7 +63,8 @@ class CardButtonDialog extends StatelessWidget {
                           color: colorScheme.primaryContainer,
                           child: InkWell(
                             onTap: onTapNegative,
-                            child: Container(
+                            child: SizedBox(
+                              height: 50,
                               child: Center(
                                   child: Text(
                                     negativeText!,
@@ -74,31 +72,29 @@ class CardButtonDialog extends StatelessWidget {
                                         fontWeight: FontWeight.w800,
                                         color: colorScheme.onError),
                                   )),
-                              height: 50,
                             ),
                           ),
                         ),
                       ),
                     if (negativeText != null) const VerticalDivider(width: 2),
-                    if (positiveText != null)
-                      Expanded(
-                        child: Material(
-                          color: colorScheme.primaryContainer,
-                          child: InkWell(
-                            onTap: onTapPositive,
-                            child: Container(
-                              child: Center(
-                                  child: Text(
-                                positiveText!,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w800,
-                                    color: colorScheme.onPrimary),
-                              )),
-                              height: 50,
-                            ),
+                    Expanded(
+                      child: Material(
+                        color: colorScheme.primaryContainer,
+                        child: InkWell(
+                          onTap: onTapPositive,
+                          child: SizedBox(
+                            height: 50,
+                            child: Center(
+                                child: Text(
+                              positiveText,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  color: colorScheme.onPrimary),
+                            )),
                           ),
                         ),
                       ),
+                    ),
 
                   ],
                 )

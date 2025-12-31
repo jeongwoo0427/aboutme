@@ -1,17 +1,11 @@
-import 'dart:ui';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
-import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
 import 'package:aboutme/cores/mixins/dialog_mixin.dart';
 import 'package:aboutme/cores/services/api/datas/project/data_objects/project_get.dro.dart';
 import 'package:aboutme/cores/services/api/datas/project/project_data.dart';
 import 'package:aboutme/ui/screens/projects/project_details_widget.dart';
 import 'package:aboutme/ui/screens/projects/project_page_widget.dart';
-import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
-import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import '../../widgets/scaffold/responsive_glassy_scaffold.dart';
 
 class ProjectsScreen extends StatefulWidget {
@@ -60,9 +54,9 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
 
   Future<void> _initAsync() async {
     await _initAnimations();
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(const Duration(milliseconds: 1000));
     await _fetchProjects();
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(const Duration(milliseconds: 1000));
     await _startAnimations();
   }
 
@@ -70,7 +64,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
   Widget build(BuildContext context) {
     return ResponsiveGlassyScaffold(
       isTranparentAppbar: true,
-      appbarTitle: Text('Projects'),
+      appbarTitle: const Text('Projects'),
       body: Stack(
         children: [
 
@@ -153,7 +147,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
   }
 
   Future<void> _initAnimations() async {
-    _progressHideAnimController = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _progressHideAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
     _progressHideAnim = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _progressHideAnimController, curve: Curves.decelerate));
 
     _pageLoadAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));

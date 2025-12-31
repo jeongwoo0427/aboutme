@@ -1,13 +1,12 @@
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 class ImageViewerDialog extends StatelessWidget {
   final double borderRadiusCircular;
   final ImageProvider imageProvider;
 
-  const ImageViewerDialog({Key? key, this.borderRadiusCircular = 20, required this.imageProvider}) : super(key: key);
+  const ImageViewerDialog({super.key, this.borderRadiusCircular = 20, required this.imageProvider});
 
   @override
   Widget build(BuildContext context) {

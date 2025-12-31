@@ -1,7 +1,5 @@
-import 'package:aboutme/constants/app_localizations.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
-import 'package:aboutme/cores/states/providers/current_language_provider.dart';
 import 'package:aboutme/ui/widgets/scaffold/fitted_screen_size_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,7 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GreetingPage extends ConsumerWidget {
-  GreetingPage({Key? key, required this.showContinueText}) : super(key: key);
+  GreetingPage({super.key, required this.showContinueText});
 
   final bool showContinueText;
 
@@ -86,7 +84,7 @@ class GreetingPage extends ConsumerWidget {
         children: [
           AnimatedOpacity(
             opacity: showContinueText ? 1 : 0,
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
             child: Text(
               ref.localizations.introduction_screen_greeting_page_scroll_text,
               style: TextStyle(
@@ -107,12 +105,11 @@ class GreetingPage extends ConsumerWidget {
 
 class GreetingTextArea extends StatelessWidget {
   const GreetingTextArea(
-      {Key? key,
+      {super.key,
       required this.currentPosition,
       required this.totalCount,
       required this.fontWeightValue,
-      required this.text})
-      : super(key: key);
+      required this.text});
 
   final int currentPosition;
   final int totalCount;

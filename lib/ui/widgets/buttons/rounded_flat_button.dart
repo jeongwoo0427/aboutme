@@ -18,23 +18,11 @@ class RoundedFlatButton extends StatelessWidget {
       required this.child,
       this.foregroundColor,
       this.backgroundColor = Colors.transparent})
-      : this.borderRadius = borderRadius ?? BorderRadius.circular(10);
+      : borderRadius = borderRadius ?? BorderRadius.circular(10);
 
   @override
   Widget build(BuildContext context) {
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
-    TextTheme textTheme = Theme.of(context).textTheme;
     return MaterialButton(
-
-      // style: ElevatedButton.styleFrom(
-      //   textStyle: TextStyle().copyWith(
-      //     fontFamily: AppFontFamily.cookieRunKR,
-      //     fontSize: 18,
-      //
-      //   ),
-      //     foregroundColor: colorScheme.onPrimary,
-      //     shape: RoundedRectangleBorder(borderRadius: this.borderRadius),
-      //     backgroundColor: backgroundColor ?? colorScheme.primaryContainer),
       elevation: 0,
       highlightElevation: 3,
       color: backgroundColor,

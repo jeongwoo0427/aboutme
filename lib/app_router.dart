@@ -4,8 +4,6 @@ import 'package:aboutme/ui/screens/projects/projects_manage_screen.dart';
 import 'package:aboutme/ui/screens/projects/projects_screen.dart';
 import 'package:aboutme/ui/screens/skills/skills_screen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
 import 'ui/screens/introduction/introduction_screen.dart';
@@ -107,8 +105,8 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
             return MovePageTransition(
               primaryRouteAnimation: animation,
               secondaryRouteAnimation: secondaryAnimation,
-              child: child,
               direction: movePageDirection,
+              child: child,
             );
         }
       });

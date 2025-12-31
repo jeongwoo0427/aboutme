@@ -9,7 +9,6 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../app_router.dart';
-import '../../../constants/app_assets.dart';
 import '../introduction/introduction_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -69,10 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         return child;
                       }
                       return AnimatedScale(
-                        child: child,
                         scale: isLoadingEarthImage ? 0 : 1,
                         duration: const Duration(seconds: 2),
                         curve: Curves.easeOut,
+                        child: child,
                       );
                     },
                     loadingBuilder: (context, child, loadingProgress) {
@@ -123,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               ),
                               GlassySectorButton(
-                                sectorTitle: Text('Skills'),
+                                sectorTitle: const Text('Skills'),
                                 icon: Icons.electric_bolt,
                                 isTablet: isTablet,
                                 delayMs: 3000,
@@ -195,6 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class GlassySectorButton extends StatelessWidget {
+  // ignore: use_super_parameters
   const GlassySectorButton({Key? key, required this.sectorTitle, required this.icon, required this.onTap, required bool this.isTablet, required this.delayMs})
       : super(key: key);
 

@@ -1,7 +1,5 @@
-import 'package:aboutme/constants/app_assets.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/cores/extensions/widget_ref_extension.dart';
-import 'package:aboutme/cores/services/api/api_service.dart';
 import 'package:aboutme/cores/services/api/datas/project/data_objects/project_attachment_get.dro.dart';
 import 'package:aboutme/cores/services/api/datas/project/data_objects/project_detail_get.dro.dart';
 import 'package:aboutme/cores/services/api/datas/project/data_objects/project_get.dro.dart';
@@ -9,7 +7,6 @@ import 'package:aboutme/cores/utils/language_utility.dart';
 import 'package:aboutme/cores/utils/shared_utility.dart';
 import 'package:aboutme/ui/screens/projects/image_viewer_dialog.dart';
 import 'package:aboutme/ui/widgets/boxes/max_width_box.dart';
-import 'package:aboutme/ui/widgets/container/glassy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +17,6 @@ class ProjectDetailsWidget extends ConsumerWidget {
 
   final SharedUtility _sharedUtility = SharedUtility();
   final LanguageUtility _languageUtility = LanguageUtility();
-  final DateTime _pageEnteredTime = DateTime.now();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -66,7 +62,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             width: double.infinity,
           ),
           Expanded(
@@ -85,7 +81,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
               style: TextStyle(fontSize: isPotrait ? 13 : 15, fontWeight: FontWeight.w300),
             ),
           ),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           Expanded(
@@ -125,12 +121,12 @@ class ProjectDetailsWidget extends ConsumerWidget {
       return Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Spacer(
+          const Spacer(
             flex: 2,
           ),
-          if(attachments.length>=1)Expanded(flex: 5, child: Padding(padding: EdgeInsets.all(15), child: imageBox)),
-          Expanded(flex: 8, child: Padding(padding: EdgeInsets.all(15), child: detailBox)),
-          Spacer(
+          if(attachments.isNotEmpty)Expanded(flex: 5, child: Padding(padding: const EdgeInsets.all(15), child: imageBox)),
+          Expanded(flex: 8, child: Padding(padding: const EdgeInsets.all(15), child: detailBox)),
+          const Spacer(
             flex: 4,
           )
         ],
@@ -139,13 +135,13 @@ class ProjectDetailsWidget extends ConsumerWidget {
       return Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          if(attachments.length>=1)Spacer(
+          if(attachments.isNotEmpty)const Spacer(
             flex: 4,
           ),
-          if(attachments.length>=1)Expanded(flex: 6, child: imageBox),
-          Spacer(flex: 1),
+          if(attachments.isNotEmpty)Expanded(flex: 6, child: imageBox),
+          const Spacer(flex: 1),
           Expanded(flex: 8, child: detailBox),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
         ],
@@ -154,7 +150,7 @@ class ProjectDetailsWidget extends ConsumerWidget {
   }
 
   Future<void> _showImageZoomDialog(BuildContext context, ImageProvider imageProvider) async {
-    final result = await showDialog(
+    await showDialog(
       context: context,
       builder: (context){return ImageViewerDialog(imageProvider: imageProvider,);}
     );

@@ -134,9 +134,8 @@ class _DropdownButton extends StatelessWidget {
   final TextStyle? textStyle;
   final String text;
 
-  _DropdownButton(
-      {super.key,
-      required this.width,
+  const _DropdownButton(
+      {required this.width,
       required this.height,
       required this.onTap,
       required this.borderRadius,
@@ -196,7 +195,7 @@ class _DropdownMenu extends StatelessWidget {
     newItems.insert(0, firstItem);
 
     return TweenAnimationBuilder(
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.decelerate,
       tween: Tween<double>(begin: height, end: height * items.length + 4),
       builder: (context, value, child) {
@@ -232,12 +231,10 @@ class _DropdownMenuItem extends StatelessWidget {
   final Function(GlassyDropdownButtonItem) onTap;
 
   const _DropdownMenuItem(
-      {Key? key,
-      required this.height,
+      {required this.height,
       required this.textStyle,
       required this.item,
-      required this.onTap})
-      : super(key: key);
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -249,7 +246,7 @@ class _DropdownMenuItem extends StatelessWidget {
           onTap: () => onTap(item),
           onHover: (_) {},
           hoverColor: colorScheme.onSurface.withOpacity(0.3),
-          child: Container(
+          child: SizedBox(
             height: height,
             child: Center(
                 child: Text(
