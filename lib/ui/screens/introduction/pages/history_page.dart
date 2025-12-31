@@ -33,7 +33,7 @@ class _HistoryPageState extends State<HistoryPage> {
           width: context.getResponsiveValue(500, 400),
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
           child: MaxSizedBox(
-            maxWidth: 700,
+            maxWidth: 750,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -72,8 +72,8 @@ class _HistoryPageState extends State<HistoryPage> {
                         height: 12,
                       ),
                       Text.rich(TextSpan(children: [
-                        TextSpan(text: 'Area: ', style: TextStyle(fontWeight: FontWeight.w900)),
-                        TextSpan(text: 'Seoul')
+                        TextSpan(text: 'Email: ', style: TextStyle(fontWeight: FontWeight.w900)),
+                        TextSpan(text: 'jwk9022648@gmail.com')
                       ])),
                     ],
                   ),
