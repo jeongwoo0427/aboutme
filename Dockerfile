@@ -14,7 +14,7 @@ WORKDIR /usr/local/flutter
 
 # Checkout specific Flutter version (3.35.4)
 RUN git fetch --tags \
-    && git checkout 3.35.4
+    && git checkout 3.38.5
 
 # Set flutter path
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
