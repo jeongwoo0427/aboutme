@@ -167,10 +167,10 @@ class ProjectDetailsWidget extends ConsumerWidget {
             flex: 2,
           ),
           if (attachments.isNotEmpty)
-            Expanded(flex: 5, child: Padding(padding: const EdgeInsets.all(15), child: imageBox)),
+            Expanded(flex: 4, child: Padding(padding: const EdgeInsets.all(15), child: imageBox)),
           Expanded(flex: 8, child: Padding(padding: const EdgeInsets.all(15), child: detailBox)),
           const Spacer(
-            flex: 4,
+            flex: 3,
           )
         ],
       );

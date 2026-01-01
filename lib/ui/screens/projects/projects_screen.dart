@@ -67,15 +67,12 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
       appbarTitle: const Text('Projects'),
       body: Stack(
         children: [
-
-
           Positioned.fill(
               child: Center(
-                child: ProjectDetailsWidget(
-                  project: _currentProject,
-                ),
-              )),
-
+            child: ProjectDetailsWidget(
+              project: _currentProject,
+            ),
+          )),
           Positioned.fill(
             child: AnimatedBuilder(
               animation: _projectDetailAnim,
@@ -91,13 +88,15 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
               },
             ),
           ),
-
           Positioned.fill(
             child: Center(
               child: AnimatedBuilder(
                 animation: _progressHideAnim,
                 builder: (_, __) {
-                  return IgnorePointer(child: Transform.scale(scale: _progressHideAnim.value, child: LoadingAnimationWidget.fourRotatingDots(color: Colors.white, size: 50)));
+                  return IgnorePointer(
+                      child: Transform.scale(
+                          scale: _progressHideAnim.value,
+                          child: LoadingAnimationWidget.fourRotatingDots(color: Colors.white, size: 50)));
                 },
               ),
             ),
@@ -111,14 +110,15 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
                   return Positioned(
                     left: (context.screenSize.width / 1.5) * _pageLoadAnim.value,
                     right: (-context.screenSize.width / 1.5) * _pageLoadAnim.value,
-                    top: context.screenSize.height / 1.4 * _pageToBottomAnim.value,
+                    top: context.screenSize.height / (context.isMobile ? 1.3 : 1.4) * _pageToBottomAnim.value,
                     bottom: 0,
                     child: ProjectPageWidget(
                       projects: _projects,
                       controller: _pageController,
                       onPageChanged: _onPageChanged,
                       onTapItem: (index) {
-                        _pageController.animateToPage(index, duration: const Duration(milliseconds: 400), curve: Curves.ease);
+                        _pageController.animateToPage(index,
+                            duration: const Duration(milliseconds: 400), curve: Curves.ease);
                       },
                     ),
                   );
@@ -148,16 +148,20 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
 
   Future<void> _initAnimations() async {
     _progressHideAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
-    _progressHideAnim = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _progressHideAnimController, curve: Curves.decelerate));
+    _progressHideAnim = Tween<double>(begin: 1, end: 0)
+        .animate(CurvedAnimation(parent: _progressHideAnimController, curve: Curves.decelerate));
 
     _pageLoadAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
-    _pageLoadAnim = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _pageLoadAnimController, curve: Curves.ease));
+    _pageLoadAnim =
+        Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _pageLoadAnimController, curve: Curves.ease));
 
     _pageToBottomAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
-    _pageToBottomAnim = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _pageToBottomAnimController, curve: Curves.ease));
+    _pageToBottomAnim = Tween<double>(begin: 0, end: 1)
+        .animate(CurvedAnimation(parent: _pageToBottomAnimController, curve: Curves.ease));
 
     _projectDetailAnimController = AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
-    _projectDetailAnim = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _projectDetailAnimController, curve: Curves.ease));
+    _projectDetailAnim = Tween<double>(begin: 1, end: 0)
+        .animate(CurvedAnimation(parent: _projectDetailAnimController, curve: Curves.ease));
   }
 
   Future<void> _startAnimations() async {
@@ -171,13 +175,12 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
     setState(() {
       _isAnimationLoadComplete = true;
     });
-
   }
 
   Future<void> _fetchProjects() async {
     try {
       final projects = await ProjectData().getProjectsFromAsset();
-      _projects = projects.where((element)=> element.isHide==false).toList();
+      _projects = projects.where((element) => element.isHide == false).toList();
       //_projects = await ProjectData().getProjectsV1();
       setState(() {
         _currentProject = _projects.firstOrNull;
