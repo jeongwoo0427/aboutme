@@ -72,7 +72,7 @@ class _HistoryPageState extends State<HistoryPage> {
                       SizedBox(
                         height: 12,
                       ),
-                      Text.rich(TextSpan(children: [
+                      SelectableText.rich(TextSpan(children: [
                         TextSpan(text: 'Email: ', style: TextStyle(fontWeight: FontWeight.w900)),
                         TextSpan(text: 'jwk9022648@gmail.com')
                       ])),

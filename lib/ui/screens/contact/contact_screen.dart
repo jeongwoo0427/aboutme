@@ -149,7 +149,7 @@ class _ContactForm extends ConsumerWidget with ValidatorMixin {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text.rich(
+                  SelectableText.rich(
                     TextSpan(children: [
                       TextSpan(text: 'To.'),
                       TextSpan(text: '  '),
