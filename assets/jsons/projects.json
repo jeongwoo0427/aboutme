@@ -190,6 +190,7 @@
     "periodStart": "2022-03-13",
     "periodEnd": "2022-05-25",
     "skills": "Flutter, Firebase",
+    "refUrl": "https://play.google.com/store/apps/details?id=com.dreamsoft.bottari",
     "isHide": false,
     "details": [
       {
@@ -371,6 +372,7 @@
     "periodEnd": "2024-06-12",
     "skills": "Flutter",
     "isHide": false,
+    "refUrl": "https://izvillain.com",
     "details": [
       {
         "language": "kr",

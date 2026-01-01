@@ -7,6 +7,7 @@ class ProjectGetDro {
   final DateTime periodStart;
   final DateTime? periodEnd;
   final String skills;
+  final String? refUrl;
   final bool isHide;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -19,6 +20,7 @@ class ProjectGetDro {
       required this.periodStart,
       required this.periodEnd,
       required this.skills,
+      required this.refUrl,
       required this.isHide,
       required this.createdAt,
       required this.updatedAt,
@@ -41,7 +43,8 @@ class ProjectGetDro {
         periodStart: DateTime.parse(map['periodStart']),
         periodEnd: map['periodEnd'] == null ? null : DateTime.parse(map['periodEnd']),
         skills: map['skills'],
-        isHide: map['isHide']??false,
+        refUrl: map['refUrl'],
+        isHide: map['isHide'] ?? false,
         createdAt: map['createdAt'] == null ? null : DateTime.parse(map['createdAt']),
         updatedAt: map['updatedAt'] == null ? null : DateTime.parse(map['updatedAt']),
         details: details,

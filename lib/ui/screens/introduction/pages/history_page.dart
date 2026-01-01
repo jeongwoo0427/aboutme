@@ -1,3 +1,4 @@
+import 'package:aboutme/cores/utils/shared_utility.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:aboutme/constants/app_assets.dart';
@@ -88,7 +89,7 @@ class _HistoryPageState extends State<HistoryPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: () => _openUrl('https://cajava.tistory.com'),
+              onTap: () => SharedUtility().openUrl('https://cajava.tistory.com'),
               child: SizedBox(
                 height: 50,
                 width: 50,
@@ -100,7 +101,7 @@ class _HistoryPageState extends State<HistoryPage> {
             ),
             const SizedBox(width: 50),
             GestureDetector(
-              onTap: () => _openUrl('https://github.com/jeongwoo0427'),
+              onTap: () => SharedUtility().openUrl('https://github.com/jeongwoo0427'),
               child: SizedBox(
                 height: 50,
                 width: 50,
@@ -116,10 +117,4 @@ class _HistoryPageState extends State<HistoryPage> {
     ));
   }
 
-  Future<void> _openUrl(String url) async {
-    final uri = Uri.parse(url);
-    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-      throw Exception('Could not launch $url');
-    }
-  }
 }

@@ -23,13 +23,16 @@ class ProjectDetailsWidget extends ConsumerWidget {
     final bool isPotrait = MediaQuery.of(context).size.width < 1000;
     final currentLanguage = ref.currentLanguage;
     final List<ProjectDetailGetDro> details = project?.details ?? [];
-    final ProjectDetailGetDro? detail = _languageUtility.findDetailByLanguage(language: currentLanguage, details: details);
+    final ProjectDetailGetDro? detail =
+        _languageUtility.findDetailByLanguage(language: currentLanguage, details: details);
     final List<ProjectAttachmentGetDro> attachments = project?.attachments ?? [];
-    final ImageProvider imageProvider =  AssetImage('assets/images/projects/${attachments.firstOrNull?.originalFilename??''}',);
+    final ImageProvider imageProvider = AssetImage(
+      'assets/images/projects/${attachments.firstOrNull?.originalFilename ?? ''}',
+    );
     //final Image imageWidget =  Image.network('${APIService.baseUrl}/v1/portfolio/project/${project!.no}/attachment/download/${attachments.first.uuid}?${_pageEnteredTime.toString()}',fit: BoxFit.cover,)
 
     final Widget imageBox = GestureDetector(
-      onTap: (){
+      onTap: () {
         _showImageZoomDialog(context, imageProvider);
       },
       child: MaxSizedBox(
@@ -39,15 +42,26 @@ class ProjectDetailsWidget extends ConsumerWidget {
               aspectRatio: 5 / 3,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(21),
-                  border: Border.all(color: context.colorScheme.onSurface,width: 1)
-                ),
+                    borderRadius: BorderRadius.circular(21),
+                    border: Border.all(color: context.colorScheme.onSurface, width: 1)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: (project ==null || attachments.isEmpty)? const Text('No Image'):Stack(children: [
-                    Positioned.fill(child: Center(child: CircularProgressIndicator(color: context.colorScheme.onSurface,),),),
-                    Positioned.fill(child: Image(image: imageProvider,fit: BoxFit.cover),)
-                  ],),
+                  child: (project == null || attachments.isEmpty)
+                      ? const Text('No Image')
+                      : Stack(
+                          children: [
+                            Positioned.fill(
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: context.colorScheme.onSurface,
+                                ),
+                              ),
+                            ),
+                            Positioned.fill(
+                              child: Image(image: imageProvider, fit: BoxFit.cover),
+                            )
+                          ],
+                        ),
                 ),
               )),
         ),
@@ -75,17 +89,20 @@ class ProjectDetailsWidget extends ConsumerWidget {
                 ),
               )),
           Expanded(
-            flex: 11,
-            child: Text(
-              detail?.detail ?? '',
-              style: TextStyle(fontSize: isPotrait ? 13 : 15, fontWeight: FontWeight.w300),
-            ),
-          ),
+              flex: 11,
+              child: ListView(
+                children: [
+                  Text(
+                    detail?.detail ?? '',
+                    style: TextStyle(fontSize: isPotrait ? 14 : 16, fontWeight: FontWeight.w300),
+                  ),
+                ],
+              )),
           const Spacer(
             flex: 1,
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Row(
               children: [
                 Text(
@@ -93,14 +110,14 @@ class ProjectDetailsWidget extends ConsumerWidget {
                   style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w900),
                 ),
                 Text(
-                  '${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodStart)} - ${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodEnd)??'Now'}',
+                  '${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodStart)} - ${_sharedUtility.convertDateTimeToYearAndDateOnlyString(project?.periodEnd) ?? 'Now'}',
                   style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w500),
                 ),
               ],
             ),
           ),
           Expanded(
-              flex: 2,
+              flex: 3,
               child: Row(
                 children: [
                   Text(
@@ -113,6 +130,31 @@ class ProjectDetailsWidget extends ConsumerWidget {
                   ),
                 ],
               )),
+          if (project?.refUrl != null)
+            Expanded(
+                flex: 3,
+                child: Row(
+                  children: [
+                    Text(
+                      'URL: ',
+                      style: TextStyle(fontSize: isPotrait ? 15 : 17, fontWeight: FontWeight.w900),
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          SharedUtility().openUrl(project?.refUrl ?? '');
+                        },
+                        child: Text(
+                          project?.refUrl ?? '',
+                          style: TextStyle(
+                              fontSize: isPotrait ? 15 : 17,
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.underline),
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
         ],
       ),
     );
@@ -124,7 +166,8 @@ class ProjectDetailsWidget extends ConsumerWidget {
           const Spacer(
             flex: 2,
           ),
-          if(attachments.isNotEmpty)Expanded(flex: 5, child: Padding(padding: const EdgeInsets.all(15), child: imageBox)),
+          if (attachments.isNotEmpty)
+            Expanded(flex: 5, child: Padding(padding: const EdgeInsets.all(15), child: imageBox)),
           Expanded(flex: 8, child: Padding(padding: const EdgeInsets.all(15), child: detailBox)),
           const Spacer(
             flex: 4,
@@ -135,10 +178,11 @@ class ProjectDetailsWidget extends ConsumerWidget {
       return Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          if(attachments.isNotEmpty)const Spacer(
-            flex: 4,
-          ),
-          if(attachments.isNotEmpty)Expanded(flex: 6, child: imageBox),
+          if (attachments.isNotEmpty)
+            const Spacer(
+              flex: 4,
+            ),
+          if (attachments.isNotEmpty) Expanded(flex: 6, child: imageBox),
           const Spacer(flex: 1),
           Expanded(flex: 8, child: detailBox),
           const Spacer(
@@ -151,9 +195,11 @@ class ProjectDetailsWidget extends ConsumerWidget {
 
   Future<void> _showImageZoomDialog(BuildContext context, ImageProvider imageProvider) async {
     await showDialog(
-      context: context,
-      builder: (context){return ImageViewerDialog(imageProvider: imageProvider,);}
-    );
-
+        context: context,
+        builder: (context) {
+          return ImageViewerDialog(
+            imageProvider: imageProvider,
+          );
+        });
   }
 }

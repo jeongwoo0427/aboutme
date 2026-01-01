@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class SharedUtility {
   static SharedUtility _instance = SharedUtility._internal();
@@ -20,11 +20,10 @@ class SharedUtility {
   final _dateFormatter2 = DateFormat('yyyy/MM/dd');
   final _datetimeFormatter = DateFormat('yyyy-MM-dd HH:mm:ss');
 
-  String convertLocalizationVariables(
-      {required String text, List<dynamic> variables = const []}) {
+  String convertLocalizationVariables({required String text, List<dynamic> variables = const []}) {
     ///각 지정변수는 @v1@, @v2@ 등으로 표기
     String result = text;
-    for(int i = 0; i < variables.length; i++){
+    for (int i = 0; i < variables.length; i++) {
       result = result.replaceAll('@v$i@', variables[i].toString());
     }
     return result;
@@ -39,17 +38,11 @@ class SharedUtility {
 
     s = value - (h * 3600) - (m * 60);
 
-    String hourLeft = h
-        .toString()
-        .length < 2 ? "0" + h.toString() : h.toString();
+    String hourLeft = h.toString().length < 2 ? "0" + h.toString() : h.toString();
 
-    String minuteLeft = m
-        .toString()
-        .length < 2 ? "0" + m.toString() : m.toString();
+    String minuteLeft = m.toString().length < 2 ? "0" + m.toString() : m.toString();
 
-    String secondsLeft = s
-        .toString()
-        .length < 2 ? "0" + s.toString() : s.toString();
+    String secondsLeft = s.toString().length < 2 ? "0" + s.toString() : s.toString();
 
     String result = "$minuteLeft:$secondsLeft";
 
@@ -57,11 +50,11 @@ class SharedUtility {
   }
 
   // 24. 02 형식으로 변환
-  String? convertDateTimeToYearAndDateOnlyString(DateTime? dateTime){
-    if(dateTime == null) return null;
+  String? convertDateTimeToYearAndDateOnlyString(DateTime? dateTime) {
+    if (dateTime == null) return null;
     String year = dateTime.year.toString();
     String month = dateTime.month.toString();
-    if(month.length ==1){
+    if (month.length == 1) {
       month = '0$month';
     }
     return '$year.$month';
@@ -86,8 +79,7 @@ class SharedUtility {
 
   TimeOfDay stringToTime(String timeString) {
     List<String> splited = timeString.split(':');
-    return TimeOfDay(
-        hour: int.parse(splited[0]), minute: int.parse(splited[1]));
+    return TimeOfDay(hour: int.parse(splited[0]), minute: int.parse(splited[1]));
   }
 
   String getRandomNumbers(int length) {
@@ -173,7 +165,12 @@ class SharedUtility {
   Future<String?> getPublicIP() async {
     try {
       const url = 'https://api.ipify.org';
-      var response = await Dio().request(url,options:Options(method: 'GET',sendTimeout: const Duration(seconds: 2),receiveTimeout: const Duration(seconds: 2),));
+      var response = await Dio().request(url,
+          options: Options(
+            method: 'GET',
+            sendTimeout: const Duration(seconds: 2),
+            receiveTimeout: const Duration(seconds: 2),
+          ));
       if (response.statusCode == 200) {
         // The response body is the IP in plain text, so just
         // return it as-is.
@@ -191,6 +188,13 @@ class SharedUtility {
       // the phone isn't connected to the internet.
       print(e);
       return null;
+    }
+  }
+
+  Future<void> openUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
     }
   }
 }
