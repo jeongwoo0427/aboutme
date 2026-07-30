@@ -1,6 +1,6 @@
 # aboutme
 
-flutter : 3.38.5
+flutter : 3.44.8
 
 # Launch Prompt
 
