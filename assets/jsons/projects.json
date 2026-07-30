@@ -428,6 +428,36 @@
     ]
   },
   {
+    "no": 15,
+    "projectCode": "myquiz",
+    "periodStart": "2025-11-26",
+    "skills": "Flutter, Nest.js, MySQL, Firebase",
+    "refUrl": "https://myquiz.co.kr",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "쪽지시험",
+        "detail": "선생님이 직접 문제를 만들고 학생이 응시하는 쪽지시험 앱입니다.\n문제은행에 문제를 쌓아 시험지를 조합하면 학생은 앱에서 바로 풀고 자동 채점된 결과까지 확인할 수 있으며, AI로 문제를 자동 생성하는 기능도 담았습니다.\n교실을 열어 구성원을 초대하면 기간과 제한시간이 걸린 정식 시험도 운영할 수 있습니다.\n앱과 서버, 결제와 구독까지 모두 직접 설계했고, 앱스토어와 플레이스토어에 정식 출시해 지금도 업데이트를 이어가고 있습니다."
+      },
+      {
+        "language": "en",
+        "title": "MyQuiz",
+        "detail": "This is a quiz app where teachers write their own questions and hand out tests to students.\nQuestions are stacked in a bank and assembled into a quiz sheet, and students solve it and see the auto-graded results in the app. Questions can also be generated with AI.\nBy opening a classroom and inviting members, teachers can run formal exams with a fixed period and time limit.\nI built the app, the server and the subscription system myself, and it is released on the App Store and Google Play with updates still ongoing."
+      },
+      {
+        "language": "jp",
+        "title": "MyQuiz",
+        "detail": "先生が自ら問題を作り、生徒が受験する小テストアプリです。\n問題バンクに問題を貯めて試験紙を組み立てると、生徒はアプリでそのまま解いて自動採点された結果まで確認でき、AIで問題を自動生成する機能も備えています。\n教室を開いてメンバーを招待すれば、期間と制限時間のある正式な試験も運営できます。\nアプリとサーバー、課金と定期購読まで自ら設計し、App StoreとGoogle Playに正式リリースして現在も更新を続けています。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "myquiz_1.png"
+      }
+    ]
+  },
+  {
     "no": 999,
     "projectCode": "commingsoon",
     "periodStart": "2024-08-05",
