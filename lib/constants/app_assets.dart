@@ -21,7 +21,7 @@ class AppAssets{
 
   static const String IMG_MY_PROFILE = 'assets/images/common/my_profile.jpg';
 
-  static const String BG_EARTH_ANIM = 'assets/images/backgrounds/cyber_earth_animation.gif';
+  static const String BG_EARTH_ANIM = 'assets/images/backgrounds/cyber_earth_animation.webp';
   static const String BG_WHITE_STARS = 'assets/images/backgrounds/white_stars.png';
   static const String BG_IMAGE_BACKGROUND_POLYGON = 'assets/images/backgrounds/image_background_polygon.png';
 

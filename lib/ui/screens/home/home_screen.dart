@@ -1,3 +1,4 @@
+import 'package:aboutme/constants/app_assets.dart';
 import 'package:aboutme/cores/extensions/build_context_extension.dart';
 import 'package:aboutme/ui/screens/contact/contact_screen.dart';
 import 'package:aboutme/ui/screens/projects/projects_screen.dart';
@@ -60,8 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.all(context.getResponsiveValue(100, 10)),
                   child: Center(
                       child: Image(
-                    image: const NetworkImage('https://static.wixstatic.com/media/214ac5_06ec3f6a31da4945a90ff8638dbec6fd~mv2.gif'),
-                    //image: const AssetImage(AppAssets.BG_EARTH_ANIM,),
+                    image: const AssetImage(AppAssets.BG_EARTH_ANIM),
                     fit: BoxFit.cover,
                     frameBuilder: (context, child, frame, wasSyncLoaded) {
                       if (wasSyncLoaded) {
