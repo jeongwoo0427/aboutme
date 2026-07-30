@@ -22,6 +22,10 @@ class AppAssets{
   static const String IMG_MY_PROFILE = 'assets/images/common/my_profile.jpg';
 
   static const String BG_EARTH_ANIM = 'assets/images/backgrounds/cyber_earth_animation.webp';
+
+  /// BG_EARTH_ANIM 의 첫 프레임만 담은 정지 이미지.
+  /// 용량이 큰 애니메이션을 내려받는 동안 자리를 채우는 용도.
+  static const String BG_EARTH_POSTER = 'assets/images/backgrounds/cyber_earth_poster.webp';
   static const String BG_WHITE_STARS = 'assets/images/backgrounds/white_stars.png';
   static const String BG_IMAGE_BACKGROUND_POLYGON = 'assets/images/backgrounds/image_background_polygon.png';
 

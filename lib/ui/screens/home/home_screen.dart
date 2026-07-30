@@ -34,8 +34,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isLoadingEarthImage = true;
-
   @override
   void initState() {
     super.initState();
@@ -59,39 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 right: 0,
                 child: Padding(
                   padding: EdgeInsets.all(context.getResponsiveValue(100, 10)),
-                  child: Center(
-                      child: Image(
-                    image: const AssetImage(AppAssets.BG_EARTH_ANIM),
-                    fit: BoxFit.cover,
-                    frameBuilder: (context, child, frame, wasSyncLoaded) {
-                      if (wasSyncLoaded) {
-                        return child;
-                      }
-                      return AnimatedScale(
-                        scale: isLoadingEarthImage ? 0 : 1,
-                        duration: const Duration(seconds: 2),
-                        curve: Curves.easeOut,
-                        child: child,
-                      );
-                    },
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) {
-                        // The child (AnimatedOpacity) is build with loading == true, and then the setState will change loading to false, which trigger the animation
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          setState(() => isLoadingEarthImage = false);
-                        });
-
-                        return child;
-                      }
-                      isLoadingEarthImage = true;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value:
-                              loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
-                        ),
-                      );
-                    },
-                  )),
+                  child: const Center(child: EarthBackground()),
                 ),
               ),
               Positioned(
@@ -189,6 +155,73 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]))
             ],
           )),
+    );
+  }
+}
+
+/// 홈 화면 배경의 지구본.
+///
+/// 애니메이션 WebP는 용량이 커서 전부 내려받은 뒤에야 첫 프레임이 나온다.
+/// 그동안 화면이 비어 보이지 않도록, 같은 첫 프레임을 담은 가벼운 정지 이미지를
+/// 먼저 띄우고 애니메이션이 준비되면 그 자리에서 바로 교체한다.
+/// 두 이미지의 첫 프레임이 동일하므로 교체 순간 튀지 않는다.
+class EarthBackground extends StatefulWidget {
+  const EarthBackground({super.key});
+
+  @override
+  State<EarthBackground> createState() => _EarthBackgroundState();
+}
+
+class _EarthBackgroundState extends State<EarthBackground> {
+  ///지구본이 처음 나타날 때의 확대 연출 트리거
+  bool _isVisible = false;
+  bool _isVisibleScheduled = false;
+
+  ///포스터와 애니메이션 중 먼저 준비된 쪽이 등장 연출을 시작시킨다.
+  void _markVisible() {
+    if (_isVisibleScheduled) {
+      return;
+    }
+    _isVisibleScheduled = true;
+    // frameBuilder는 build 도중에 호출되므로 setState는 프레임이 끝난 뒤로 미룬다.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        setState(() => _isVisible = true);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Image(
+      image: const AssetImage(AppAssets.BG_EARTH_ANIM),
+      fit: BoxFit.cover,
+      frameBuilder: (context, child, frame, wasSyncLoaded) {
+        //frame이 null이면 아직 애니메이션 디코딩 전이다.
+        final bool isAnimationReady = wasSyncLoaded || frame != null;
+        if (isAnimationReady) {
+          _markVisible();
+        }
+        return AnimatedScale(
+          scale: _isVisible ? 1 : 0,
+          duration: const Duration(seconds: 2),
+          curve: Curves.easeOut,
+          child: isAnimationReady ? child : _buildPoster(),
+        );
+      },
+    );
+  }
+
+  Widget _buildPoster() {
+    return Image(
+      image: const AssetImage(AppAssets.BG_EARTH_POSTER),
+      fit: BoxFit.cover,
+      frameBuilder: (context, child, frame, wasSyncLoaded) {
+        if (wasSyncLoaded || frame != null) {
+          _markVisible();
+        }
+        return child;
+      },
     );
   }
 }
