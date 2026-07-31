@@ -21,7 +21,10 @@ class AppAssets{
 
   static const String IMG_MY_PROFILE = 'assets/images/common/my_profile.jpg';
 
-  static const String BG_EARTH_ANIM = 'assets/images/backgrounds/cyber_earth_animation.webp';
+  /// 3색 팔레트 GIF.
+  /// 무손실 WebP(VP8L)로 바꿨더니 용량은 19% 줄었지만 프레임당 디코드 비용이
+  /// 몇 배로 올라 모바일에서 프레임이 떨어졌다. 팔레트 디코딩이 훨씬 싸서 GIF 유지.
+  static const String BG_EARTH_ANIM = 'assets/images/backgrounds/cyber_earth_animation.gif';
 
   /// BG_EARTH_ANIM 의 첫 프레임만 담은 정지 이미지.
   /// 용량이 큰 애니메이션을 내려받는 동안 자리를 채우는 용도.
