@@ -8,13 +8,11 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # Clone the flutter repo (shallow clone for speed)
-RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
+# 버전은 .fvmrc 의 로컬 버전과 맞춘다
+RUN git clone --depth 1 --branch 3.44.8 \
+    https://github.com/flutter/flutter.git /usr/local/flutter
 
 WORKDIR /usr/local/flutter
-
-# Checkout specific Flutter version (.fvmrc 의 로컬 버전과 맞춘다)
-RUN git fetch --tags \
-    && git checkout 3.44.8
 
 # Set flutter path
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
@@ -27,8 +25,11 @@ RUN flutter config --enable-web
 RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
-RUN flutter build web --release --wasm
+# --no-web-resources-cdn: 엔진 산출물을 gstatic CDN 대신 같은 출처에서 받는다
+# (COEP 를 켜기 위해 필요하고, 서드파티 의존도 사라진다)
+RUN flutter build web --release --wasm --no-web-resources-cdn
 
 # Stage 2 - Create the run-time image
 FROM nginx:1.21.1-alpine
 COPY --from=build-env /app/build/web /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf

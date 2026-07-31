@@ -1,0 +1,25 @@
+# 빌드 컨텍스트에서 제외 (도커 빌드 속도/이미지 크기)
+
+# 빌드 산출물 - 컨테이너 안에서 새로 만든다
+build/
+.dart_tool/
+.fvm/
+
+# 원본 이미지 백업 - pubspec 에 선언되지 않아 번들되지 않는다
+assets/_originals/
+
+# pubspec 에서 주석 처리된 폰트 (31MB)
+assets/fonts/noto-sans-kr/
+
+# 웹 빌드에 불필요
+.git/
+.github/
+test/
+.idea/
+.vscode/
+
+# OS/에디터 부산물
+.DS_Store
+**/.DS_Store
+*.iml
+*.log
