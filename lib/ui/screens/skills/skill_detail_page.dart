@@ -181,9 +181,18 @@ class _SkillDetailPageState extends ConsumerState<SkillDetailPage> with TickerPr
     Future.delayed(const Duration(milliseconds: 800), () => {_showInfoAnimationController.forward()});
   }
 
+  ///모든 스킬 설명이 한 파일에 들어있으므로, 상세 페이지를 열 때마다 다시 파싱하지 않는다.
+  static Map<String, dynamic>? _cachedDescriptions;
+
   Future<Map<String, dynamic>> getSkillDescriptions() async {
+    final cached = _cachedDescriptions;
+    if (cached != null) {
+      return cached;
+    }
+
     final jsonString = await rootBundle.loadString(AppAssets.JSON_SKILL_DETAILS);
-    final descriptions = jsonDecode(jsonString);
+    final descriptions = jsonDecode(jsonString) as Map<String, dynamic>;
+    _cachedDescriptions = descriptions;
     return descriptions;
   }
 }

@@ -13,21 +13,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ProjectDetailsWidget extends ConsumerWidget {
   final ProjectGetDro? project;
 
-  ProjectDetailsWidget({super.key, required this.project});
+  const ProjectDetailsWidget({super.key, required this.project});
 
-  final SharedUtility _sharedUtility = SharedUtility();
-  final LanguageUtility _languageUtility = LanguageUtility();
+  static final SharedUtility _sharedUtility = SharedUtility();
+  static final LanguageUtility _languageUtility = LanguageUtility();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bool isPotrait = MediaQuery.of(context).size.width < 1000;
+    final bool isPotrait = MediaQuery.sizeOf(context).width < 1000;
     final currentLanguage = ref.currentLanguage;
     final List<ProjectDetailGetDro> details = project?.details ?? [];
     final ProjectDetailGetDro? detail =
         _languageUtility.findDetailByLanguage(language: currentLanguage, details: details);
     final List<ProjectAttachmentGetDro> attachments = project?.attachments ?? [];
-    final ImageProvider imageProvider = AssetImage(
-      'assets/images/projects/${attachments.firstOrNull?.originalFilename ?? ''}',
+    //실제로는 최대 600px 폭으로 그려지므로 디코드 크기를 제한한다.
+    final ImageProvider imageProvider = ResizeImage(
+      AssetImage('assets/images/projects/${attachments.firstOrNull?.originalFilename ?? ''}'),
+      width: 1200,
+      allowUpscaling: false,
     );
     //final Image imageWidget =  Image.network('${APIService.baseUrl}/v1/portfolio/project/${project!.no}/attachment/download/${attachments.first.uuid}?${_pageEnteredTime.toString()}',fit: BoxFit.cover,)
 
@@ -90,13 +93,11 @@ class ProjectDetailsWidget extends ConsumerWidget {
               )),
           Expanded(
               flex: 11,
-              child: ListView(
-                children: [
-                  Text(
-                    detail?.detail ?? '',
-                    style: TextStyle(fontSize: isPotrait ? 14 : 16, fontWeight: FontWeight.w300),
-                  ),
-                ],
+              child: SingleChildScrollView(
+                child: Text(
+                  detail?.detail ?? '',
+                  style: TextStyle(fontSize: isPotrait ? 14 : 16, fontWeight: FontWeight.w300),
+                ),
               )),
           const Spacer(
             flex: 1,

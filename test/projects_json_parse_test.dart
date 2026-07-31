@@ -37,6 +37,6 @@ void main() {
     expect(myquiz.isHide, isFalse);
     expect(myquiz.refUrl, 'https://myquiz.co.kr');
     expect(myquiz.periodEnd, isNull, reason: '진행중이므로 종료일이 없어야 한다');
-    expect(myquiz.attachments.single.originalFilename, 'myquiz_1.png');
+    expect(myquiz.attachments.single.originalFilename, 'myquiz_1.webp');
   });
 }

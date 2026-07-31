@@ -55,7 +55,7 @@ class _CirclBorderContainerPaint extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  bool shouldRepaint(covariant _CirclBorderContainerPaint oldDelegate) {
+    return oldDelegate.progress != progress || oldDelegate.color != color;
   }
 }

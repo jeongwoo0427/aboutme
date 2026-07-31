@@ -89,18 +89,25 @@ class _CurvedCarouselState extends State<CurvedCarousel>
   int _lastViewPortIndex = -1;
   late double _itemWidth;
   late int _itemsCount;
+  Timer? _automaticMoveTimer;
 
   @override
   void initState() {
     super.initState();
 
     // set up the automatic movement of the carousel
-    Timer.periodic(Duration(milliseconds: widget.automaticMoveDelay), (timer) {
+    _automaticMoveTimer = Timer.periodic(Duration(milliseconds: widget.automaticMoveDelay), (timer) {
       // do not execute the movement if the moveAutomatically is false
       if (!widget.moveAutomatically) return;
 
       movement(true, widget.reverseAutomaticMovement);
     });
+  }
+
+  @override
+  void dispose() {
+    _automaticMoveTimer?.cancel();
+    super.dispose();
   }
 
   @override

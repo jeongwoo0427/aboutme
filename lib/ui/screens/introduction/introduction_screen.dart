@@ -15,16 +15,14 @@ class IntroductionScreen extends StatefulWidget {
 }
 
 class _IntroductionScreenState extends State<IntroductionScreen> {
-  bool _isTop = true;
+  ///스크롤 위치 변화로 3개 페이지 전체가 rebuild 되지 않도록,
+  ///이 값을 쓰는 GreetingPage만 다시 그린다.
+  final ValueNotifier<bool> _isTop = ValueNotifier<bool>(true);
   int _currentPage = 0;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
+    _isTop.dispose();
     super.dispose();
   }
 
@@ -33,9 +31,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
     return ResponsiveGlassyScaffold(
       appbarTitle: const Text('Who am I ?'),
       onChangedPageState: (isTop) {
-        setState(() {
-          _isTop = isTop;
-        });
+        _isTop.value = isTop;
       },
       onNotificationScroll: (notification) {
         final double pageRatio = notification.metrics.pixels / notification.metrics.maxScrollExtent;
@@ -50,18 +46,18 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           page = 3;
         }
 
+        //_currentPage는 build()에서 쓰이지 않으므로 setState 하지 않는다.
         if (_currentPage != page) {
-          setState(() {
-            _currentPage = page;
-            //print(page);
-          });
+          _currentPage = page;
+          //print(page);
         }
       },
       body: SingleChildScrollView(
         child: Column(
           children: [
-            GreetingPage(
-              showContinueText: _isTop,
+            ValueListenableBuilder<bool>(
+              valueListenable: _isTop,
+              builder: (context, isTop, _) => GreetingPage(showContinueText: isTop),
             ),
             CoverLetterPage(),
             const HistoryPage()

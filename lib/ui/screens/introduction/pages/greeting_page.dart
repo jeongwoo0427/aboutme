@@ -7,11 +7,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GreetingPage extends ConsumerWidget {
-  GreetingPage({super.key, required this.showContinueText});
+  const GreetingPage({super.key, required this.showContinueText});
 
   final bool showContinueText;
 
-  final List<String> _greetingTexts = [
+  static const List<String> _greetingTexts = [
     'Hello',
     'Bonjour',
     'Salve',
@@ -85,21 +85,31 @@ class GreetingPage extends ConsumerWidget {
           AnimatedOpacity(
             opacity: showContinueText ? 1 : 0,
             duration: const Duration(milliseconds: 1000),
-            child: Text(
-              ref.localizations.introduction_screen_greeting_page_scroll_text,
-              style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontSize: context.getResponsiveValue(20, 15),
-                  color: context.colorScheme.onSurface),
-            )
-                .animate(
-                    delay: 4000.ms,
-                    onPlay: (controller) => controller.repeat(reverse: true))
-                .fadeIn(duration: 1000.ms),
+            //반복 애니메이션은 계속 티커를 돌리므로, 안 보이는 동안에는 붙이지 않는다.
+            //(AnimatedOpacity로 투명하게만 만들면 티커는 그대로 돈다)
+            child: RepaintBoundary(child: _buildScrollText(context, ref)),
           ),
         ],
       )
     ]));
+  }
+
+  Widget _buildScrollText(BuildContext context, WidgetRef ref) {
+    final Widget text = Text(
+      ref.localizations.introduction_screen_greeting_page_scroll_text,
+      style: TextStyle(
+          fontWeight: FontWeight.w300,
+          fontSize: context.getResponsiveValue(20, 15),
+          color: context.colorScheme.onSurface),
+    );
+
+    if (!showContinueText) {
+      return text;
+    }
+
+    return text
+        .animate(delay: 4000.ms, onPlay: (controller) => controller.repeat(reverse: true))
+        .fadeIn(duration: 1000.ms);
   }
 }
 

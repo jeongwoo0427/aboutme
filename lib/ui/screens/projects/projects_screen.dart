@@ -34,14 +34,18 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
 
   bool _isAnimationLoadComplete = false;
   List<ProjectGetDro> _projects = [];
-  ProjectGetDro? _currentProject;
+
+  ///페이지 전환마다 화면 전체를 rebuild 하지 않도록, 상세 영역만 이 값을 구독한다.
+  final ValueNotifier<ProjectGetDro?> _currentProject = ValueNotifier<ProjectGetDro?>(null);
 
   @override
   void dispose() {
+    _progressHideAnimController.dispose();
     _pageLoadAnimController.dispose();
     _pageToBottomAnimController.dispose();
     _projectDetailAnimController.dispose();
     _pageController.dispose();
+    _currentProject.dispose();
     super.dispose();
   }
 
@@ -69,8 +73,9 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
         children: [
           Positioned.fill(
               child: Center(
-            child: ProjectDetailsWidget(
-              project: _currentProject,
+            child: ValueListenableBuilder<ProjectGetDro?>(
+              valueListenable: _currentProject,
+              builder: (context, project, _) => ProjectDetailsWidget(project: project),
             ),
           )),
           Positioned.fill(
@@ -136,9 +141,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
       await _projectDetailAnimController.reverse();
       await Future.delayed(const Duration(milliseconds: 100));
     }
-    setState(() {
-      _currentProject = _projects[value];
-    });
+    _currentProject.value = _projects[value];
 
     if (_isAnimationLoadComplete) {
       await Future.delayed(const Duration(milliseconds: 100));
@@ -180,11 +183,11 @@ class _ProjectsScreenState extends State<ProjectsScreen> with TickerProviderStat
   Future<void> _fetchProjects() async {
     try {
       final projects = await ProjectData().getProjectsFromAsset();
-      _projects = projects.where((element) => element.isHide == false).toList();
       //_projects = await ProjectData().getProjectsV1();
       setState(() {
-        _currentProject = _projects.firstOrNull;
+        _projects = projects.where((element) => element.isHide == false).toList();
       });
+      _currentProject.value = _projects.firstOrNull;
     } catch (ex, stack) {
       showExceptionDialog(ex, stack);
     }

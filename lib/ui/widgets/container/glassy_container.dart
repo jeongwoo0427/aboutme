@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GlassyContainer extends StatelessWidget {
-  GlassyContainer({
+  const GlassyContainer({
     Key? key,
     required this.child,
     this.width,

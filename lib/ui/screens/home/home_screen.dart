@@ -193,22 +193,26 @@ class _EarthBackgroundState extends State<EarthBackground> {
 
   @override
   Widget build(BuildContext context) {
-    return Image(
-      image: const AssetImage(AppAssets.BG_EARTH_ANIM),
-      fit: BoxFit.cover,
-      frameBuilder: (context, child, frame, wasSyncLoaded) {
-        //frame이 null이면 아직 애니메이션 디코딩 전이다.
-        final bool isAnimationReady = wasSyncLoaded || frame != null;
-        if (isAnimationReady) {
-          _markVisible();
-        }
-        return AnimatedScale(
-          scale: _isVisible ? 1 : 0,
-          duration: const Duration(seconds: 2),
-          curve: Curves.easeOut,
-          child: isAnimationReady ? child : _buildPoster(),
-        );
-      },
+    //애니메이션 WebP는 25fps로 계속 다시 그려진다.
+    //RepaintBoundary로 별도 레이어에 두어 버튼·시계·타이틀까지 함께 래스터화되지 않게 한다.
+    return RepaintBoundary(
+      child: Image(
+        image: const AssetImage(AppAssets.BG_EARTH_ANIM),
+        fit: BoxFit.cover,
+        frameBuilder: (context, child, frame, wasSyncLoaded) {
+          //frame이 null이면 아직 애니메이션 디코딩 전이다.
+          final bool isAnimationReady = wasSyncLoaded || frame != null;
+          if (isAnimationReady) {
+            _markVisible();
+          }
+          return AnimatedScale(
+            scale: _isVisible ? 1 : 0,
+            duration: const Duration(seconds: 2),
+            curve: Curves.easeOut,
+            child: isAnimationReady ? child : _buildPoster(),
+          );
+        },
+      ),
     );
   }
 

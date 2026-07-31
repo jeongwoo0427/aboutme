@@ -24,7 +24,9 @@ class ResponsiveGlassyScaffold extends StatefulWidget {
 class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> with SingleTickerProviderStateMixin {
 
   late final AnimationController _bodyAnimationController;
-  bool _isTop = true;
+
+  ///AppBar만 이 값을 쓰므로, setState 대신 notifier로 rebuild 범위를 AppBar로 좁힌다.
+  final ValueNotifier<bool> _isTop = ValueNotifier<bool>(true);
 
   @override
   void initState() {
@@ -34,14 +36,14 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
 
   @override
   void dispose() {
+    _bodyAnimationController.dispose();
+    _isTop.dispose();
     super.dispose();
   }
 
   void _onChangedPageState(bool isTop){
     //상태 변경당 1회 실행되도록
-    setState(() {
-      _isTop = isTop;
-    });
+    _isTop.value = isTop;
     if(widget.onChangedPageState != null) {
       widget.onChangedPageState!(isTop);
     }
@@ -68,7 +70,7 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
                     } else {
                       isTop = false;
                     }
-                    if (_isTop != isTop) {
+                    if (_isTop.value != isTop) {
                       _onChangedPageState(isTop);
                     }
 
@@ -100,10 +102,13 @@ class _ResponsiveGlassyScaffoldState extends State<ResponsiveGlassyScaffold> wit
                 left: 0,
                 right: 0,
                 child: MaxSizedBox(
-                  child: GlassyAppbar(
-                    isTransparentBackground: widget.isTranparentAppbar??_isTop,
-                    title: widget.appbarTitle??const SizedBox(),
-                    onPressedBack: widget.onPressedBack,
+                  child: ValueListenableBuilder<bool>(
+                    valueListenable: _isTop,
+                    builder: (context, isTop, _) => GlassyAppbar(
+                      isTransparentBackground: widget.isTranparentAppbar ?? isTop,
+                      title: widget.appbarTitle ?? const SizedBox(),
+                      onPressedBack: widget.onPressedBack,
+                    ),
                   ),
                 ),
               ),
