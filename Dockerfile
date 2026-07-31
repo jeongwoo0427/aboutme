@@ -12,9 +12,9 @@ RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 
 WORKDIR /usr/local/flutter
 
-# Checkout specific Flutter version (3.35.4)
+# Checkout specific Flutter version (.fvmrc 의 로컬 버전과 맞춘다)
 RUN git fetch --tags \
-    && git checkout 3.38.5
+    && git checkout 3.44.8
 
 # Set flutter path
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
@@ -27,7 +27,7 @@ RUN flutter config --enable-web
 RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
-RUN flutter build web
+RUN flutter build web --release --wasm
 
 # Stage 2 - Create the run-time image
 FROM nginx:1.21.1-alpine
