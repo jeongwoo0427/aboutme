@@ -66,7 +66,7 @@
     "periodStart": "2020-09-13",
     "periodEnd": "2020-12-05",
     "skills": ".Net, C#, MSSQL",
-    "isHide": false,
+    "isHide": true,
     "details": [
       {
         "language": "kr",
@@ -280,7 +280,7 @@
     "projectCode": "jwapi",
     "periodStart": "2023-04-05",
     "skills": "Node.js, Nest.js, MariaDB, SocketIO, PM2",
-    "isHide": false,
+    "isHide": true,
     "details": [
       {
         "language": "kr",
@@ -340,7 +340,7 @@
     "periodStart": "2024-02-05",
     "periodEnd": "2024-02-12",
     "skills": "Flutter, Node.js, Nest.js",
-    "isHide": false,
+    "isHide": true,
     "details": [
       {
         "language": "kr",
@@ -458,9 +458,40 @@
     ]
   },
   {
+    "no": 16,
+    "projectCode": "blockrunner",
+    "periodStart": "2026-08-05",
+    "periodEnd": "2026-08-09",
+    "skills": "Flutter, Riverpod, Claude Code",
+    "refUrl": "https://github.com/jeongwoo0427/blockrunner",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "블록러너",
+        "detail": "방향을 한 번 입력하면 모든 블록이 동시에 미끄러지는 퍼즐 게임입니다.\nClean Architecture와 MVVM, DI 같은 뼈대와 게임 규칙만 정해두고, 구현은 AI에게 맡겼습니다. 개발의 95%가 바이브 코딩인 셈입니다.\n문제는 세션이 바뀌면 AI가 전부 잊는다는 것이었습니다. 저장소를 기억으로 삼았지만 문서를 다 읽지는 않아서, 결국 규칙은 어기면 빌드가 깨지도록 테스트로 옮겼습니다.\n덕분에 완성된 코드는 처음 의도한 구조와 거의 그대로였고, 머리를 꽤 쓰게 하면서도 재미있는 게임까지 끝을 볼 수 있었습니다.\n고민의 과정은 아래 GitHub에 있습니다."
+      },
+      {
+        "language": "en",
+        "title": "BlockRunner",
+        "detail": "A puzzle game where one input sends every block sliding at once.\nI set the skeleton — Clean Architecture, MVVM, DI — and the game rules; the agent did the implementing. About 95% of this was vibe-coded.\nThe catch: it forgets everything between sessions. The repository became its memory, but not every document gets read, so the rules that mattered ended up as tests — break one, break the build.\nWhat came out matches the structure I intended almost exactly, and it turned into a game that is genuinely tricky and genuinely fun.\nThe full story is in the GitHub repo below."
+      },
+      {
+        "language": "jp",
+        "title": "ブロックランナー",
+        "detail": "方向を一度入力すると、すべてのブロックが同時に滑るパズルゲームです。\nClean ArchitectureやMVVM、DIといった骨組みと規則だけを決め、実装はAIに任せて開発の95%をバイブコーディングで進めました。\n問題は、セッションが変わるとAIが全部忘れることでした。リポジトリを記憶にしましたが文書を全部は読まないので、規則は破るとビルドが落ちるテストに移しました。\nおかげで出来上がったコードは意図した構造とほぼ同じで、程よく歯ごたえのある面白いゲームまで作り切れました。\n過程は下のGitHubにあります。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "blockrunner_1.webp"
+      }
+    ]
+  },
+  {
     "no": 999,
     "projectCode": "commingsoon",
-    "periodStart": "2024-08-05",
+    "periodStart": "2026-08-10",
     "skills": "Flutter, Nest.js, MariaDB, Firebase",
     "isHide": false,
     "details": [
