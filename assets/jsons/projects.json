@@ -458,6 +458,36 @@
     ]
   },
   {
+    "no": 17,
+    "projectCode": "donnae",
+    "periodStart": "2026-06-12",
+    "skills": "Flutter, Riverpod, Nest.js, MySQL",
+    "refUrl": "https://play.google.com/store/apps/details?id=com.rediscover.donnae",
+    "isHide": false,
+    "details": [
+      {
+        "language": "kr",
+        "title": "돈內한바퀴",
+        "detail": "이름난 관광지에 가려 잘 알려지지 않은 지역 상권을 직접 걷게 하고, 걸으며 모은 코인을 그 상권의 가게에서 쓰게 하는 앱입니다. '동네 한 바퀴'이자 '돈이 內(안)에서 한 바퀴'라는 이름 그대로입니다.\n기획은 PM이, 웹은 팀원이 맡고 저는 앱과 서버 API를 담당했습니다. 관광데이터 활용 공모전 출품까지 일정이 빠듯했던 만큼 각자 AI를 붙여 속도를 냈고, 판단의 근거는 저장소 문서에 남겨 공유했습니다.\n혼자 만든 것만 늘어놓던 제게 맡은 자리에서 제 몫을 해내는 즐거움을 알려준, 가장 좋았던 협업이었습니다. 플레이스토어에 출시해 지금도 개선해 나가고 있습니다."
+      },
+      {
+        "language": "en",
+        "title": "Donnae",
+        "detail": "An app that gets people walking the local streets the famous sights overshadow, gathering coins as they go and spending them in those same shops. The Korean name says it twice over — a lap around the neighborhood, and money taking a lap inside it.\nOur PM owned the planning and a teammate the web, while I took the app and the server API. The contest deadline was tight, so each of us worked alongside AI to keep pace and left the reasoning behind our decisions in the repository.\nEvery other project here I built alone. This one taught me how good it feels to hold one seat well. It is on Google Play and still being improved."
+      },
+      {
+        "language": "jp",
+        "title": "Donnae",
+        "detail": "有名な観光地の陰に隠れた地元の商店街を実際に歩かせ、歩きながら集めたコインをその商店街の店で使ってもらうアプリです。「町を一周」であり「お金が地域の中を一周」でもある名前の通りです。\n企画はPMが、ウェブはチームメンバーが担い、私はアプリとサーバーAPIを担当しました。観光データ活用コンペへの出品まで日程が厳しく、それぞれがAIを傍らに置いて速度を出し、判断の根拠はリポジトリの文書に残して共有しました。\n一人で作ったものばかりだった私に、任された場所で役割を果たす喜びを教えてくれた、いちばん良い協業でした。Google Playにリリースして今も改善を続けています。"
+      }
+    ],
+    "attachments": [
+      {
+        "originalFilename": "donnae_1.webp"
+      }
+    ]
+  },
+  {
     "no": 16,
     "projectCode": "blockrunner",
     "periodStart": "2026-08-05",
